@@ -34,8 +34,8 @@ function setupGlobalNavigation() {
         }
 
         let targetUrl = msg.url;
-        // Bắt sự kiện nhảy sang Wix Stores (Trang danh mục.ivo1p.js)
-        if (msg.type === "OPEN_WIX_STORE" || msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP" || (msg.type === "WIX_NAVIGATE" && msg.url && (msg.url.includes("shop") || msg.url.includes("cua-hang") || msg.url.includes("category")))) {
+        // Bắt sự kiện nhảy sang Wix Stores (Trang All Products / Trang danh mục)
+        if (msg.type === "OPEN_WIX_STORE" || msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP" || (msg.type === "WIX_NAVIGATE" && msg.url && (msg.url.includes("shop") || msg.url.includes("cua-hang") || msg.url.includes("category") || msg.url.includes("all-product")))) {
             const cat = msg.category;
             const sku = msg.sku;
             let params = [];
@@ -47,9 +47,9 @@ function setupGlobalNavigation() {
                 queryStr = msg.url.substring(msg.url.indexOf('?'));
             }
 
-            // Slug chính thức của Wix Stores Trang danh mục là /shop
-            targetUrl = '/shop' + queryStr;
-            console.log("🛍️ Master Router: Nhảy thẳng sang Wix Stores (Trang danh mục):", targetUrl);
+            // Đích đến chính xác 100% của trang All Products trên Wix Stores
+            targetUrl = '/category/all-products' + queryStr;
+            console.log("🛍️ Master Router: Nhảy thẳng sang Wix Stores All Products:", targetUrl);
             navigateSafely(targetUrl);
             return;
         }
@@ -96,19 +96,21 @@ export function broadcastToHtmlComponents(data) {
 export function navigateSafely(url) {
     if (!url) return;
 
-    // Nếu đích đến là Cửa Hàng / Wix Stores (Trang danh mục.ivo1p.js)
-    if (url.includes("shop") || url.includes("cua-hang") || url.includes("category")) {
+    // Nếu đích đến là Cửa Hàng / All Products trong Wix Stores
+    if (url.includes("all-products") || url.includes("all-product") || url.includes("shop") || url.includes("cua-hang") || url.includes("category")) {
         const queryIdx = url.indexOf('?');
         const query = queryIdx !== -1 ? url.substring(queryIdx) : '';
-        console.log("🛍️ Điều hướng tới Wix Stores (Trang danh mục.ivo1p.js) với slug /shop" + query);
+        console.log("🛍️ Điều hướng trực tiếp tới trang All Products:", "/category/all-products" + query);
         try {
-            wixLocation.to("/shop" + query);
+            wixLocation.to("/category/all-products" + query);
         } catch (err) {
-            console.warn("Direct /shop failed, fallback to /category/all-products:", err);
+            console.warn("Direct /category/all-products failed, trying fallback:", err);
             try {
-                wixLocation.to("/category/all-products" + query);
+                wixLocation.to("/all-products" + query);
             } catch (e2) {
-                try { wixLocation.to("/cua-hang" + query); } catch (e3) {}
+                try { wixLocation.to("/shop" + query); } catch (e3) {
+                    try { wixLocation.to("/cua-hang" + query); } catch (e4) {}
+                }
             }
         }
         return;
