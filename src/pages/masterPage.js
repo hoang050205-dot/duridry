@@ -60,41 +60,33 @@ function setupGlobalNavigation() {
         }
     }
 
-    // 1. Hook to all HtmlComponents via general selector
-    try {
-        $w('HtmlComponent').onMessage(handleMessage);
-    } catch (e) {}
-
-    // 2. Hook to specific common IDs safely
+    // Hook lắng nghe tất cả các ID nhúng HTML Component có thể tồn tại
     const componentIds = [
-        '#html1', '#html2', '#html3', '#html4', '#html5',
-        '#htmlHeader', '#headerHtml', '#htmlFooter', '#footerHtml',
-        '#htmlShop', '#htmlServices', '#htmlAbout', '#htmlContact'
+        '#html1', '#html2', '#html3', '#html4', '#html5', '#html6', '#html7', '#html8',
+        '#htmlHeader', '#headerHtml', '#htmlHead', '#htmlFooter', '#footerHtml',
+        '#htmlBody', '#htmlShop', '#htmlStore', '#htmlServices', '#htmlAbout', '#htmlContact'
     ];
     componentIds.forEach(id => {
         try {
             const comp = $w(id);
-            if (comp && comp.length > 0 && typeof comp.onMessage === 'function') {
+            if (comp && typeof comp.onMessage === 'function') {
                 comp.onMessage(handleMessage);
+                console.log("✅ Velo Master Router đã kết nối onMessage thành công với:", id);
             }
         } catch (e) {}
     });
 }
 
 export function broadcastToHtmlComponents(data) {
-    try {
-        $w('HtmlComponent').postMessage(data);
-    } catch (e) {}
-
     const componentIds = [
-        '#html1', '#html2', '#html3', '#html4', '#html5',
-        '#htmlHeader', '#headerHtml', '#htmlFooter', '#footerHtml',
-        '#htmlShop', '#htmlServices', '#htmlAbout', '#htmlContact'
+        '#html1', '#html2', '#html3', '#html4', '#html5', '#html6', '#html7', '#html8',
+        '#htmlHeader', '#headerHtml', '#htmlHead', '#htmlFooter', '#footerHtml',
+        '#htmlBody', '#htmlShop', '#htmlStore', '#htmlServices', '#htmlAbout', '#htmlContact'
     ];
     componentIds.forEach(id => {
         try {
             const comp = $w(id);
-            if (comp && comp.length > 0 && typeof comp.postMessage === 'function') {
+            if (comp && typeof comp.postMessage === 'function') {
                 comp.postMessage(data);
             }
         } catch (e) {}
