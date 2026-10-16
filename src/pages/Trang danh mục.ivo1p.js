@@ -9,7 +9,16 @@ $w.onReady(function () {
 
     function handleNav(event) {
         const msg = event.data;
-        if (msg && msg.type === "WIX_NAVIGATE" && msg.url) {
+        if (!msg) return;
+
+        if (msg.type === "OPEN_CART_DRAWER" || msg.type === "OPEN_CART") {
+            try {
+                $w('HtmlComponent').postMessage({ type: 'OPEN_CART_DRAWER' });
+            } catch (e) {}
+            return;
+        }
+
+        if (msg.type === "WIX_NAVIGATE" && msg.url) {
             console.log("🛒 Shop Page navigating to:", msg.url);
             try {
                 wixLocation.to(msg.url);
@@ -32,4 +41,18 @@ $w.onReady(function () {
         } catch (e) {}
     });
 
+    // Tự động kiểm tra URL query parameter (ví dụ: /shop?cat=ri6)
+    const query = wixLocation.query;
+    if (query && (query.cat || query.sku)) {
+        console.log("🎯 Shop page nhận tham số lọc:", query);
+        setTimeout(() => {
+            try {
+                $w('HtmlComponent').postMessage({ 
+                    type: 'FILTER_CATEGORY', 
+                    category: query.cat || 'all',
+                    sku: query.sku || null
+                });
+            } catch (e) {}
+        }, 600);
+    }
 });

@@ -34,14 +34,24 @@ function setupGlobalNavigation() {
         }
 
         let targetUrl = msg.url;
-        if (msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP") {
+        // Bắt sự kiện nhảy sang Wix Stores (Trang danh mục.ivo1p.js)
+        if (msg.type === "OPEN_WIX_STORE" || msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP" || (msg.type === "WIX_NAVIGATE" && msg.url && (msg.url.includes("shop") || msg.url.includes("cua-hang") || msg.url.includes("category")))) {
             const cat = msg.category;
             const sku = msg.sku;
             let params = [];
             if (cat && cat !== 'all') params.push(`cat=${cat}`);
             if (sku) params.push(`sku=${sku}`);
 
-            targetUrl = '/cua-hang' + (params.length > 0 ? '?' + params.join('&') : '');
+            let queryStr = params.length > 0 ? '?' + params.join('&') : '';
+            if (!queryStr && msg.url && msg.url.includes('?')) {
+                queryStr = msg.url.substring(msg.url.indexOf('?'));
+            }
+
+            // Slug chính thức của Wix Stores Trang danh mục là /shop
+            targetUrl = '/shop' + queryStr;
+            console.log("🛍️ Master Router: Nhảy thẳng sang Wix Stores (Trang danh mục):", targetUrl);
+            navigateSafely(targetUrl);
+            return;
         }
 
         if (targetUrl) {
@@ -93,19 +103,30 @@ export function broadcastToHtmlComponents(data) {
 
 export function navigateSafely(url) {
     if (!url) return;
+
+    // Nếu đích đến là Cửa Hàng / Wix Stores (Trang danh mục.ivo1p.js)
+    if (url.includes("shop") || url.includes("cua-hang") || url.includes("category")) {
+        const queryIdx = url.indexOf('?');
+        const query = queryIdx !== -1 ? url.substring(queryIdx) : '';
+        console.log("🛍️ Điều hướng tới Wix Stores (Trang danh mục.ivo1p.js) với slug /shop" + query);
+        try {
+            wixLocation.to("/shop" + query);
+        } catch (err) {
+            console.warn("Direct /shop failed, fallback to /category/all-products:", err);
+            try {
+                wixLocation.to("/category/all-products" + query);
+            } catch (e2) {
+                try { wixLocation.to("/cua-hang" + query); } catch (e3) {}
+            }
+        }
+        return;
+    }
+
     try {
         wixLocation.to(url);
     } catch (err) {
         console.warn("Direct wixLocation.to failed for:", url, err);
-        const queryIdx = url.indexOf('?');
-        const query = queryIdx !== -1 ? url.substring(queryIdx) : '';
-        if (url.includes("cua-hang")) {
-            try { wixLocation.to("/shop" + query); } catch (e2) {
-                try { wixLocation.to("/store" + query); } catch (e3) {
-                    wixLocation.to("/trang-danh-muc" + query);
-                }
-            }
-        } else if (url.includes("services")) {
+        if (url.includes("services")) {
             try { wixLocation.to("/dich-vu-b2b"); } catch (e) {}
         } else if (url.includes("about")) {
             try { wixLocation.to("/ve-duridry"); } catch (e) {}

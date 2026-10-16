@@ -21,20 +21,25 @@ $w.onReady(function () {
                 const msg = event.data;
                 if (!msg) return;
 
-                // CHUYỂN TRANG SANG CÁC TRANG WIX
-                if (msg.type === "NAVIGATE_SHOP_PAGE" || (msg.type === "WIX_NAVIGATE" && msg.url && msg.url.includes("cua-hang"))) {
+                // CHUYỂN TRANG SANG WIX STORES (Trang danh mục.ivo1p.js)
+                if (msg.type === "OPEN_WIX_STORE" || msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP" || (msg.type === "WIX_NAVIGATE" && msg.url && (msg.url.includes("shop") || msg.url.includes("cua-hang") || msg.url.includes("category")))) {
                     const cat = msg.category;
                     const sku = msg.sku;
                     let params = [];
                     if (cat && cat !== 'all') params.push(`cat=${cat}`);
                     if (sku) params.push(`sku=${sku}`);
-                    const targetUrl = '/cua-hang' + (params.length > 0 ? '?' + params.join('&') : '');
-                    console.log("🛒 Chuyển trang sang Cửa Hàng:", targetUrl);
+                    let queryStr = params.length > 0 ? '?' + params.join('&') : '';
+                    if (!queryStr && msg.url && msg.url.includes('?')) {
+                        queryStr = msg.url.substring(msg.url.indexOf('?'));
+                    }
+                    const targetUrl = '/shop' + queryStr;
+                    console.log("🛒 Home Page: Chuyển thẳng sang Wix Stores (Trang danh mục.ivo1p.js):", targetUrl);
                     try {
                         wixLocation.to(targetUrl);
                     } catch (e) {
-                        try { wixLocation.to("/shop" + (params.length > 0 ? '?' + params.join('&') : '')); } catch (err) { wixLocation.to("/store"); }
+                        try { wixLocation.to("/category/all-products" + queryStr); } catch (err) { wixLocation.to("/cua-hang" + queryStr); }
                     }
+                    return;
                 } else if (msg.type === "WIX_NAVIGATE" && msg.url) {
                     console.log("🚀 Điều hướng sang trang:", msg.url);
                     try {
@@ -70,9 +75,9 @@ function initNativeElementsSafe() {
         if (btnShop && typeof btnShop.onClick === 'function') {
             btnShop.onClick(() => {
                 try {
-                    wixLocation.to("/cua-hang");
-                } catch (e) {
                     wixLocation.to("/shop");
+                } catch (e) {
+                    try { wixLocation.to("/category/all-products"); } catch (err) { wixLocation.to("/cua-hang"); }
                 }
             });
         }
