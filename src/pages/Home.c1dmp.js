@@ -36,43 +36,53 @@ $w.onReady(function () {
         console.warn("Lưu ý về HtmlComponent:", err);
     }
 
-    // --- 2. HỖ TRỢ CÁC PHẦN TỬ NATIVE TRÊN TRANG (NẾU CÓ) ---
-    initNativeElements();
+    // --- 2. HỖ TRỢ CÁC PHẦN TỬ NATIVE TRÊN TRANG (AN TOÀN CHỐNG LỖI) ---
+    initNativeElementsSafe();
 });
 
-function initNativeElements() {
-    // Điều hướng các nút CTA Native
-    if ($w('#btnShopNow')) {
-        $w('#btnShopNow').onClick(() => wixLocation.to("/cua-hang"));
-    }
-    if ($w('#btnB2B')) {
-        $w('#btnB2B').onClick(() => wixLocation.to("/cong-xuat-khau-b2b"));
-    }
+function initNativeElementsSafe() {
+    try {
+        const btnShop = $w('#btnShopNow');
+        if (btnShop && typeof btnShop.onClick === 'function') {
+            btnShop.onClick(() => wixLocation.to("/cua-hang"));
+        }
 
-    // Widget Tra cứu mã lô hàng (Native)
-    if ($w('#btnTrackBatch') && $w('#inputBatchCode')) {
-        $w('#btnTrackBatch').onClick(async () => {
-            const code = $w('#inputBatchCode').value;
-            const res = await getBatchInfo(code);
-            if (res.success && $w('#boxBatchResult')) {
-                if ($w('#txtFarmName')) $w('#txtFarmName').text = "Vùng trồng: " + res.data.farm;
-                if ($w('#txtMoisture')) $w('#txtMoisture').text = "Độ ẩm: " + res.data.moisture;
-                $w('#boxBatchResult').expand();
-            } else if ($w('#boxBatchResult')) {
-                if ($w('#txtFarmName')) $w('#txtFarmName').text = res.message;
-                $w('#boxBatchResult').expand();
-            }
-        });
-    }
+        const btnB2B = $w('#btnB2B');
+        if (btnB2B && typeof btnB2B.onClick === 'function') {
+            btnB2B.onClick(() => wixLocation.to("/cong-xuat-khau-b2b"));
+        }
 
-    // Widget B2B Calculator (Native)
-    if ($w('#sliderB2BQty')) {
-        $w('#sliderB2BQty').onChange(async () => {
-            const qty = $w('#sliderB2BQty').value;
-            const quote = await calculateB2BQuote(qty);
-            if ($w('#txtB2BTotalVal')) {
-                $w('#txtB2BTotalVal').text = `Tổng: $${quote.totalFobCifUsd.toLocaleString()} USD (Cọc 30% T/T: $${quote.advanceDepositUsd.toLocaleString()} USD)`;
-            }
-        });
+        const btnTrack = $w('#btnTrackBatch');
+        const inputBatch = $w('#inputBatchCode');
+        if (btnTrack && typeof btnTrack.onClick === 'function' && inputBatch) {
+            btnTrack.onClick(async () => {
+                const code = inputBatch.value;
+                const res = await getBatchInfo(code);
+                const boxResult = $w('#boxBatchResult');
+                if (boxResult && typeof boxResult.expand === 'function') {
+                    const txtFarm = $w('#txtFarmName');
+                    if (txtFarm && res.success) {
+                        txtFarm.text = "Vùng trồng: " + res.data.farm;
+                    } else if (txtFarm) {
+                        txtFarm.text = res.message;
+                    }
+                    boxResult.expand();
+                }
+            });
+        }
+
+        const sliderQty = $w('#sliderB2BQty');
+        if (sliderQty && typeof sliderQty.onChange === 'function') {
+            sliderQty.onChange(async () => {
+                const qty = sliderQty.value;
+                const quote = await calculateB2BQuote(qty);
+                const txtTotal = $w('#txtB2BTotalVal');
+                if (txtTotal) {
+                    txtTotal.text = `Tổng: $${quote.totalFobCifUsd.toLocaleString()} USD (Cọc 30% T/T: $${quote.advanceDepositUsd.toLocaleString()} USD)`;
+                }
+            });
+        }
+    } catch (e) {
+        console.warn("Bỏ qua gán sự kiện native elements:", e);
     }
 }
