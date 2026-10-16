@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cửa Hàng DuriDry — Danh Mục Sầu Riêng Sấy Thăng Hoa (5 SKUs)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       DuriDry Design Tokens & Global Styles (Eco-Premium & Tropical Modernism)
+       ========================================================================== */
+    :root {
+      --bg-primary: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #F5EFEB;
+      --primary-accent: #F4C430;
+      --primary-accent-hover: #E5B31E;
+      --primary-accent-light: #FDF4D7;
+      --cta-forest-green: #1E5631;
+      --cta-forest-green-hover: #153E23;
+      --cta-forest-green-light: #E8F0EA;
+      --text-primary: #2B2118;
+      --text-secondary: #5C4D41;
+      --text-muted: #8D7B6D;
+      --text-on-dark: #FAF8F5;
+      --badge-highlight: #E05A47;
+      --badge-highlight-bg: #FBECE9;
+      --border-subtle: #E8DFD8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(43, 33, 24, 0.05);
+      --shadow-md: 0 10px 30px rgba(43, 33, 24, 0.08);
+      --shadow-lg: 0 20px 50px rgba(43, 33, 24, 0.12);
+      --shadow-glow: 0 0 30px rgba(244, 196, 48, 0.35);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+
+    /* Utility Container */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background-color: var(--cta-forest-green);
+      color: var(--primary-accent);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Sticky Header */
+    header.sticky-header {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 248, 245, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--cta-forest-green);
+    }
+    .logo-badge {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-item {
+      position: relative;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+    .nav-item:hover, .nav-item.active {
+      color: var(--cta-forest-green);
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -10px;
+      background: #FFFFFF;
+      min-width: 230px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: var(--transition);
+      border: 1px solid var(--border-subtle);
+    }
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .dropdown-item {
+      display: block;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .dropdown-item:hover {
+      background: var(--bg-surface-elevated);
+      color: var(--cta-forest-green);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .select-currency, .select-lang {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+    .cart-trigger {
+      position: relative;
+      background: var(--cta-forest-green-light);
+      color: var(--cta-forest-green);
+      padding: 10px 14px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .cart-trigger:hover {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+    }
+    .cart-count {
+      background: var(--badge-highlight);
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: 70px 0 90px;
+      background: radial-gradient(circle at 85% 20%, rgba(244, 196, 48, 0.22) 0%, rgba(250, 248, 245, 0) 65%),
+                  radial-gradient(circle at 10% 80%, rgba(30, 86, 49, 0.12) 0%, rgba(250, 248, 245, 0) 50%);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 50px;
+    }
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cta-forest-green);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-title {
+      font-size: 46px;
+      line-height: 1.18;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero-title span.highlight-gold {
+      color: #C88D00;
+      position: relative;
+      display: inline-block;
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 580px;
+      line-height: 1.65;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-main {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+      padding: 14px 30px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(30, 86, 49, 0.25);
+    }
+    .btn-main:hover {
+      background: var(--cta-forest-green-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(30, 86, 49, 0.35);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--primary-accent);
+      padding: 13px 26px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-outline-gold:hover {
+      background: var(--primary-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* ASMR Crunch Button */
+    .btn-asmr {
+      background: linear-gradient(135deg, #FFF9E6, #FFF0BA);
+      border: 2px solid var(--primary-accent);
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(244, 196, 48, 0.3);
+      cursor: pointer;
+      transition: var(--transition);
+      animation: pulse-border 2.5s infinite;
+    }
+    .btn-asmr:hover {
+      transform: scale(1.04);
+      background: var(--primary-accent);
+    }
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(244, 196, 48, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0); }
+    }
+
+    /* Hero Showcase Card */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card-featured {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image-wrap {
+      width: 100%;
+      height: 380px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: #F0ECE6;
+    }
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .hero-image-wrap:hover img {
+      transform: scale(1.05);
+    }
+    .hero-floating-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(30, 86, 49, 0.92);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Trust Badges Bar */
+    .trust-bar {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 28px 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      color: var(--cta-forest-green);
+    }
+    .trust-text h4 {
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .trust-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Featured Categories */
+    .section-padding {
+      padding: 80px 0;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px;
+    }
+    .section-sub {
+      color: var(--cta-forest-green);
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 34px;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .category-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-accent);
+    }
+    .cat-img-box {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cat-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .category-card:hover .cat-img-box img {
+      transform: scale(1.08);
+    }
+    .cat-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cat-badge {
+      align-self: flex-start;
+      background: var(--primary-accent-light);
+      color: #946800;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* Infographic 10:3.5 Storytelling */
+    .infographic-section {
+      background: linear-gradient(180deg, #FAF8F5 0%, #F5EFEB 100%);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      margin: 40px 0;
+    }
+    .ratio-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .ratio-step {
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+    .ratio-step .step-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .ratio-step .step-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--cta-forest-green);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .ratio-arrow {
+      font-size: 24px;
+      color: var(--primary-accent);
+      font-weight: 800;
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 26px;
+    }
+    .product-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-accent);
+    }
+    .p-ribbon {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--badge-highlight);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+    .p-ribbon.gold {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+    }
+    .p-thumb {
+      height: 220px;
+      position: relative;
+      background: #F9F6F0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .p-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .p-thumb img {
+      transform: scale(1.08);
+    }
+    .p-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .p-cat {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .p-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+    .p-name:hover {
+      color: var(--cta-forest-green);
+    }
+    .taste-bar-mini {
+      display: flex;
+      gap: 12px;
+      margin: 10px 0 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--bg-surface-elevated);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+    }
+    .p-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .p-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cta-forest-green);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .btn-add-cart {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .btn-add-cart:hover {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+      transform: scale(1.1);
+    }
+
+    /* Comparison Table (Why DuriDry) */
+    .compare-table-wrap {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      margin-top: 40px;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .compare-table th, .compare-table td {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+    .compare-table th {
+      background: var(--bg-surface-elevated);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+    }
+    .compare-table th.highlight-col, .compare-table td.highlight-col {
+      background: rgba(244, 196, 48, 0.12);
+      font-weight: 700;
+      color: var(--cta-forest-green);
+    }
+
+    /* 4 Interactive Widgets Container */
+    .widgets-section {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      margin: 60px 0;
+    }
+    .widget-tabs {
+      display: flex;
+      gap: 12px;
+      border-bottom: 2px solid var(--border-subtle);
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+    .widget-tab-btn {
+      background: transparent;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .widget-tab-btn.active {
+      color: var(--cta-forest-green);
+      border-bottom-color: var(--cta-forest-green);
+    }
+    .widget-pane {
+      display: none;
+    }
+    .widget-pane.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Slide-out Mini Cart Drawer */
+    .cart-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(43, 33, 24, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .cart-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 440px;
+      max-width: 90vw;
+      background: #FFFFFF;
+      z-index: 2001;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-overlay.open .cart-drawer {
+      transform: translateX(0);
+    }
+    .cart-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-progress-box {
+      background: var(--bg-surface-elevated);
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .progress-bar-wrap {
+      height: 8px;
+      background: #E0D8D0;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-accent), var(--cta-forest-green));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .cart-items-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border-subtle);
+      background: #FAFAFA;
+    }
+    .cart-gift-option {
+      background: #FFF9E8;
+      border: 1px dashed var(--primary-accent);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Modal Framework (PDP, Checkout, B2B Quote) */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(43, 33, 24, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      max-width: 880px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      padding: 36px;
+      border: 1px solid var(--border-subtle);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-full);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* PDP Grid in Modal */
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 36px;
+    }
+    .pdp-gallery-main {
+      width: 100%;
+      height: 360px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #F6F3EE;
+      margin-bottom: 12px;
+    }
+    .pdp-gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .pdp-thumbs {
+      display: flex;
+      gap: 10px;
+    }
+    .pdp-thumb-item {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .pdp-thumb-item.active {
+      border-color: var(--cta-forest-green);
+    }
+    .pdp-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Accordions */
+    .accordion-item {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .accordion-header {
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .accordion-content {
+      padding-bottom: 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: none;
+      line-height: 1.6;
+    }
+    .accordion-item.active .accordion-content {
+      display: block;
+    }
+
+    /* ==========================================================================
+       Eco-Premium 3-Tier Footer (Tight fit - No excess whitespace)
+       ========================================================================== */
+    footer.main-footer {
+      background: #181411;
+      color: #FAF8F5;
+      margin-top: 40px;
+      margin-bottom: 0;
+      padding: 0;
+      border-top: 3px solid var(--primary-accent);
+      width: 100%;
+    }
+    .footer-trust-bar {
+      background: #1E5631;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(244, 196, 48, 0.25);
+    }
+    .footer-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .f-trust-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #FAF8F5;
+    }
+    .f-trust-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .f-trust-card strong {
+      display: block;
+      font-size: 14px;
+      color: var(--primary-accent);
+      margin-bottom: 2px;
+    }
+    .f-trust-card p {
+      font-size: 11px;
+      color: #D4E3D8;
+      line-height: 1.35;
+      margin: 0;
+    }
+    .footer-main-body {
+      padding: 50px 24px 35px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1.1fr 1.2fr;
+      gap: 36px;
+    }
+    .footer-col h4 {
+      color: #FAF8F5;
+      font-size: 15px;
+      margin-bottom: 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 2px;
+      background: var(--primary-accent);
+      border-radius: 2px;
+    }
+    .footer-tagline {
+      font-size: 13px;
+      color: #ABA299;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .footer-meta-item {
+      font-size: 12px;
+      color: #CBC2B9;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .footer-cert-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .cert-chip {
+      background: rgba(255,255,255,0.08);
+      color: var(--primary-accent);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid rgba(244, 196, 48, 0.25);
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #CBC2B9;
+      line-height: 1.45;
+    }
+    .footer-col ul li a {
+      color: #CBC2B9;
+      transition: var(--transition);
+    }
+    .footer-col ul li a:hover {
+      color: var(--primary-accent);
+      padding-left: 4px;
+    }
+    .footer-newsletter {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .footer-newsletter input {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #3E352F;
+      background: #25201C;
+      color: #FAF8F5;
+      font-size: 13px;
+      outline: none;
+    }
+    .footer-newsletter input:focus {
+      border-color: var(--primary-accent);
+    }
+    .footer-contact-info {
+      font-size: 12px;
+      color: #ABA299;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .footer-contact-info strong {
+      color: #FAF8F5;
+    }
+    .footer-social-links {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+    .footer-social-links a {
+      background: rgba(255,255,255,0.06);
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: #CBC2B9;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none;
+    }
+    .footer-social-links a:hover {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+    }
+    .footer-bottom-bar {
+      background: #110D0B;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 18px 0;
+      margin-bottom: 0;
+    }
+    .footer-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-legal p {
+      font-size: 12px;
+      color: #857B72;
+      margin: 0;
+    }
+    .footer-legal strong {
+      color: #ABA299;
+    }
+    .footer-payment-badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pay-chip {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #FAF8F5;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .cert-bct {
+      background: #0D47A1;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid, .pdp-grid, .ratio-flow { grid-template-columns: 1fr; }
+      .category-grid, .trust-grid, .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-menu { display: none; }
+    }
+    @media (max-width: 600px) {
+      .category-grid, .trust-grid, .footer-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 32px; }
+      .modal-box { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Store Header Banner -->
+  <div style="background: radial-gradient(circle at 50% 20%, rgba(244, 196, 48, 0.22) 0%, rgba(250, 248, 245, 0) 70%); padding: 50px 0 30px; text-align: center; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+        <a href="/" target="_top" style="color: var(--cta-forest-green); font-weight: 600;">Trang chủ</a> &gt; <span>Cửa hàng</span>
+      </div>
+      <h1 style="font-size: 36px; margin-bottom: 10px;">Cửa Hàng Sầu Riêng Sấy Thăng Hoa DuriDry</h1>
+      <p style="font-size: 16px; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
+        100% sầu riêng tươi Tiền Giang sấy thăng hoa âm sâu -40°C. Giữ trọn 98% dưỡng chất, vị béo đậm thơm nồng tự nhiên suốt 365 ngày.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2: Trust Badges Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">❄️</div>
+          <div class="trust-text">
+            <h4>Sấy Thăng Hoa Âm Sâu</h4>
+            <p>Cấp đông chân không -40°C, giữ 98% vitamin</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🌱</div>
+          <div class="trust-text">
+            <h4>100% Sầu Riêng Tuyển Chọn</h4>
+            <p>Ri6 & Monthong loại B từ LCD Fruit Tiền Giang</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🛡️</div>
+          <div class="trust-text">
+            <h4>Túi Nhôm Ghép Vinpack</h4>
+            <p>Bảo quản 3 năm không oxy hóa hay mất độ giòn</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✈️</div>
+          <div class="trust-text">
+            <h4>Chuẩn Xuất Khẩu Quốc Tế</h4>
+            <p>C/O Form E, Phytosanitary đi Hema & AEON</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Featured Categories -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-sub">DANH MỤC CHỦ LỰC</div>
+        <h2 class="section-title">Hương Vị Tinh Tuyển Theo Từng Nhu Cầu</h2>
+        <p class="section-desc">Từ bữa ăn vặt văn phòng thanh lịch đến các kiện hàng container xuất khẩu tiêu chuẩn toàn cầu.</p>
+      </div>
+
+      <div class="category-grid">
+        <div class="category-card" onclick="filterCatalog('ri6')">
+          <div class="cat-img-box">
+            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80" alt="Ri6 Nội Địa">
+          </div>
+          <div class="cat-content">
+            <span class="cat-badge">Đậm Đà Miền Tây</span>
+            <h3 style="font-size:20px; margin-bottom:8px;">Dòng Ri6 Nội Địa</h3>
+            <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Vị béo đậm, thơm nồng quyến rũ đặc trưng. Phù hợp người sành ăn sầu riêng và giới trẻ.</p>
+            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="filterCatalog('monthong')">
+          <div class="cat-img-box">
+            <img src="https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80" alt="Monthong Xuất Khẩu">
+          </div>
+          <div class="cat-content">
+            <span class="cat-badge">Thanh Tao Quốc Tế</span>
+            <h3 style="font-size:20px; margin-bottom:8px;">Dòng Monthong Xuất Khẩu</h3>
+            <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Cơm dày, kết cấu giòn chắc, vị ngọt thanh tao. Đóng gói tiêu chuẩn xuất khẩu song ngữ.</p>
+            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="filterCatalog('gift')">
+          <div class="cat-img-box">
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Hộp Quà Biếu">
+          </div>
+          <div class="cat-content">
+            <span class="cat-badge">Quà Biếu VIP</span>
+            <h3 style="font-size:20px; margin-bottom:8px;">Hộp Quà "Song Vị Hoàng Kim"</h3>
+            <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Hộp cứng ép kim kèm túi giấy và thiệp viết tay. Món quà thượng hạng cho đối tác & kiều bào.</p>
+            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem chi tiết quà tặng →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Infographic Tỷ Lệ Vàng 10:3.5 -->
+  <section class="container" id="story-section">
+    <div class="infographic-section">
+      <div class="section-header" style="margin-bottom:20px;">
+        <div class="section-sub">MINH BẠCH GIÁ TRỊ THỰC</div>
+        <h2 class="section-title">Giải Mã Tỷ Lệ Vàng 10:3.5 Của DuriDry</h2>
+        <p class="section-desc">Vì sao sầu riêng sấy thăng hoa có giá trị cao? Khám phá hành trình cô đọng tinh hoa dinh dưỡng từ 10 tấn quả tươi.</p>
+      </div>
+
+      <div class="ratio-flow">
+        <div class="ratio-step">
+          <div class="step-icon">🌳</div>
+          <div class="step-val">10.000 kg</div>
+          <h4 style="font-size:15px; margin:4px 0;">Sầu Riêng Tươi</h4>
+          <p style="font-size:12px; color:var(--text-muted);">LCD Fruit Tiền Giang tuyển chọn quả đạt chuẩn B</p>
+        </div>
+        <div class="ratio-arrow">➔</div>
+        <div class="ratio-step">
+          <div class="step-icon">🔪</div>
+          <div class="step-val">Tách Vỏ & Hạt</div>
+          <h4 style="font-size:15px; margin:4px 0;">Thu Thịt Quả</h4>
+          <p style="font-size:12px; color:var(--text-muted);">Chỉ lấy múi cơm vàng ươm, loại bỏ 65% vỏ gai</p>
+        </div>
+        <div class="ratio-arrow">➔</div>
+        <div class="ratio-step">
+          <div class="step-icon">❄️</div>
+          <div class="step-val">-40°C Sấy Âm</div>
+          <h4 style="font-size:15px; margin:4px 0;">Thăng Hoa Chân Không</h4>
+          <p style="font-size:12px; color:var(--text-muted);">SEC Warehouse Gò Vấp rút ẩm trực tiếp thể khí</p>
+        </div>
+        <div class="ratio-arrow">➔</div>
+        <div class="ratio-step" style="border:2px solid var(--primary-accent); background:#FFFDF7;">
+          <div class="step-icon">🏆</div>
+          <div class="step-val">3.500 kg</div>
+          <h4 style="font-size:15px; margin:4px 0; color:var(--cta-forest-green);">DuriDry Thành Phẩm</h4>
+          <p style="font-size:12px; color:var(--text-muted);">Giòn rụm nguyên chất, độ ẩm &lt;3%, giữ 98% dưỡng chất</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Why DuriDry Comparison Table -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-sub">ĐỐI CHIẾU CHẤT LƯỢNG</div>
+        <h2 class="section-title">Tại Sao Nên Chọn DuriDry?</h2>
+        <p class="section-desc">So sánh sấy thăng hoa DuriDry với sầu riêng tươi và các phương pháp sấy nhiệt/sấy dầu thông thường.</p>
+      </div>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Tiêu chí so sánh</th>
+              <th class="highlight-col">✨ DuriDry Sấy Thăng Hoa</th>
+              <th>🍈 Sầu Riêng Tươi</th>
+              <th>🔥 Sấy Nhiệt / Sấy Chiên Chân Không</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hương vị & Độ giòn</strong></td>
+              <td class="highlight-col">Giòn xốp tan chảy, giữ 100% vị béo tự nhiên</td>
+              <td>Mềm nhũn, béo ngậy nguyên bản</td>
+              <td>Cứng giòn chai cứng hoặc ngấm dầu chiên</td>
+            </tr>
+            <tr>
+              <td><strong>Hạn bảo quản</strong></td>
+              <td class="highlight-col">3 Năm (Túi nhôm Vinpack hút chân không)</td>
+              <td>3 - 5 ngày (Dễ nứt vỏ, thối ủng)</td>
+              <td>3 - 6 tháng (Dễ bị hôi dầu)</td>
+            </tr>
+            <tr>
+              <td><strong>Mùi hương & Tiện lợi</strong></td>
+              <td class="highlight-col">Không ám mùi phòng kín, mang lên máy bay 100%</td>
+              <td>Nặng mùi, cấm mang lên máy bay / khách sạn</td>
+              <td>Mùi nhạt, không còn nét quyến rũ</td>
+            </tr>
+            <tr>
+              <td><strong>Hàm lượng dinh dưỡng</strong></td>
+              <td class="highlight-col">Giữ trọn 98% Vitamin & Khoáng chất</td>
+              <td>100% (Nếu ăn tươi ngay khi chín)</td>
+              <td>Mất 50 - 70% dinh dưỡng do nhiệt độ cao</td>
+            </tr>
+            <tr>
+              <td><strong>Phù hợp xuất khẩu</strong></td>
+              <td class="highlight-col">Hoàn hảo (HACCP, ISO 22000, HS 0813.40.20)</td>
+              <td>Rủi ro cao (Dễ hỏng dọc đường xe tải)</td>
+              <td>Giá trị thương phẩm trung bình</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Catalog Section (5 SKUs) -->
+  <section class="section-padding" id="products-section" style="background:#FAF6F0;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:24px;">
+        <div class="section-sub">DANH MỤC SẢN PHẨM</div>
+        <h2 class="section-title">Bộ Sưu Tập Sầu Riêng DuriDry</h2>
+        <p class="section-desc">Chọn quy cách đóng gói phù hợp cho bạn hoặc gia đình.</p>
+      </div>
+
+      <!-- Ô Tìm Kiếm Sản Phẩm Thông Minh (Live Search) -->
+      <div style="max-width:580px; margin:0 auto 24px; position:relative;">
+        <input type="text" id="catalog-search-input" placeholder="🔍 Tìm sầu riêng (Ri6, Monthong, 500g, Quà biếu, HS Code...)" oninput="handleCatalogSearch(this.value)" style="width:100%; padding:14px 44px 14px 20px; border-radius:999px; border:2px solid var(--primary-accent); font-size:14px; font-weight:600; outline:none; box-shadow:0 4px 15px rgba(244,196,48,0.15); background:#FFFFFF;">
+        <span id="search-clear-btn" onclick="clearCatalogSearch()" style="display:none; position:absolute; right:18px; top:50%; transform:translateY(-50%); font-size:16px; color:#999; cursor:pointer;">✕</span>
+      </div>
+      <div id="search-feedback" style="text-align:center; font-size:13px; font-weight:700; color:var(--cta-forest-green); margin-bottom:20px; min-height:18px;"></div>
+
+      <div style="display:flex; justify-content:center; gap:12px; margin-bottom:32px; flex-wrap:wrap;">
+        <button class="btn-main" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('all')">Tất Cả (5)</button>
+        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('ri6')">Dòng Ri6</button>
+        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('monthong')">Dòng Monthong</button>
+        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('gift')">Hộp Quà</button>
+      </div>
+
+      <div class="products-grid" id="products-container">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: 4 Interactive Widgets Section -->
+  <section class="container" id="widgets-section">
+    <div class="widgets-section">
+      <div class="section-header" style="margin-bottom:20px;">
+        <div class="section-sub">MÔ-ĐUN 5: TÍNH NĂNG ĐỘT PHÁ</div>
+        <h2 class="section-title">Trung Tâm Trải Nghiệm Tương Tác DuriDry</h2>
+        <p class="section-desc">Công nghệ minh bạch nguồn gốc và hỗ trợ đối tác xuất khẩu thời gian thực.</p>
+      </div>
+
+      <div class="widget-tabs">
+        <button class="widget-tab-btn active" onclick="switchWidget(0)">🔍 Tra Cứu Lô Hàng & Vùng Trồng</button>
+        <button class="widget-tab-btn" onclick="switchWidget(1)">🤖 Trợ Lý AI Sommelier</button>
+        <button class="widget-tab-btn" onclick="switchWidget(2)">📊 Tính Giá Sỉ & Vận Chuyển B2B</button>
+        <button class="widget-tab-btn" onclick="switchWidget(3)">🔊 Phòng Thử Âm Thanh ASMR</button>
+      </div>
+
+      <!-- Widget 1: Batch & Farm Code Tracker -->
+      <div class="widget-pane active" id="pane-0">
+        <div style="max-width:650px; margin:0 auto; text-align:center;">
+          <h3 style="margin-bottom:12px;">Tra Cứu Mã Số Vùng Trồng & Kiểm Dịch</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:20px;">
+            Nhập mã lô hàng in trên túi sản phẩm (Ví dụ mã mẫu: <strong style="color:var(--cta-forest-green); cursor:pointer;" onclick="fillBatchCode('DDD-2026-TG01')">DDD-2026-TG01</strong> hoặc <strong style="color:var(--cta-forest-green); cursor:pointer;" onclick="fillBatchCode('DDD-2026-TG02')">DDD-2026-TG02</strong>):
+          </p>
+          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:24px;">
+            <input type="text" id="batch-input" placeholder="Nhập mã lô (VD: DDD-2026-TG01)..." style="padding:12px 18px; border:1px solid var(--border-subtle); border-radius:var(--radius-md); font-size:15px; width:320px; font-weight:600;">
+            <button class="btn-main" onclick="trackBatchCode()">Tra Cứu Ngay</button>
+          </div>
+          <div id="batch-result" style="display:none; text-align:left; background:var(--bg-surface-elevated); padding:24px; border-radius:var(--radius-md); border:1px solid var(--primary-accent);">
+            <!-- Dynamic Result -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 2: Durian Sommelier Quiz -->
+      <div class="widget-pane" id="pane-1">
+        <div style="max-width:600px; margin:0 auto; background:var(--bg-surface-elevated); padding:30px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+          <h3 style="text-align:center; margin-bottom:16px;">Durian Sommelier Quiz — Tìm Hương Vị Chuẩn Gu Trong 15 Giây</h3>
+          <div id="quiz-step-1">
+            <p style="font-weight:700; margin-bottom:12px;">Câu 1: Bạn thích phong cách hương vị sầu riêng như thế nào?</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <button class="btn-outline-gold" style="text-align:left; justify-content:flex-start;" onclick="answerQuiz(1, 'rich')">A. Béo đậm đà, thơm nồng ngất ngây chuẩn vị truyền thống</button>
+              <button class="btn-outline-gold" style="text-align:left; justify-content:flex-start;" onclick="answerQuiz(1, 'sweet')">B. Ngọt thanh tao, múi dày giòn chắc thanh thoát</button>
+            </div>
+          </div>
+          <div id="quiz-step-2" style="display:none;">
+            <p style="font-weight:700; margin-bottom:12px;">Câu 2: Bạn mua để sử dụng trong dịp nào?</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <button class="btn-outline-gold" style="text-align:left; justify-content:flex-start;" onclick="answerQuiz(2, 'snack')">A. Ăn vặt văn phòng / mang đi du lịch gọn nhẹ</button>
+              <button class="btn-outline-gold" style="text-align:left; justify-content:flex-start;" onclick="answerQuiz(2, 'family')">B. Cho cả gia đình ăn dần / tiếp đãi khách quý</button>
+              <button class="btn-outline-gold" style="text-align:left; justify-content:flex-start;" onclick="answerQuiz(2, 'gift')">C. Làm quà biếu đối tác, kiều bào hoặc lễ Tết</button>
+            </div>
+          </div>
+          <div id="quiz-result" style="display:none; text-align:center;">
+            <div style="font-size:36px; margin-bottom:8px;">🎉</div>
+            <h4 style="font-size:18px; color:var(--cta-forest-green); margin-bottom:8px;" id="quiz-recommend-title">Đề xuất hoàn hảo cho bạn!</h4>
+            <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;" id="quiz-recommend-desc">...</p>
+            <div style="background:#FFFFFF; padding:12px; border-radius:var(--radius-sm); border:1px dashed var(--primary-accent); margin-bottom:16px;">
+              <span style="font-size:12px; color:var(--text-muted);">Mã ưu đãi Sommelier tặng bạn:</span>
+              <div style="font-size:18px; font-weight:800; color:var(--badge-highlight); letter-spacing:1px;">DURI10 (-10%)</div>
+            </div>
+            <button class="btn-main" onclick="applyQuizDiscount()">Thêm Đề Xuất Vào Giỏ Hàng Ngay</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 3: Instant Landed Cost Calculator -->
+      <div class="widget-pane" id="pane-2">
+        <div style="max-width:750px; margin:0 auto; background:var(--bg-surface-elevated); padding:30px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+          <h3 style="margin-bottom:14px;">Instant FOB & Landed Cost Calculator (Dành Cho Nhà Nhập Khẩu B2B)</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">
+            Dựa trên mô hình tài chính thực tế của DuriDry Co., Ltd: 3.500 kg thành phẩm từ 10 tấn quả tươi, vận chuyển xe tải Super Fast Express qua Cửa khẩu Hà Khẩu đến kho Hema Xiansheng (Trung Quốc) hoặc Container 20ft Đông Nam Á.
+          </p>
+
+          <div style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:8px;">
+              <span>Sản lượng đặt hàng: <strong id="calc-qty-label" style="color:var(--cta-forest-green);">2.000 Gói 500g (1.000 kg)</strong></span>
+              <span style="font-size:13px; color:var(--text-muted);">(500 - 7.000 gói)</span>
+            </div>
+            <input type="range" id="calc-range" min="500" max="7000" step="500" value="2000" oninput="updateCostCalculator()" style="width:100%; height:8px; accent-color:var(--cta-forest-green); cursor:pointer;">
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+            <div>
+              <label style="font-size:13px; font-weight:700; display:block; margin-bottom:6px;">Tuyến vận chuyển & Kho nhận:</label>
+              <select id="calc-route" onchange="updateCostCalculator()" style="width:100%; padding:10px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:13px; font-weight:600;">
+                <option value="hekou">TP.HCM ➔ Hà Khẩu ➔ Kho Hema TQ (Xe Lạnh 3.5 Ngày)</option>
+                <option value="sea_asia">TP.HCM ➔ Cảng Đông Nam Á (Container 20ft)</option>
+                <option value="fob_hcm">FOB Ho Chi Minh City Port</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:13px; font-weight:700; display:block; margin-bottom:6px;">Quy cách nhãn phụ:</label>
+              <select id="calc-label" onchange="updateCostCalculator()" style="width:100%; padding:10px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:13px; font-weight:600;">
+                <option value="zh">Nhãn phụ Tiếng Trung theo chuẩn Hema</option>
+                <option value="en">Nhãn phụ Tiếng Anh quốc tế</option>
+                <option value="oem">Gia công OEM đóng gói theo yêu cầu</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Result Box -->
+          <div style="background:#FFFFFF; padding:20px; border-radius:var(--radius-md); border:1px solid var(--primary-accent); display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; text-align:center;">
+            <div>
+              <div style="font-size:12px; color:var(--text-muted);">Đơn giá sỉ ước tính:</div>
+              <div style="font-size:20px; font-weight:800; color:var(--cta-forest-green);" id="calc-unit-price">$9.20 / gói</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:var(--text-muted);">Tổng giá trị đơn hàng (FOB/CIF):</div>
+              <div style="font-size:20px; font-weight:800; color:#B37400;" id="calc-total-price">$18,400 USD</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:var(--text-muted);">Đặt cọc T/T (30%):</div>
+              <div style="font-size:20px; font-weight:800; color:var(--badge-highlight);" id="calc-deposit">$5,520 USD</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; text-align:center;">
+            <button class="btn-main" onclick="openB2BModalWithData()">Gửi Yêu Cầu Hợp Đồng & Bộ Chứng Từ (C/O, Phyto) →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 4: ASMR Crunch Experience -->
+      <div class="widget-pane" id="pane-3">
+        <div style="max-width:600px; margin:0 auto; text-align:center; background:var(--bg-surface-elevated); padding:36px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+          <div style="font-size:48px; margin-bottom:12px;">🎧</div>
+          <h3 style="margin-bottom:8px;">Trải Nghiệm Âm Thanh Giòn Rụm DuriDry ASMR</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">
+            Được tổng hợp từ âm thanh tần số thực tế khi bẻ đôi múi sầu riêng sấy thăng hoa đạt chuẩn độ ẩm &lt;3%.
+          </p>
+          <button class="btn-asmr" style="font-size:16px; padding:16px 28px;" onclick="playDurianCrunchSound()">
+            <span>🔊 Bấm Để Nghe Giòn Tan (3 Giây)</span>
+          </button>
+          <div id="asmr-status" style="margin-top:16px; font-size:13px; font-weight:700; color:var(--cta-forest-green); min-height:20px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide-out Mini Cart Drawer -->
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-header">
+        <h3 style="font-size:18px;">Giỏ Hàng Của Bạn (<span id="drawer-cart-count">0</span>)</h3>
+        <button onclick="toggleCartDrawer()" style="background:none; font-size:20px; cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Freeship Gamification Bar -->
+      <div class="cart-progress-box">
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
+          <span id="freeship-text">Mua thêm 185.000đ để được Freeship toàn quốc!</span>
+          <span id="freeship-percent">38%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="freeship-bar"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items Body -->
+      <div class="cart-items-body" id="cart-items-list">
+        <div style="text-align:center; padding:40px 0; color:var(--text-muted);">
+          Giỏ hàng đang trống. Hãy chọn sản phẩm yêu thích nhé!
+        </div>
+      </div>
+
+      <!-- Cart Footer -->
+      <div class="cart-footer">
+        <label class="cart-gift-option">
+          <input type="checkbox" id="gift-wrap-check" onchange="toggleGiftWrap()" style="width:18px; height:18px; accent-color:var(--cta-forest-green);">
+          <span>🎁 Đóng gói làm quà tặng kèm túi giấy & thiệp viết tay (+15.000đ)</span>
+        </label>
+
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px;">
+          <span>Tạm tính:</span>
+          <strong id="cart-subtotal">0đ</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:16px; font-weight:800; color:var(--cta-forest-green);">
+          <span>Tổng thanh toán:</span>
+          <span id="cart-grandtotal" style="font-family:'Plus Jakarta Sans', sans-serif;">0đ</span>
+        </div>
+
+        <button class="btn-main" style="width:100%;" onclick="openCheckoutModal()">Tiến Hành Đặt Hàng Ngay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDP Modal -->
+  <div class="modal-overlay" id="pdp-modal">
+    <div class="modal-box">
+      <div class="modal-close" onclick="closePDPModal()">✕</div>
+      <div class="pdp-grid">
+        <!-- Gallery 5 angles -->
+        <div>
+          <div class="pdp-gallery-main">
+            <img id="pdp-main-img" src="" alt="DuriDry Detail">
+          </div>
+          <div class="pdp-thumbs" id="pdp-thumbs-list">
+            <!-- Thumbnails -->
+          </div>
+        </div>
+
+        <!-- Buy Box -->
+        <div>
+          <span class="badge-gold" id="pdp-badge" style="margin-bottom:8px; display:inline-block;">Best Seller</span>
+          <h2 id="pdp-title" style="font-size:22px; margin-bottom:8px; line-height:1.3;">Tên Sản Phẩm</h2>
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted); margin-bottom:14px;">
+            <span>⭐⭐⭐⭐⭐ 4.9/5</span>
+            <span>(128 đánh giá từ Hema & AEON)</span>
+          </div>
+
+          <div style="font-size:26px; font-weight:800; color:var(--cta-forest-green); margin-bottom:16px; font-family:'Plus Jakarta Sans', sans-serif;" id="pdp-price">
+            115.000đ
+          </div>
+
+          <!-- Taste Meter -->
+          <div style="background:var(--bg-surface-elevated); padding:14px; border-radius:var(--radius-sm); margin-bottom:18px;">
+            <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Thanh Đo Hương Vị (Taste Meter):</div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>Độ Giòn Tan:</span>
+              <strong style="color:#C88D00;" id="pdp-crisp">●●●●● (5/5)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>Độ Béo Ngậy:</span>
+              <strong style="color:#C88D00;" id="pdp-rich">●●●●● (5/5)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px;">
+              <span>Độ Thơm Tự Nhiên:</span>
+              <strong style="color:#C88D00;" id="pdp-aroma">●●●●● (5/5)</strong>
+            </div>
+          </div>
+
+          <!-- Variant Selector -->
+          <div style="margin-bottom:20px;">
+            <label style="font-size:13px; font-weight:700; display:block; margin-bottom:8px;">Quy cách đóng gói:</label>
+            <div style="display:flex; gap:8px;" id="pdp-variants">
+              <!-- Variants buttons -->
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div style="display:flex; gap:12px; margin-bottom:24px;">
+            <button class="btn-main" style="flex:1;" onclick="addCurrentPDPToCart()">Thêm Vào Giỏ Hàng</button>
+            <button class="btn-outline-gold" onclick="buyNowFromPDP()">Mua Ngay</button>
+          </div>
+
+          <!-- 3 Accordions -->
+          <div class="accordion-item active">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Tab 1: Thông Số & Dinh Dưỡng</span>
+              <span>▾</span>
+            </div>
+            <div class="accordion-content">
+              Mã HS: <strong>0813.40.20</strong> | Thành phần: 100% cơm sầu riêng tươi nguyên chất | Độ ẩm: &lt;3% | Năng lượng: 395 kcal/100g | Không cholesterol, không phẩm màu.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Tab 2: Nguồn Gốc & Quy Trình SEC</span>
+              <span>▾</span>
+            </div>
+            <div class="accordion-content">
+              Nguyên liệu thu mua từ đối tác LCD Fruit (Tiền Giang), xử lý sấy thăng hoa và đóng gói tại phòng sạch kho SEC Warehouse Gò Vấp, TP.HCM. Kiểm soát ẩm nghiêm ngặt.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Tab 3: Vận Chuyển & Đổi Trả</span>
+              <span>▾</span>
+            </div>
+            <div class="accordion-content">
+              Giao hỏa tốc 2H tại TP.HCM (xuất từ kho SEC). Toàn quốc 2–3 ngày. Cam kết đổi trả 100% miễn phí nếu sản phẩm bị ỉu hoặc mất độ giòn trong 7 ngày.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- One-Page B2C Checkout Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-box" style="max-width:820px;">
+      <div class="modal-close" onclick="closeCheckoutModal()">✕</div>
+      <h2 style="font-size:24px; margin-bottom:20px;">Thanh Toán Đơn Hàng DuriDry (One-Page Checkout)</h2>
+
+      <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:30px;">
+        <!-- Left: Form -->
+        <div>
+          <!-- Step 1 -->
+          <div style="margin-bottom:20px;">
+            <h4 style="font-size:15px; margin-bottom:10px; color:var(--cta-forest-green);">Bước 1: Thông Tin Người Nhận</h4>
+            <input type="text" placeholder="Họ và tên..." style="width:100%; padding:10px; margin-bottom:8px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;" value="Nguyễn Văn An">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+              <input type="text" placeholder="Số điện thoại..." style="padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;" value="0912 345 678">
+              <input type="email" placeholder="Email..." style="padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;" value="an.nguyen@gmail.com">
+            </div>
+            <input type="text" placeholder="Địa chỉ giao hàng (Số nhà, Phường/Xã)..." style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;" value="123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM">
+          </div>
+
+          <!-- Step 2 -->
+          <div style="margin-bottom:20px;">
+            <h4 style="font-size:15px; margin-bottom:10px; color:var(--cta-forest-green);">Bước 2: Phương Thức Vận Chuyển</h4>
+            <label style="display:block; padding:10px; border:1px solid var(--cta-forest-green); border-radius:6px; background:var(--cta-forest-green-light); margin-bottom:6px; font-size:13px;">
+              <input type="radio" name="shipping" checked style="accent-color:var(--cta-forest-green);">
+              <strong>Giao Hỏa Tốc 2H TP.HCM</strong> (Xuất kho SEC Gò Vấp) — 25.000đ
+            </label>
+            <label style="display:block; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+              <input type="radio" name="shipping" style="accent-color:var(--cta-forest-green);">
+              <strong>Giao Tiêu Chuẩn Toàn Quốc</strong> (2–3 Ngày) — Miễn phí
+            </label>
+          </div>
+
+          <!-- Step 3 -->
+          <div>
+            <h4 style="font-size:15px; margin-bottom:10px; color:var(--cta-forest-green);">Bước 3: Phương Thức Thanh Toán</h4>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <label style="display:flex; align-items:center; gap:8px; padding:10px; border:1px solid var(--primary-accent); border-radius:6px; background:#FFFDF7; font-size:13px;">
+                <input type="radio" name="payment" checked onchange="toggleQR(true)">
+                <strong>Quét Mã VietQR (Chuyển khoản tự động xác nhận)</strong>
+              </label>
+              <div id="vietqr-box" style="text-align:center; padding:16px; background:#FFFFFF; border:1px solid var(--border-subtle); border-radius:8px;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2|99|0912345678|DuriDry|DURIDRY_ORDER_2026" style="width:130px; height:130px;" alt="VietQR Code">
+                <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">Ngân hàng MB Bank • STK: 0912345678 • Chủ TK: DURIDRY CO LTD</p>
+              </div>
+              <label style="display:flex; align-items:center; gap:8px; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+                <input type="radio" name="payment" onchange="toggleQR(false)">
+                <span>Ví MoMo / ZaloPay / VNPay</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+                <input type="radio" name="payment" onchange="toggleQR(false)">
+                <span>Thanh toán khi nhận hàng (COD)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+                <input type="radio" name="payment" onchange="toggleQR(false)">
+                <span>Visa / Mastercard / Alipay / WeChat Pay (Quốc tế)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Summary & Trust -->
+        <div>
+          <div style="background:var(--bg-surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); margin-bottom:20px;">
+            <h4 style="font-size:16px; margin-bottom:12px;">Đơn Hàng Của Bạn</h4>
+            <div id="checkout-items" style="font-size:13px; margin-bottom:14px; max-height:160px; overflow-y:auto;">
+              <!-- Items -->
+            </div>
+            <div style="display:flex; gap:8px; margin-bottom:14px;">
+              <input type="text" id="promo-input" placeholder="Mã giảm giá..." style="flex:1; padding:8px 12px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;" value="DURI10">
+              <button class="btn-main" style="padding:8px 16px; font-size:13px;" onclick="applyPromo()">Áp Dụng</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+              <span>Tạm tính:</span>
+              <span id="co-subtotal">295.000đ</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px; color:var(--badge-highlight);">
+              <span>Giảm giá (DURI10):</span>
+              <span id="co-discount">-29.500đ</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:800; color:var(--cta-forest-green); border-top:1px solid var(--border-subtle); padding-top:10px;">
+              <span>Tổng thanh toán:</span>
+              <span id="co-total">265.500đ</span>
+            </div>
+          </div>
+
+          <!-- Trust Box -->
+          <div style="background:#FFFFFF; border:1px solid #E0D8D0; padding:16px; border-radius:var(--radius-sm); font-size:12px; color:var(--text-secondary);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span>🔒</span> <strong>Thanh toán bảo mật SSL 256-bit</strong>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span>📦</span> <strong>Thùng carton 3 lớp chống vỡ nát</strong>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span>🔄</span> <strong>Cam kết hoàn tiền trong 7 ngày nếu bị ỉu</strong>
+            </div>
+          </div>
+
+          <button class="btn-main" style="width:100%; margin-top:20px; padding:16px;" onclick="submitOrder()">Xác Nhận Đặt Hàng Ngay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2B Wholesale Quote Modal -->
+  <div class="modal-overlay" id="b2b-modal">
+    <div class="modal-box" style="max-width:760px;">
+      <div class="modal-close" onclick="closeB2BModal()">✕</div>
+      <h2 style="font-size:24px; margin-bottom:8px;">Cổng Yêu Cầu Báo Giá Xuất Khẩu B2B (FOB / CIF)</h2>
+      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">
+        DuriDry hỗ trợ đầy đủ chứng từ xuất khẩu chính ngạch: C/O Form E (ASEAN-Trung Quốc), Kiểm dịch thực vật (Phytosanitary), Hóa đơn thương mại & Vận đơn B/L gửi qua DHL.
+      </p>
+
+      <form onsubmit="submitB2BForm(event)" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <label style="font-size:13px; font-weight:700; display:block; margin-bottom:4px;">Tên Công ty / Đơn vị nhập khẩu:</label>
+          <input type="text" required placeholder="VD: Hema Xiansheng (Alibaba Group)..." style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+        </div>
+        <div>
+          <label style="font-size:13px; font-weight:700; display:block; margin-bottom:4px;">Quốc gia / Thị trường đích:</label>
+          <select style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+            <option>Trung Quốc (Cửa khẩu Hà Khẩu / Hữu Nghị)</option>
+            <option>Singapore / Malaysia / Thái Lan</option>
+            <option>Nhật Bản / Hàn Quốc</option>
+            <option>Thị trường nội địa (Siêu thị WinMart / AEON)</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:13px; font-weight:700; display:block; margin-bottom:4px;">Sản lượng dự kiến:</label>
+          <input type="text" id="b2b-qty-input" value="3.500 kg (7.000 gói 500g)" style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+        </div>
+        <div>
+          <label style="font-size:13px; font-weight:700; display:block; margin-bottom:4px;">Điều kiện Incoterms mong muốn:</label>
+          <select style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+            <option>CIF Cửa khẩu Hà Khẩu (Hekou Border Gate)</option>
+            <option>FOB Cảng TP.HCM (Ho Chi Minh Port)</option>
+            <option>DAP Kho nhận hàng (Delivered at Place)</option>
+          </select>
+        </div>
+        <div style="grid-column:span 2;">
+          <label style="font-size:13px; font-weight:700; display:block; margin-bottom:4px;">Thông tin liên hệ (Email & WeChat / WhatsApp):</label>
+          <input type="text" required placeholder="contact@importing-durian.com | WeChat: durian_import2026" style="width:100%; padding:10px; border:1px solid var(--border-subtle); border-radius:6px; font-size:13px;">
+        </div>
+
+        <div style="grid-column:span 2; background:#FFFDF7; border:1px dashed var(--primary-accent); padding:16px; border-radius:8px; font-size:13px;">
+          <strong>Quy trình thanh toán quốc tế T/T của DuriDry:</strong>
+          <ul style="margin:8px 0 0 20px; line-height:1.5;">
+            <li><strong>Đặt cọc (T/T Advance 30%):</strong> Ngay sau khi ký hợp đồng để chuẩn bị nguyên liệu 10 tấn quả tại Tiền Giang.</li>
+            <li><strong>Thanh toán phần còn lại (70% Balance):</strong> Khi hàng hoàn tất kiểm định, xuất xưởng hoặc khi nhận bản scan B/L, C/O Form E và Phyto qua DHL.</li>
+          </ul>
+        </div>
+
+        <div style="grid-column:span 2; text-align:right;">
+          <button type="submit" class="btn-main" style="padding:14px 28px;">Nhận Báo Giá Chính Thức Qua Email Trong 2 Giờ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- Embedded JavaScript Application Logic -->
+  <script>
+    // --- State Management ---
+    const PRODUCTS = [
+      {
+        sku: "DDD-RI6-100",
+        name: "Sầu Riêng Ri6 Sấy Thăng Hoa DuriDry – Vị Truyền Thống",
+        cat: "ri6",
+        catName: "Dòng Nội Địa (Ri6)",
+        weight: "100g",
+        priceVnd: 115000,
+        priceUsd: 4.50,
+        priceCny: 32.50,
+        badge: "Best Seller",
+        badgeClass: "p-ribbon",
+        crisp: 5, rich: 5, aroma: 5,
+        desc: "100% sầu riêng Ri6 tuyển chọn từ vùng trồng Tiền Giang. Vị béo đậm, thơm nồng đặc trưng miền Tây, giòn tan tự nhiên. Giữ 98% dưỡng chất, HS 0813.40.20.",
+        img: "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        sku: "DDD-RI6-3X35",
+        name: "Combo 3 Gói Mini Sầu Riêng Ri6 DuriDry – Bỏ Túi Tiện Lợi",
+        cat: "ri6",
+        catName: "Dòng Nội Địa (Ri6)",
+        weight: "3 Gói x 35g (105g)",
+        priceVnd: 125000,
+        priceUsd: 4.80,
+        priceCny: 35.00,
+        badge: "Tiện Lợi",
+        badgeClass: "p-ribbon gold",
+        crisp: 5, rich: 5, aroma: 5,
+        desc: "Chia nhỏ 3 gói mini không lo ỉu sau khi mở. Cạnh tranh trực tiếp với gói nhỏ Thái Lan, thích hợp ăn vặt văn phòng.",
+        img: "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        sku: "DDD-MT-100",
+        name: "Sầu Riêng Monthong Sấy Thăng Hoa DuriDry – Vị Thanh Tao",
+        cat: "monthong",
+        catName: "Dòng Xuất Khẩu (Monthong)",
+        weight: "100g",
+        priceVnd: 135000,
+        priceUsd: 5.20,
+        priceCny: 38.00,
+        badge: "Chuẩn Xuất Khẩu",
+        badgeClass: "p-ribbon gold",
+        crisp: 5, rich: 4, aroma: 4,
+        desc: "Cơm dày, kết cấu giòn chắc, vị ngọt thanh tao. Đóng gói tiêu chuẩn xuất khẩu song ngữ Anh - Trung, đạt chuẩn Phytosanitary.",
+        img: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        sku: "DDD-MT-500",
+        name: "Sầu Riêng Monthong Sấy Thăng Hoa – Túi Gia Đình & Xuất Khẩu",
+        cat: "monthong",
+        catName: "Dòng Xuất Khẩu (Monthong)",
+        weight: "Túi Zip 500g",
+        priceVnd: 295000,
+        priceUsd: 11.50,
+        priceCny: 83.00,
+        badge: "Tiết Kiệm 35%",
+        badgeClass: "p-ribbon",
+        crisp: 5, rich: 4, aroma: 4,
+        desc: "Sản phẩm chủ lực theo mô hình tài chính ($11.50/gói 0.5kg). Khóa zip tiện lợi, có nhãn phụ tiếng Trung cho siêu thị Hema.",
+        img: "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        sku: "DDD-GIFT-200",
+        name: "Hộp Quà Song Vị Hoàng Kim (1 Gói Ri6 + 1 Gói Monthong)",
+        cat: "gift",
+        catName: "Bộ Quà Tặng (Gift Sets)",
+        weight: "Hộp 200g (2x100g)",
+        priceVnd: 260000,
+        priceUsd: 10.00,
+        priceCny: 72.00,
+        badge: "Quà Biếu VIP",
+        badgeClass: "p-ribbon gold",
+        crisp: 5, rich: 5, aroma: 5,
+        desc: "Hộp cứng ép kim kèm túi giấy mỹ thuật và thiệp thư pháp. Đánh vào thị trường quà biếu Lễ Tết, doanh nghiệp và kiều bào.",
+        img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    let currentCurrency = "VND";
+    let cart = [];
+    let currentPDPProduct = PRODUCTS[0];
+    let isGiftWrap = false;
+
+    // --- Currency Conversion Helper ---
+    function formatPrice(vnd, usd, cny) {
+      if (currentCurrency === "USD") return "$" + usd.toFixed(2);
+      if (currentCurrency === "CNY") return "¥" + cny.toFixed(1);
+      return vnd.toLocaleString('vi-VN') + "đ";
+    }
+
+    function changeCurrency(curr) {
+      currentCurrency = curr;
+      loadSavedCart();
+      renderCatalog();
+      updateCartDrawerUI();
+      // Update Hero Price
+      const heroP = PRODUCTS.find(p => p.sku === "DDD-MT-500");
+      if (heroP) {
+        document.getElementById("hero-price").innerText = formatPrice(heroP.priceVnd, heroP.priceUsd, heroP.priceCny);
+      }
+    }
+
+    function changeLanguage(lang) {
+      const messages = {
+        vi: "Đã chuyển đổi sang Tiếng Việt",
+        en: "Switched to English interface",
+        cn: "已切换到中文界面"
+      };
+      alert(messages[lang] || "Language changed");
+    }
+
+    // --- Render Catalog ---
+    function renderCatalog(filter = "all") {
+      const container = document.getElementById("products-container");
+      container.innerHTML = "";
+      const filtered = filter === "all" ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+
+      filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="${p.badgeClass}">${p.badge}</div>
+          <div class="p-thumb" onclick="openPDP('${p.sku}')">
+            <img src="${p.img}" alt="${p.name}">
+          </div>
+          <div class="p-body">
+            <div class="p-cat">${p.catName} • ${p.weight}</div>
+            <h4 class="p-name" onclick="openPDP('${p.sku}')">${p.name}</h4>
+            <div class="taste-bar-mini">
+              <span>Độ giòn: 5/5</span>
+              <span>•</span>
+              <span>Độ béo: ${p.rich}/5</span>
+            </div>
+            <div class="p-bottom">
+              <span class="p-price">${formatPrice(p.priceVnd, p.priceUsd, p.priceCny)}</span>
+              <button class="btn-add-cart" onclick="addToCart('${p.sku}')" title="Thêm vào giỏ">+</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    
+    
+    // --- Điều Hướng Liên Trang Wix Router Safe ---
+    function navigateWix(e, url) {
+      if (e) e.preventDefault();
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+        }
+        if (window.top) {
+          window.top.location.href = url;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = url;
+    }
+
+    // --- Bộ Tìm Kiếm Sản Phẩm Thời Gian Thực (Live Search) ---
+    let currentSearchTerm = "";
+    function handleCatalogSearch(term) {
+      currentSearchTerm = term.trim().toLowerCase();
+      const clearBtn = document.getElementById("search-clear-btn");
+      const feedback = document.getElementById("search-feedback");
+      if (clearBtn) clearBtn.style.display = currentSearchTerm ? "block" : "none";
+
+      if (!currentSearchTerm) {
+        if (feedback) feedback.innerText = "";
+        renderCatalog("all");
+        return;
+      }
+
+      const results = PRODUCTS.filter(p => 
+        p.name.toLowerCase().includes(currentSearchTerm) ||
+        p.sku.toLowerCase().includes(currentSearchTerm) ||
+        p.catName.toLowerCase().includes(currentSearchTerm) ||
+        p.desc.toLowerCase().includes(currentSearchTerm) ||
+        p.badge.toLowerCase().includes(currentSearchTerm)
+      );
+
+      renderCatalogWithList(results);
+      if (feedback) {
+        feedback.innerText = `Tìm thấy ${results.length} sản phẩm phù hợp với từ khóa "${term}"`;
+      }
+    }
+
+    function clearCatalogSearch() {
+      const input = document.getElementById("catalog-search-input");
+      if (input) input.value = "";
+      handleCatalogSearch("");
+    }
+
+    function renderCatalogWithList(list) {
+      const container = document.getElementById("products-container");
+      container.innerHTML = "";
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding:50px 20px; background:#FFFFFF; border-radius:14px; border:1px solid #E8DFD8;">
+            <div style="font-size:36px; margin-bottom:10px;">🔍</div>
+            <h4 style="font-size:18px; margin-bottom:8px;">Không tìm thấy sản phẩm phù hợp</h4>
+            <p style="font-size:14px; color:#8D7B6D; margin-bottom:16px;">Vui lòng thử tìm với từ khóa: <strong>Ri6</strong>, <strong>Monthong</strong>, <strong>500g</strong> hoặc <strong>Quà biếu</strong></p>
+            <button class="btn-main" onclick="clearCatalogSearch()">Xem Tất Cả 5 Sản Phẩm</button>
+          </div>
+        `;
+        return;
+      }
+      list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="${p.badgeClass}">${p.badge}</div>
+          <div class="p-thumb" onclick="openPDP('${p.sku}')">
+            <img src="${p.img}" alt="${p.name}">
+          </div>
+          <div class="p-body">
+            <div class="p-cat">${p.catName} • ${p.weight}</div>
+            <h4 class="p-name" onclick="openPDP('${p.sku}')">${p.name}</h4>
+            <div class="taste-bar-mini">
+              <span>Độ giòn: 5/5</span>
+              <span>•</span>
+              <span>Độ béo: ${p.rich}/5</span>
+            </div>
+            <div class="p-bottom">
+              <span class="p-price">${formatPrice(p.priceVnd, p.priceUsd, p.priceCny)}</span>
+              <button class="btn-add-cart" onclick="addToCart('${p.sku}')" title="Thêm vào giỏ">+</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- Giữ Giỏ Hàng Liên Tục Bằng LocalStorage ---
+    function loadSavedCart() {
+      try {
+        const saved = localStorage.getItem("duridry_cart_v1");
+        if (saved) {
+          cart = JSON.parse(saved);
+          updateCartDrawerUI();
+        }
+      } catch (e) {}
+    }
+
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem("duridry_cart_v1", JSON.stringify(cart));
+      } catch (e) {}
+    }
+
+    
+    // --- Điều Hướng Trực Tiếp Sang Trang Cửa Hàng (Shop Page) ---
+    function navigateToShopPage(e, cat) {
+      if (e) e.preventDefault();
+      // 1. Gửi tín hiệu đến Wix Velo để điều hướng cấp cao nhất
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'NAVIGATE_SHOP_PAGE', category: cat || 'all' }, '*');
+      }
+      // 2. Thử chuyển window.top sang trang /cua-hang hoặc /shop
+      const targetUrl = cat && cat !== 'all' ? '/cua-hang?cat=' + cat : '/cua-hang';
+      try {
+        if (window.top) {
+          window.top.location.href = targetUrl;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = targetUrl;
+    }
+
+    function scrollToShop(e) {
+      if (e) e.preventDefault();
+      const shopEl = document.getElementById("products-section");
+      if (shopEl) {
+        shopEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (window.parent) {
+        window.parent.postMessage({ type: "NAVIGATE_SHOP", action: "scroll_to_shop" }, "*");
+      }
+    }
+
+    function filterCatalog(cat) {
+      renderCatalog(cat);
+      const target = document.getElementById("products-section");
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- PDP Modal Handling ---
+    function openPDP(sku) {
+      const p = PRODUCTS.find(item => item.sku === sku);
+      if (!p) return;
+      currentPDPProduct = p;
+
+      document.getElementById("pdp-main-img").src = p.img;
+      document.getElementById("pdp-title").innerText = p.name;
+      document.getElementById("pdp-badge").innerText = p.badge;
+      document.getElementById("pdp-price").innerText = formatPrice(p.priceVnd, p.priceUsd, p.priceCny);
+      
+      const stars = "●".repeat(p.rich) + "○".repeat(5 - p.rich);
+      document.getElementById("pdp-rich").innerText = `${stars} (${p.rich}/5)`;
+      document.getElementById("pdp-aroma").innerText = `${"●".repeat(p.aroma)}${"○".repeat(5-p.aroma)} (${p.aroma}/5)`;
+
+      // Thumbs
+      const thumbsBox = document.getElementById("pdp-thumbs-list");
+      thumbsBox.innerHTML = `
+        <div class="pdp-thumb-item active" onclick="setPDPMainImg('${p.img}')"><img src="${p.img}"></div>
+        <div class="pdp-thumb-item" onclick="setPDPMainImg('https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80')"><img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80"></div>
+        <div class="pdp-thumb-item" onclick="setPDPMainImg('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80')"><img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80"></div>
+      `;
+
+      // Variants
+      const vBox = document.getElementById("pdp-variants");
+      vBox.innerHTML = `
+        <button class="btn-main" style="padding:6px 14px; font-size:12px;">${p.weight}</button>
+        <button class="btn-outline-gold" style="padding:6px 14px; font-size:12px;" onclick="openB2BModal()">Thùng Sỉ B2B</button>
+      `;
+
+      document.getElementById("pdp-modal").classList.add("open");
+    }
+
+    function setPDPMainImg(src) {
+      document.getElementById("pdp-main-img").src = src;
+    }
+
+    function closePDPModal() {
+      document.getElementById("pdp-modal").classList.remove("open");
+    }
+
+    function toggleAccordion(header) {
+      const parent = header.parentElement;
+      parent.classList.toggle("active");
+    }
+
+    // --- Cart & Slide-out Drawer Logic ---
+    function addToCart(sku) {
+      const p = PRODUCTS.find(item => item.sku === sku);
+      if (!p) return;
+      const existing = cart.find(item => item.sku === sku);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...p, qty: 1 });
+      }
+      saveCartToStorage();
+      updateCartDrawerUI();
+      toggleCartDrawer(true);
+    }
+
+    function addCurrentPDPToCart() {
+      if (currentPDPProduct) {
+        addToCart(currentPDPProduct.sku);
+        closePDPModal();
+      }
+    }
+
+    function buyNowFromPDP() {
+      addCurrentPDPToCart();
+      closePDPModal();
+      openCheckoutModal();
+    }
+
+    function toggleCartDrawer(forceOpen = false) {
+      const overlay = document.getElementById("cart-overlay");
+      if (forceOpen) {
+        overlay.classList.add("open");
+      } else {
+        overlay.classList.toggle("open");
+      }
+    }
+
+    function updateCartDrawerUI() {
+      const counter = document.getElementById("cart-counter");
+      const drawerCount = document.getElementById("drawer-cart-count");
+      const list = document.getElementById("cart-items-list");
+      const subtotalEl = document.getElementById("cart-subtotal");
+      const grandtotalEl = document.getElementById("cart-grandtotal");
+      const freeshipText = document.getElementById("freeship-text");
+      const freeshipBar = document.getElementById("freeship-bar");
+      const freeshipPercent = document.getElementById("freeship-percent");
+
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      counter.innerText = totalItems;
+      drawerCount.innerText = totalItems;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:40px 0; color:var(--text-muted);">Giỏ hàng đang trống. Hãy chọn sản phẩm yêu thích nhé!</div>`;
+        subtotalEl.innerText = "0đ";
+        grandtotalEl.innerText = "0đ";
+        freeshipBar.style.width = "0%";
+        freeshipPercent.innerText = "0%";
+        freeshipText.innerText = "Mua thêm 300.000đ để được Freeship toàn quốc!";
+        return;
+      }
+
+      let subtotalVnd = 0;
+      let subtotalUsd = 0;
+      let subtotalCny = 0;
+
+      list.innerHTML = "";
+      cart.forEach((item, idx) => {
+        subtotalVnd += item.priceVnd * item.qty;
+        subtotalUsd += item.priceUsd * item.qty;
+        subtotalCny += item.priceCny * item.qty;
+
+        const row = document.createElement("div");
+        row.style.cssText = "display:flex; gap:12px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border-subtle); align-items:center;";
+        row.innerHTML = `
+          <img src="${item.img}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
+          <div style="flex:1;">
+            <div style="font-weight:700; font-size:13px; line-height:1.3;">${item.name}</div>
+            <div style="font-size:12px; color:var(--text-muted);">${item.weight} • ${formatPrice(item.priceVnd, item.priceUsd, item.priceCny)}</div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:6px;">
+              <button onclick="changeQty(${idx}, -1)" style="width:24px; height:24px; border:1px solid #ccc; border-radius:4px; background:#fff;">-</button>
+              <span style="font-size:13px; font-weight:700;">${item.qty}</span>
+              <button onclick="changeQty(${idx}, 1)" style="width:24px; height:24px; border:1px solid #ccc; border-radius:4px; background:#fff;">+</button>
+            </div>
+          </div>
+          <button onclick="removeFromCart(${idx})" style="background:none; color:var(--badge-highlight); font-size:14px; cursor:pointer;">🗑️</button>
+        `;
+        list.appendChild(row);
+      });
+
+      // Gift wrap fee
+      const giftFeeVnd = isGiftWrap ? 15000 : 0;
+      const giftFeeUsd = isGiftWrap ? 0.6 : 0;
+      const giftFeeCny = isGiftWrap ? 4.2 : 0;
+
+      const grandVnd = subtotalVnd + giftFeeVnd;
+      const grandUsd = subtotalUsd + giftFeeUsd;
+      const grandCny = subtotalCny + giftFeeCny;
+
+      subtotalEl.innerText = formatPrice(subtotalVnd, subtotalUsd, subtotalCny);
+      grandtotalEl.innerText = formatPrice(grandVnd, grandUsd, grandCny);
+
+      // Freeship Progress Bar (Threshold: 300,000 VND)
+      const threshold = 300000;
+      const pct = Math.min(100, Math.round((subtotalVnd / threshold) * 100));
+      freeshipBar.style.width = pct + "%";
+      freeshipPercent.innerText = pct + "%";
+
+      if (subtotalVnd >= threshold) {
+        freeshipText.innerText = "🎉 Chúc mừng! Bạn đã được MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC!";
+        freeshipBar.style.background = "#1E5631";
+      } else {
+        const remaining = (threshold - subtotalVnd).toLocaleString('vi-VN');
+        freeshipText.innerText = `Bạn chỉ cần mua thêm ${remaining}đ nữa để được Freeship toàn quốc!`;
+      }
+    }
+
+    function changeQty(idx, delta) {
+      if (!cart[idx]) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      saveCartToStorage();
+      updateCartDrawerUI();
+    }
+
+    function removeFromCart(idx) {
+      cart.splice(idx, 1);
+      saveCartToStorage();
+      updateCartDrawerUI();
+    }
+
+    function toggleGiftWrap() {
+      isGiftWrap = document.getElementById("gift-wrap-check").checked;
+      updateCartDrawerUI();
+    }
+
+    // --- One-Page Checkout Modal ---
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        alert("Giỏ hàng đang trống, vui lòng chọn ít nhất 1 sản phẩm!");
+        return;
+      }
+      toggleCartDrawer(false);
+
+      const itemsBox = document.getElementById("checkout-items");
+      itemsBox.innerHTML = "";
+      let subVnd = 0;
+      cart.forEach(item => {
+        subVnd += item.priceVnd * item.qty;
+        itemsBox.innerHTML += `
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span>${item.qty}x ${item.name} (${item.weight})</span>
+            <strong>${(item.priceVnd * item.qty).toLocaleString('vi-VN')}đ</strong>
+          </div>
+        `;
+      });
+
+      document.getElementById("co-subtotal").innerText = subVnd.toLocaleString('vi-VN') + "đ";
+      const discount = Math.round(subVnd * 0.1);
+      document.getElementById("co-discount").innerText = "-" + discount.toLocaleString('vi-VN') + "đ";
+      document.getElementById("co-total").innerText = (subVnd - discount).toLocaleString('vi-VN') + "đ";
+
+      document.getElementById("checkout-modal").classList.add("open");
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById("checkout-modal").classList.remove("open");
+    }
+
+    function toggleQR(show) {
+      document.getElementById("vietqr-box").style.display = show ? "block" : "none";
+    }
+
+    function applyPromo() {
+      alert("Đã áp dụng mã DURI10: Giảm 10% trên tổng đơn hàng!");
+    }
+
+    function submitOrder() {
+      alert("🎉 ĐẶT HÀNG THÀNH CÔNG!
+
+Mã đơn hàng: DDD-" + Math.floor(100000 + Math.random() * 900000) + "
+Đơn hàng đã được chuyển tới trung tâm xử lý kho SEC Warehouse Gò Vấp.
+Nhân viên DuriDry sẽ liên hệ xác nhận hỏa tốc!");
+      cart = [];
+      saveCartToStorage();
+      updateCartDrawerUI();
+      closeCheckoutModal();
+    }
+
+    // --- B2B Modal ---
+    function openB2BModal() {
+      document.getElementById("b2b-modal").classList.add("open");
+    }
+    function closeB2BModal() {
+      document.getElementById("b2b-modal").classList.remove("open");
+    }
+    function submitB2BForm(e) {
+      e.preventDefault();
+      alert("✅ YÊU CẦU BÁO GIÁ ĐÃ ĐƯỢC TIẾP NHẬN!
+
+Bộ phận Xuất nhập khẩu DuriDry Co., Ltd sẽ gửi bản báo giá chính thức kèm dự thảo hợp đồng T/T và mẫu C/O Form E vào email của quý đối tác trong vòng 2 giờ làm việc.");
+      closeB2BModal();
+    }
+    function openB2BModalWithData() {
+      const qtyText = document.getElementById("calc-qty-label").innerText;
+      document.getElementById("b2b-qty-input").value = qtyText;
+      openB2BModal();
+    }
+
+    // --- Module 5: 4 Interactive Widgets Logic ---
+    function switchWidget(idx) {
+      const btns = document.querySelectorAll(".widget-tab-btn");
+      const panes = document.querySelectorAll(".widget-pane");
+      btns.forEach((b, i) => b.classList.toggle("active", i === idx));
+      panes.forEach((p, i) => p.classList.toggle("active", i === idx));
+    }
+
+    // Widget 1: Batch Tracker
+    const BATCH_DB = {
+      "DDD-2026-TG01": {
+        variety: "Sầu Riêng Monthong (Dòng Xuất Khẩu)",
+        farm: "Nông trại LCD Fruit Việt Nam (Cai Lậy, Tiền Giang)",
+        areaCode: "VN-TG-0813 (Mã số vùng trồng theo chuẩn GACC Trung Quốc)",
+        dryDate: "12/09/2026 (Công nghệ Sấy Thăng Hoa Âm Sâu -40°C)",
+        moisture: "2.8% (Độ ẩm đạt chuẩn quốc tế < 3%)",
+        warehouse: "SEC Warehouse Gò Vấp (Phòng sạch kiểm soát độ ẩm <15%)",
+        phytoCert: "Cấp bởi Cục Bảo vệ Thực vật VN (#VN-PHYTO-2026-0813)",
+        packaging: "Túi nhôm Vinpack màng ghép 3 lớp chống ẩm 3 năm"
+      },
+      "DDD-2026-TG02": {
+        variety: "Sầu Riêng Ri6 (Dòng Nội Địa Đặc Sản)",
+        farm: "Vùng trồng mẫu LCD Fruit (Cái Bè, Tiền Giang)",
+        areaCode: "VN-TG-0609 (VietGAP Certified)",
+        dryDate: "15/09/2026",
+        moisture: "2.6%",
+        warehouse: "SEC Warehouse Gò Vấp, TP.HCM",
+        phytoCert: "Đạt chuẩn an toàn thực phẩm ISO 22000 & HACCP",
+        packaging: "Túi nhôm Vinpack"
+      }
+    };
+
+    function fillBatchCode(code) {
+      document.getElementById("batch-input").value = code;
+      trackBatchCode();
+    }
+
+    function trackBatchCode() {
+      const code = document.getElementById("batch-input").value.trim().toUpperCase();
+      const resBox = document.getElementById("batch-result");
+      resBox.style.display = "block";
+
+      const data = BATCH_DB[code];
+      if (data) {
+        resBox.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="color:var(--cta-forest-green); font-size:16px;">✅ Xác Thực Lô Hàng Hợp Chuẩn: ${code}</h4>
+            <span class="badge-gold">Chính Ngạch</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:13px;">
+            <div><strong>Giống sầu riêng:</strong> ${data.variety}</div>
+            <div><strong>Nông trại thu hoạch:</strong> ${data.farm}</div>
+            <div><strong>Mã vùng trồng (GACC):</strong> ${data.areaCode}</div>
+            <div><strong>Ngày sấy thăng hoa:</strong> ${data.dryDate}</div>
+            <div><strong>Độ ẩm thành phẩm:</strong> <span style="color:#C88D00; font-weight:800;">${data.moisture}</span></div>
+            <div><strong>Kho lưu trữ:</strong> ${data.warehouse}</div>
+            <div style="grid-column:span 2;"><strong>Chứng nhận kiểm dịch:</strong> ${data.phytoCert}</div>
+            <div style="grid-column:span 2;"><strong>Bao bì:</strong> ${data.packaging}</div>
+          </div>
+        `;
+      } else {
+        resBox.innerHTML = `
+          <div style="color:var(--badge-highlight); font-weight:700;">
+            ⚠️ Không tìm thấy dữ liệu cho mã lô "${code}". Vui lòng kiểm tra lại mã in trên nẹp đáy bao bì (Ví dụ thử mã: DDD-2026-TG01).
+          </div>
+        `;
+      }
+    }
+
+    // Widget 2: Durian Sommelier Quiz
+    let quizAnswers = {};
+    function answerQuiz(step, val) {
+      quizAnswers[step] = val;
+      if (step === 1) {
+        document.getElementById("quiz-step-1").style.display = "none";
+        document.getElementById("quiz-step-2").style.display = "block";
+      } else if (step === 2) {
+        document.getElementById("quiz-step-2").style.display = "none";
+        document.getElementById("quiz-result").style.display = "block";
+
+        const title = document.getElementById("quiz-recommend-title");
+        const desc = document.getElementById("quiz-recommend-desc");
+
+        if (quizAnswers[2] === "gift") {
+          title.innerText = "Gợi Ý VIP: Hộp Quà 'Song Vị Hoàng Kim' (200g)";
+          desc.innerText = "Bộ quà sang trọng ép kim kết hợp cả 2 tinh hoa Ri6 béo đậm và Monthong thanh tao kèm túi xách mỹ thuật!";
+          quizAnswers.recommendSku = "DDD-GIFT-200";
+        } else if (quizAnswers[1] === "rich") {
+          title.innerText = "Gợi Ý Chuẩn Gu: Sầu Riêng Ri6 Sấy Thăng Hoa (100g)";
+          desc.innerText = "Hương thơm nồng nàn và độ béo ngậy đặc trưng miền Tây chắc chắn sẽ làm bạn bùng nổ vị giác!";
+          quizAnswers.recommendSku = "DDD-RI6-100";
+        } else {
+          title.innerText = "Gợi Ý Chuẩn Gu: Sầu Riêng Monthong Xuất Khẩu (Túi 500g)";
+          desc.innerText = "Cơm dày giòn chắc, vị ngọt thanh mát, khóa zip tiện lợi bảo quản lâu dài cho cả gia đình!";
+          quizAnswers.recommendSku = "DDD-MT-500";
+        }
+      }
+    }
+
+    function applyQuizDiscount() {
+      if (quizAnswers.recommendSku) {
+        addToCart(quizAnswers.recommendSku);
+        alert("Đã thêm sản phẩm đề xuất vào giỏ hàng và kích hoạt mã giảm giá DURI10 (-10%)!");
+      }
+    }
+
+    // Widget 3: Instant Landed Cost Calculator
+    function updateCostCalculator() {
+      const qty = parseInt(document.getElementById("calc-range").value);
+      const route = document.getElementById("calc-route").value;
+
+      document.getElementById("calc-qty-label").innerText = `${qty.toLocaleString('vi-VN')} Gói 500g (${(qty * 0.5).toLocaleString('vi-VN')} kg)`;
+
+      // Price Tiering according to Financial Model in Group 1 PDF
+      let unitPrice = 11.50;
+      if (qty >= 5000) unitPrice = 8.50;
+      else if (qty >= 3000) unitPrice = 8.90;
+      else if (qty >= 1500) unitPrice = 9.20;
+      else unitPrice = 9.80;
+
+      // Shipping adjustments from PDF ($1800 Hekou truck, $200 Hema delivery, $40 Phyto, $50 DHL)
+      let shippingPerPack = 0.40;
+      if (route === "hekou") shippingPerPack = 0.35;
+      if (route === "fob_hcm") shippingPerPack = 0.05;
+
+      const totalVal = Math.round(qty * (unitPrice + shippingPerPack));
+      const depositVal = Math.round(totalVal * 0.3);
+
+      document.getElementById("calc-unit-price").innerText = `$${unitPrice.toFixed(2)} / gói`;
+      document.getElementById("calc-total-price").innerText = `$${totalVal.toLocaleString('en-US')} USD`;
+      document.getElementById("calc-deposit").innerText = `$${depositVal.toLocaleString('en-US')} USD`;
+    }
+
+    // Widget 4: Web Audio API ASMR Synthesizer
+    function playDurianCrunchSound() {
+      const statusEl = document.getElementById("asmr-status");
+      if (statusEl) statusEl.innerText = "🔊 Đang phát âm thanh giòn tan DuriDry (3s)...";
+
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+
+        // Synthesize crisp freeze-dried crunching burst
+        const bufferSize = ctx.sampleRate * 2.5;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+          const t = i / ctx.sampleRate;
+          // Crackle burst envelope
+          const burst1 = Math.exp(-t * 8) * (Math.random() * 2 - 1);
+          const burst2 = t > 0.4 ? Math.exp(-(t - 0.4) * 12) * (Math.random() * 2 - 1) : 0;
+          const burst3 = t > 0.9 ? Math.exp(-(t - 0.9) * 10) * (Math.random() * 2 - 1) : 0;
+          const burst4 = t > 1.4 ? Math.exp(-(t - 1.4) * 15) * (Math.random() * 2 - 1) : 0;
+          data[i] = (burst1 + burst2 + burst3 + burst4) * 0.4;
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        // Bandpass filter to emulate crispy dry fracture (1500Hz - 4500Hz)
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.value = 2800;
+        filter.Q.value = 1.2;
+
+        const gainNode = ctx.createGain();
+        gainNode.gain.setValueAtTime(1.0, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
+
+        noise.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        noise.start();
+        setTimeout(() => {
+          if (statusEl) statusEl.innerText = "✨ Độ giòn tan nguyên chất 100% sấy thăng hoa!";
+        }, 2500);
+      } catch (e) {
+        console.warn("Web Audio not supported or blocked:", e);
+        if (statusEl) statusEl.innerText = "✨ Giòn tan rụm rụm!";
+      }
+    }
+
+    // --- Init ---
+    
+    function subscribeNewsletter() {
+      const email = document.getElementById("footer-newsletter-email").value.trim();
+      if (!email || !email.includes("@")) {
+        alert("Vui lòng nhập địa chỉ email hợp lệ!");
+        return;
+      }
+      alert("🎉 Cảm ơn bạn! Mã voucher DURI10 (-10%) đã được gửi đến " + email);
+      document.getElementById("footer-newsletter-email").value = "";
+    }
+
+    // Tự động thông báo độ cao chính xác của website cho Wix
+    function reportHeightToWix() {
+      const h = Math.ceil(document.body.scrollHeight || document.documentElement.scrollHeight);
+      if (window.parent) {
+        window.parent.postMessage({ type: 'DURIDRY_HEIGHT', height: h }, '*');
+      }
+    }
+    window.addEventListener('load', reportHeightToWix);
+    // window.addEventListener('resize', reportHeightToWix);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadSavedCart();
+      renderCatalog();
+      updateCartDrawerUI();
+      updateCostCalculator();
+    });
+  </script>
+</body>
+</html>
