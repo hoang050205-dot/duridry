@@ -1131,7 +1131,7 @@
   <div style="background: radial-gradient(circle at 50% 20%, rgba(244, 196, 48, 0.22) 0%, rgba(250, 248, 245, 0) 70%); padding: 50px 0 30px; text-align: center; border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
       <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
-        <a href="/" target="_top" style="color: var(--cta-forest-green); font-weight: 600;">Trang chủ</a> &gt; <span>Cửa hàng</span>
+        <a href="/"  style="color: var(--cta-forest-green); font-weight: 600;">Trang chủ</a> &gt; <span>Cửa hàng</span>
       </div>
       <h1 style="font-size: 36px; margin-bottom: 10px;">Cửa Hàng Sầu Riêng Sấy Thăng Hoa DuriDry</h1>
       <p style="font-size: 16px; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
@@ -1946,10 +1946,7 @@
         if (window.parent && window.parent !== window) {
           window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
         }
-        if (window.top) {
-          window.top.location.href = url;
-          return;
-        }
+        // safe in wix
       } catch (err) {}
       window.location.href = url;
     }
@@ -2056,10 +2053,7 @@
       // 2. Thử chuyển window.top sang trang /cua-hang hoặc /shop
       const targetUrl = cat && cat !== 'all' ? '/cua-hang?cat=' + cat : '/cua-hang';
       try {
-        if (window.top) {
-          window.top.location.href = targetUrl;
-          return;
-        }
+        // safe in wix
       } catch (err) {}
       window.location.href = targetUrl;
     }

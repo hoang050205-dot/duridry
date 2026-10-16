@@ -239,7 +239,7 @@
     <span>•</span>
     <span>Hỗ trợ xuất khẩu chính ngạch B2B (C/O Form E, Phytosanitary)</span>
     <span>•</span>
-    <a href="/services" target="_top" onclick="goToPage(event, '/services')" class="btn-b2b-chip">Nhận Báo Giá B2B</a>
+    <a href="javascript:void(0)"  onclick="goToPage(event, '/services')" class="btn-b2b-chip">Nhận Báo Giá B2B</a>
   </div>
 
   <!-- 2. Thanh Menu Điều Hướng Chính -->
@@ -247,7 +247,7 @@
     <div class="container">
       <div class="nav-inner">
         <!-- Logo DuriDry -->
-        <a href="/" target="_top" onclick="goToPage(event, '/')" class="logo-brand">
+        <a href="javascript:void(0)"  onclick="goToPage(event, '/')" class="logo-brand">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="#1E5631"/>
             <path d="M16 6C12 10 9 15 9 20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20C23 15 20 10 16 6Z" fill="#F4C430"/>
@@ -260,27 +260,27 @@
         <!-- Menu Chuyển Trang Đa Trang Wix -->
         <ul class="nav-menu">
           <li class="nav-item active">
-            <a href="/" target="_top" onclick="goToPage(event, '/')">Trang chủ</a>
+            <a href="javascript:void(0)"  onclick="goToPage(event, '/')">Trang chủ</a>
           </li>
           
           <li class="nav-item">
-            <a href="/cua-hang" target="_top" onclick="goToPage(event, '/cua-hang')">Cửa hàng ▾</a>
+            <a href="javascript:void(0)"  onclick="goToPage(event, '/cua-hang')">Cửa hàng ▾</a>
             <div class="dropdown-menu">
-              <a href="/cua-hang" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang')">🍈 Tất cả sản phẩm (5 SKUs)</a>
-              <a href="/cua-hang?cat=ri6" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=ri6')">🌟 Dòng Ri6 Nội Địa (115k)</a>
-              <a href="/cua-hang?cat=monthong" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Dòng Monthong Xuất Khẩu (135k - 295k)</a>
-              <a href="/cua-hang?cat=gift" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà Biếu Hoàng Kim (260k)</a>
+              <a href="javascript:void(0)"  class="dropdown-item" onclick="goToPage(event, '/cua-hang')">🍈 Tất cả sản phẩm (5 SKUs)</a>
+              <a href="/cua-hang?cat=ri6"  class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=ri6')">🌟 Dòng Ri6 Nội Địa (115k)</a>
+              <a href="/cua-hang?cat=monthong"  class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Dòng Monthong Xuất Khẩu (135k - 295k)</a>
+              <a href="/cua-hang?cat=gift"  class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà Biếu Hoàng Kim (260k)</a>
             </div>
           </li>
 
           <li class="nav-item">
-            <a href="/services" target="_top" onclick="goToPage(event, '/services')">Dịch vụ B2B</a>
+            <a href="javascript:void(0)"  onclick="goToPage(event, '/services')">Dịch vụ B2B</a>
           </li>
           <li class="nav-item">
-            <a href="/about" target="_top" onclick="goToPage(event, '/about')">Về DuriDry</a>
+            <a href="javascript:void(0)"  onclick="goToPage(event, '/about')">Về DuriDry</a>
           </li>
           <li class="nav-item">
-            <a href="/contact" target="_top" onclick="goToPage(event, '/contact')">Liên hệ</a>
+            <a href="javascript:void(0)"  onclick="goToPage(event, '/contact')">Liên hệ</a>
           </li>
         </ul>
 
@@ -298,7 +298,7 @@
             <option value="CNY">CNY (¥)</option>
           </select>
 
-          <a href="/cua-hang" target="_top" onclick="goToPage(event, '/cua-hang')" class="cart-trigger">
+          <a href="javascript:void(0)"  onclick="goToPage(event, '/cua-hang')" class="cart-trigger">
             <span>🛒</span>
             <span>Giỏ hàng</span>
             <span class="cart-count" id="header-cart-counter">0</span>
@@ -309,27 +309,28 @@
   </header>
 
   <script>
-    // --- HỆ THỐNG ĐIỀU HƯỚNG CHUYỂN TRANG WIX VƯỢT TRỘI (3 TẦNG BẢO VỆ) ---
+    // --- HỆ THỐNG ĐIỀU HƯỚNG NỘI BỘ WIX (CHỐNG 404 RA WIX.COM) ---
     function goToPage(e, url) {
-      console.log("🚀 Yêu cầu chuyển trang DuriDry sang:", url);
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      console.log("🚀 Gửi lệnh chuyển trang tới Wix Velo:", url);
 
-      // TẦNG 1: Gửi postMessage trực tiếp đến Wix Velo Engine (Đặc trị cho chế độ Xem Trước / Preview của Wix)
+      // Gửi postMessage lên Wix Velo Router (Chuẩn 100% cho Wix Preview & Live site)
       try {
         if (window.parent && window.parent !== window) {
           window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
-        }
-      } catch (err) {}
-
-      // TẦNG 2: Điều hướng cửa sổ cấp cao nhất của trình duyệt (Top Window cho Live site)
-      try {
-        if (window.top && window.top !== window && window.top.location) {
-          window.top.location.href = url;
-          if (e) e.preventDefault();
           return;
         }
       } catch (err) {}
 
-      // TẦNG 3: Cho phép sự kiện thẻ <a> chạy tự nhiên theo target="_top"
+      // Nếu chạy file HTML cục bộ độc lập ngoài trình duyệt
+      try {
+        if (window.self === window.top) {
+          window.location.href = url;
+        }
+      } catch (err) {}
     }
 
     function switchLang(lang) {

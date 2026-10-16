@@ -294,7 +294,7 @@
       <div class="footer-grid">
         <!-- Cột 1: Thương hiệu & Tiêu chuẩn xuất khẩu -->
         <div class="footer-col">
-          <a href="/" target="_top" onclick="goToPage(event, '/')" class="logo-brand" style="color:#FAF8F5; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px;">
+          <a href="javascript:void(0)"  onclick="goToPage(event, '/')" class="logo-brand" style="color:#FAF8F5; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px;">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
               <rect width="32" height="32" rx="8" fill="#F4C430"/>
               <path d="M16 6C12 10 9 15 9 20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20C23 15 20 10 16 6Z" fill="#1E5631"/>
@@ -325,13 +325,13 @@
         <div class="footer-col">
           <h4>Sản Phẩm & Khám Phá</h4>
           <ul>
-            <li><a href="/cua-hang?cat=ri6" target="_top" onclick="goToPage(event, '/cua-hang?cat=ri6')">🍈 Sầu Riêng Ri6 Sấy Thăng Hoa (100g)</a></li>
-            <li><a href="/cua-hang?cat=ri6" target="_top" onclick="goToPage(event, '/cua-hang?cat=ri6')">🎒 Combo 3 Gói Mini Bỏ Túi (3x35g)</a></li>
-            <li><a href="/cua-hang?cat=monthong" target="_top" onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Monthong Xuất Khẩu Tiêu Chuẩn (100g)</a></li>
-            <li><a href="/cua-hang?cat=monthong" target="_top" onclick="goToPage(event, '/cua-hang?cat=monthong')">📦 Monthong Túi Khóa Zip Gia Đình (500g)</a></li>
-            <li><a href="/cua-hang?cat=gift" target="_top" onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà "Song Vị Hoàng Kim" VIP (200g)</a></li>
-            <li><a href="/about" target="_top" onclick="goToPage(event, '/about')">📖 Câu chuyện thương hiệu DuriDry</a></li>
-            <li><a href="/contact" target="_top" onclick="goToPage(event, '/contact')">📞 Liên hệ tư vấn mua sắm</a></li>
+            <li><a href="javascript:void(0)" data-target="/cua-hang?cat=ri6"  onclick="goToPage(event, '/cua-hang?cat=ri6')">🍈 Sầu Riêng Ri6 Sấy Thăng Hoa (100g)</a></li>
+            <li><a href="javascript:void(0)" data-target="/cua-hang?cat=ri6"  onclick="goToPage(event, '/cua-hang?cat=ri6')">🎒 Combo 3 Gói Mini Bỏ Túi (3x35g)</a></li>
+            <li><a href="javascript:void(0)" data-target="/cua-hang?cat=monthong"  onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Monthong Xuất Khẩu Tiêu Chuẩn (100g)</a></li>
+            <li><a href="javascript:void(0)" data-target="/cua-hang?cat=monthong"  onclick="goToPage(event, '/cua-hang?cat=monthong')">📦 Monthong Túi Khóa Zip Gia Đình (500g)</a></li>
+            <li><a href="javascript:void(0)" data-target="/cua-hang?cat=gift"  onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà "Song Vị Hoàng Kim" VIP (200g)</a></li>
+            <li><a href="javascript:void(0)"  onclick="goToPage(event, '/about')">📖 Câu chuyện thương hiệu DuriDry</a></li>
+            <li><a href="javascript:void(0)"  onclick="goToPage(event, '/contact')">📞 Liên hệ tư vấn mua sắm</a></li>
           </ul>
         </div>
 
@@ -345,7 +345,7 @@
             <li><strong>Vận chuyển liên vận:</strong> Super Fast Express (Việt - Trung)</li>
             <li><strong>Đối tác bán lẻ:</strong> WinMart, AEON Mall, Hema (盒马鲜生)</li>
             <li><strong>Mã HS Code:</strong> <span style="color:#F4C430; font-weight:700;">0813.40.20</span> (Ưu đãi ACFTA)</li>
-            <li><a href="/services" target="_top" onclick="goToPage(event, '/services')" style="color:#F4C430; font-weight:700;">📊 Báo Giá Sỉ & Hợp Đồng T/T 30/70 →</a></li>
+            <li><a href="javascript:void(0)"  onclick="goToPage(event, '/services')" style="color:#F4C430; font-weight:700;">📊 Báo Giá Sỉ & Hợp Đồng T/T 30/70 →</a></li>
           </ul>
         </div>
 
@@ -398,19 +398,26 @@
   </footer>
 
   <script>
+    // --- HỆ THỐNG ĐIỀU HƯỚNG NỘI BỘ WIX (CHỐNG 404 RA WIX.COM) ---
     function goToPage(e, url) {
-      console.log("🚀 Yêu cầu chuyển trang DuriDry từ Footer sang:", url);
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      console.log("🚀 Gửi lệnh chuyển trang tới Wix Velo:", url);
+
+      // Gửi postMessage lên Wix Velo Router (Chuẩn 100% cho Wix Preview & Live site)
       try {
         if (window.parent && window.parent !== window) {
           window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+          return;
         }
       } catch (err) {}
 
+      // Nếu chạy file HTML cục bộ độc lập ngoài trình duyệt
       try {
-        if (window.top && window.top !== window && window.top.location) {
-          window.top.location.href = url;
-          if (e) e.preventDefault();
-          return;
+        if (window.self === window.top) {
+          window.location.href = url;
         }
       } catch (err) {}
     }
