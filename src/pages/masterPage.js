@@ -15,41 +15,66 @@ $w.onReady(function () {
 });
 
 function setupGlobalNavigation() {
-    // Lắng nghe lệnh chuyển trang từ bất kỳ Khung Nhúng HTML nào trên toàn site
-    try {
-        const htmlComps = [$w('#html1'), $w('#htmlServices'), $w('#htmlAbout'), $w('#htmlContact')];
-        htmlComps.forEach(comp => {
-            if (comp && typeof comp.onMessage === 'function') {
-                comp.onMessage((event) => {
-                    const msg = event.data;
-                    if (!msg) return;
+    console.log("🚀 Setting up DuriDry Global Navigation Listener...");
 
-                    // Chuyển trang sang Cửa Hàng
-                    if (msg.type === "NAVIGATE_SHOP_PAGE") {
-                        console.log("🛒 Master Router: Chuyển trang sang Cửa Hàng");
-                        navigateToStore(msg.category);
-                    } else if (msg.type === "WIX_NAVIGATE" && msg.url) {
-                        console.log("🚀 Master Router: Chuyển trang sang:", msg.url);
-                        wixLocation.to(msg.url);
-                    }
-                });
-            }
-        });
+    function handleMessage(event) {
+        const msg = event.data;
+        if (!msg) return;
+
+        let targetUrl = msg.url;
+        if (msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP") {
+            targetUrl = "/cua-hang";
+        }
+
+        if (targetUrl) {
+            console.log("🚀 Master Router navigating to:", targetUrl);
+            navigateSafely(targetUrl);
+        }
+    }
+
+    // 1. Hook to all HtmlComponents via general selector
+    try {
+        $w('HtmlComponent').onMessage(handleMessage);
     } catch (e) {}
+
+    // 2. Hook to specific common IDs safely
+    const componentIds = [
+        '#html1', '#html2', '#html3', '#html4', '#html5',
+        '#htmlHeader', '#headerHtml', '#htmlFooter', '#footerHtml',
+        '#htmlShop', '#htmlServices', '#htmlAbout', '#htmlContact'
+    ];
+    componentIds.forEach(id => {
+        try {
+            const comp = $w(id);
+            if (comp && comp.length > 0 && typeof comp.onMessage === 'function') {
+                comp.onMessage(handleMessage);
+            }
+        } catch (e) {}
+    });
 }
 
-export function navigateToStore(category) {
+export function navigateSafely(url) {
+    if (!url) return;
     try {
-        // Thử chuyển trang theo slug chuẩn của Wix
-        wixLocation.to("/cua-hang");
+        wixLocation.to(url);
     } catch (err) {
-        try {
-            wixLocation.to("/shop");
-        } catch (e) {
-            wixLocation.to("/store");
+        console.warn("Direct wixLocation.to failed for:", url, err);
+        if (url.includes("cua-hang")) {
+            try { wixLocation.to("/shop"); } catch (e2) {
+                try { wixLocation.to("/store"); } catch (e3) {
+                    wixLocation.to("/trang-danh-muc");
+                }
+            }
+        } else if (url.includes("services")) {
+            try { wixLocation.to("/dich-vu-b2b"); } catch (e) {}
+        } else if (url.includes("about")) {
+            try { wixLocation.to("/ve-duridry"); } catch (e) {}
+        } else if (url.includes("contact")) {
+            try { wixLocation.to("/lien-he"); } catch (e) {}
         }
     }
 }
+
 
 async function setupFreeshipTracker() {
     try {

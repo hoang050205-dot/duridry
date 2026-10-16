@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DuriDry — Header Bar</title>
+  <title>DuriDry — Đầu Trang (Header)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -26,22 +26,28 @@
       --radius-full: 9999px;
       --shadow-sm: 0 2px 8px rgba(43, 33, 24, 0.05);
       --shadow-md: 0 10px 30px rgba(43, 33, 24, 0.08);
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-lg: 0 15px 35px rgba(43, 33, 24, 0.12);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-primary);
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
+      overflow: visible;
+      width: 100%;
     }
-    a { text-decoration: none; color: inherit; }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
     button { font-family: inherit; cursor: pointer; border: none; outline: none; }
-    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Top Announcement Bar */
     .announcement-bar {
       background-color: var(--cta-forest-green);
       color: var(--primary-accent);
-      padding: 10px 16px;
+      padding: 8px 16px;
       font-size: 13px;
       font-weight: 600;
       text-align: center;
@@ -49,18 +55,39 @@
       justify-content: center;
       align-items: center;
       gap: 12px;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
+    .announcement-bar .btn-b2b-chip {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+      padding: 3px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 800;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+    }
+    .announcement-bar .btn-b2b-chip:hover {
+      background: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    /* Main Nav Bar */
     header.sticky-header {
-      background: rgba(250, 248, 245, 0.96);
+      background: rgba(250, 248, 245, 0.98);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 2px 10px rgba(43,33,24,0.04);
+      position: relative;
+      z-index: 1000;
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 76px;
+      height: 72px;
     }
     .logo-brand {
       display: flex;
@@ -70,7 +97,9 @@
       font-weight: 800;
       font-size: 22px;
       color: var(--cta-forest-green);
+      transition: var(--transition);
     }
+    .logo-brand:hover { transform: scale(1.02); }
     .logo-badge {
       background: var(--primary-accent);
       color: var(--text-primary);
@@ -79,66 +108,99 @@
       padding: 2px 8px;
       border-radius: var(--radius-full);
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
+    /* Nav Menu */
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
     }
     .nav-item {
       position: relative;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 4px;
       color: var(--text-secondary);
       transition: var(--transition);
     }
-    .nav-item:hover, .nav-item.active { color: var(--cta-forest-green); }
+    .nav-item:hover > a, .nav-item.active > a {
+      color: var(--cta-forest-green);
+    }
+
+    /* Dropdown Menu */
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      visibility: visible;
+    }
     .dropdown-menu {
       position: absolute;
       top: 100%;
-      left: -10px;
+      left: -12px;
       background: #FFFFFF;
-      min-width: 230px;
+      min-width: 260px;
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      padding: 12px;
+      box-shadow: var(--shadow-lg);
+      padding: 10px;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transform: translateY(10px);
+      transform: translateY(8px);
       transition: var(--transition);
       border: 1px solid var(--border-subtle);
+      z-index: 9999;
     }
-    .nav-item:hover .dropdown-menu { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .dropdown-item {
       display: block;
-      padding: 8px 12px;
+      padding: 10px 14px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-secondary);
       border-radius: var(--radius-sm);
       transition: var(--transition);
+      white-space: nowrap;
     }
     .dropdown-item:hover {
       background: var(--bg-surface-elevated);
       color: var(--cta-forest-green);
-      font-weight: 600;
+      padding-left: 18px;
     }
-    .nav-actions { display: flex; align-items: center; gap: 16px; }
+
+    /* Right Action Controls */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
     .select-currency, .select-lang {
       background: #FFFFFF;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       padding: 6px 10px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
       cursor: pointer;
+      outline: none;
+      transition: var(--transition);
+    }
+    .select-currency:hover, .select-lang:hover {
+      border-color: var(--cta-forest-green);
     }
     .cart-trigger {
       background: var(--cta-forest-green-light);
       color: var(--cta-forest-green);
-      padding: 10px 14px;
+      padding: 9px 16px;
       border-radius: var(--radius-full);
       font-weight: 700;
       font-size: 14px;
@@ -147,7 +209,12 @@
       gap: 8px;
       transition: var(--transition);
     }
-    .cart-trigger:hover { background: var(--cta-forest-green); color: #FFFFFF; }
+    .cart-trigger:hover {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
     .cart-count {
       background: var(--badge-highlight);
       color: #FFFFFF;
@@ -156,27 +223,31 @@
       font-size: 11px;
       font-weight: 800;
     }
+
     @media (max-width: 992px) {
       .nav-menu { display: none; }
+      .announcement-bar { font-size: 11px; gap: 6px; }
+      .logo-brand span { font-size: 18px; }
     }
   </style>
 </head>
 <body>
-<!-- Top Announcement Bar -->
+
+  <!-- 1. Thanh Thông Báo Freeship & B2B -->
   <div class="announcement-bar">
     <span>🎉 Miễn phí vận chuyển toàn quốc cho đơn từ 300.000đ</span>
     <span>•</span>
     <span>Hỗ trợ xuất khẩu chính ngạch B2B (C/O Form E, Phytosanitary)</span>
     <span>•</span>
-    <button onclick="openB2BModal()" style="background:var(--primary-accent); color:var(--text-primary); padding:3px 10px; border-radius:999px; font-size:11px; font-weight:800;">Nhận Báo Giá B2B</button>
+    <a href="/services" target="_top" onclick="goToPage(event, '/services')" class="btn-b2b-chip">Nhận Báo Giá B2B</a>
   </div>
 
-  <!-- Sticky Header -->
+  <!-- 2. Thanh Menu Điều Hướng Chính -->
   <header class="sticky-header">
     <div class="container">
       <div class="nav-inner">
-        <!-- Logo -->
-        <a href="#" class="logo-brand">
+        <!-- Logo DuriDry -->
+        <a href="/" target="_top" onclick="goToPage(event, '/')" class="logo-brand">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="#1E5631"/>
             <path d="M16 6C12 10 9 15 9 20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20C23 15 20 10 16 6Z" fill="#F4C430"/>
@@ -186,64 +257,105 @@
           <span class="logo-badge">Freeze-Dried</span>
         </a>
 
-        <!-- Menu -->
+        <!-- Menu Chuyển Trang Đa Trang Wix -->
         <ul class="nav-menu">
-          <li class="nav-item active"><a href="#">Trang chủ</a></li>
+          <li class="nav-item active">
+            <a href="/" target="_top" onclick="goToPage(event, '/')">Trang chủ</a>
+          </li>
+          
           <li class="nav-item">
-            <a href="#products-section">Cửa hàng ▾</a>
+            <a href="/cua-hang" target="_top" onclick="goToPage(event, '/cua-hang')">Cửa hàng ▾</a>
             <div class="dropdown-menu">
-              <a href="#products-section" class="dropdown-item" onclick="filterCatalog('all')">Tất cả sản phẩm (5 SKUs)</a>
-              <a href="#products-section" class="dropdown-item" onclick="filterCatalog('ri6')">Dòng Ri6 Nội Địa</a>
-              <a href="#products-section" class="dropdown-item" onclick="filterCatalog('monthong')">Dòng Monthong Xuất Khẩu</a>
-              <a href="#products-section" class="dropdown-item" onclick="filterCatalog('gift')">Hộp Quà Biếu Hoàng Kim</a>
+              <a href="/cua-hang" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang')">🍈 Tất cả sản phẩm (5 SKUs)</a>
+              <a href="/cua-hang?cat=ri6" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=ri6')">🌟 Dòng Ri6 Nội Địa (115k)</a>
+              <a href="/cua-hang?cat=monthong" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Dòng Monthong Xuất Khẩu (135k - 295k)</a>
+              <a href="/cua-hang?cat=gift" target="_top" class="dropdown-item" onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà Biếu Hoàng Kim (260k)</a>
             </div>
           </li>
-          <li class="nav-item"><a href="#story-section">Công nghệ & Vùng trồng</a></li>
-          <li class="nav-item"><a href="#widgets-section">4 Tính năng Đột phá</a></li>
-          <li class="nav-item"><a href="#b2b-section" onclick="openB2BModal()">Cổng B2B & Xuất khẩu</a></li>
+
+          <li class="nav-item">
+            <a href="/services" target="_top" onclick="goToPage(event, '/services')">Dịch vụ B2B</a>
+          </li>
+          <li class="nav-item">
+            <a href="/about" target="_top" onclick="goToPage(event, '/about')">Về DuriDry</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact" target="_top" onclick="goToPage(event, '/contact')">Liên hệ</a>
+          </li>
         </ul>
 
-        <!-- Right Controls -->
+        <!-- Bộ chuyển tiền tệ & Nút Giỏ hàng -->
         <div class="nav-actions">
-          <select class="select-lang" onchange="changeLanguage(this.value)">
+          <select class="select-lang" onchange="switchLang(this.value)">
             <option value="vi">🇻🇳 VN</option>
             <option value="en">🇬🇧 EN</option>
             <option value="cn">🇨🇳 中文</option>
           </select>
 
-          <select class="select-currency" onchange="changeCurrency(this.value)">
+          <select class="select-currency" onchange="switchCurrency(this.value)">
             <option value="VND">VND (đ)</option>
             <option value="USD">USD ($)</option>
             <option value="CNY">CNY (¥)</option>
           </select>
 
-          <button class="cart-trigger" onclick="toggleCartDrawer()">
+          <a href="/cua-hang" target="_top" onclick="goToPage(event, '/cua-hang')" class="cart-trigger">
             <span>🛒</span>
-            <span class="cart-label">Giỏ hàng</span>
-            <span class="cart-count" id="cart-counter">0</span>
-          </button>
+            <span>Giỏ hàng</span>
+            <span class="cart-count" id="header-cart-counter">0</span>
+          </a>
         </div>
       </div>
     </div>
   </header>
-<script>
-  function openB2BModal() {
-    if (window.parent) window.parent.postMessage({ type: 'OPEN_B2B_MODAL' }, '*');
-    else alert('Yêu cầu báo giá B2B: contact@duridry.vn | (+84) 912 345 678');
-  }
-  function filterCatalog(cat) {
-    if (window.parent) window.parent.postMessage({ type: 'FILTER_CATALOG', category: cat }, '*');
-  }
-  function changeLanguage(lang) {
-    alert('Ngôn ngữ đã chuyển sang: ' + lang.toUpperCase());
-  }
-  function changeCurrency(curr) {
-    alert('Đơn vị tiền tệ: ' + curr);
-  }
-  function toggleCartDrawer() {
-    if (window.parent) window.parent.postMessage({ type: 'TOGGLE_CART' }, '*');
-    else alert('Mở giỏ hàng');
-  }
-</script>
+
+  <script>
+    // --- HỆ THỐNG ĐIỀU HƯỚNG CHUYỂN TRANG WIX VƯỢT TRỘI (3 TẦNG BẢO VỆ) ---
+    function goToPage(e, url) {
+      console.log("🚀 Yêu cầu chuyển trang DuriDry sang:", url);
+
+      // TẦNG 1: Gửi postMessage trực tiếp đến Wix Velo Engine (Đặc trị cho chế độ Xem Trước / Preview của Wix)
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+        }
+      } catch (err) {}
+
+      // TẦNG 2: Điều hướng cửa sổ cấp cao nhất của trình duyệt (Top Window cho Live site)
+      try {
+        if (window.top && window.top !== window && window.top.location) {
+          window.top.location.href = url;
+          if (e) e.preventDefault();
+          return;
+        }
+      } catch (err) {}
+
+      // TẦNG 3: Cho phép sự kiện thẻ <a> chạy tự nhiên theo target="_top"
+    }
+
+    function switchLang(lang) {
+      alert("Ngôn ngữ đã chuyển sang: " + lang.toUpperCase());
+    }
+
+    function switchCurrency(curr) {
+      alert("Đơn vị tiền tệ hiển thị: " + curr);
+    }
+
+    // Đồng bộ số lượng giỏ hàng bền vững từ LocalStorage
+    function updateHeaderCartCount() {
+      try {
+        const saved = localStorage.getItem("duridry_cart_v1");
+        if (saved) {
+          const cart = JSON.parse(saved);
+          const count = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+          const el = document.getElementById("header-cart-counter");
+          if (el) el.innerText = count;
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener("load", updateHeaderCartCount);
+    window.addEventListener("storage", updateHeaderCartCount);
+    setInterval(updateHeaderCartCount, 1500);
+  </script>
 </body>
 </html>

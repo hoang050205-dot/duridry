@@ -1831,6 +1831,25 @@
 
 <!-- Embedded JavaScript Application Logic -->
   <script>
+
+    // --- Điều Hướng Chuyển Trang Wix Từ Body ---
+    function goToPage(e, url) {
+      console.log("🚀 Yêu cầu chuyển trang DuriDry từ Home Body sang:", url);
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+        }
+      } catch (err) {}
+
+      try {
+        if (window.top && window.top !== window && window.top.location) {
+          window.top.location.href = url;
+          if (e) e.preventDefault();
+          return;
+        }
+      } catch (err) {}
+    }
+
     // --- State Management ---
     const PRODUCTS = [
       {

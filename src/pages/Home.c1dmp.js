@@ -21,21 +21,27 @@ $w.onReady(function () {
                 const msg = event.data;
                 if (!msg) return;
 
-                // CHUYỂN TRANG SANG CỬA HÀNG (WIX STORE ROUTER)
-                if (msg.type === "NAVIGATE_SHOP_PAGE") {
+                // CHUYỂN TRANG SANG CÁC TRANG WIX
+                if (msg.type === "NAVIGATE_SHOP_PAGE" || (msg.type === "WIX_NAVIGATE" && msg.url && msg.url.includes("cua-hang"))) {
                     console.log("🛒 Chuyển trang sang Cửa Hàng...");
                     try {
                         wixLocation.to("/cua-hang");
                     } catch (e) {
-                        try {
-                            wixLocation.to("/shop");
-                        } catch (err) {
-                            wixLocation.to("/store");
-                        }
+                        try { wixLocation.to("/shop"); } catch (err) { wixLocation.to("/store"); }
                     }
                 } else if (msg.type === "WIX_NAVIGATE" && msg.url) {
                     console.log("🚀 Điều hướng sang trang:", msg.url);
-                    wixLocation.to(msg.url);
+                    try {
+                        wixLocation.to(msg.url);
+                    } catch (err) {
+                        if (msg.url.includes("services")) {
+                            try { wixLocation.to("/dich-vu-b2b"); } catch (e) {}
+                        } else if (msg.url.includes("about")) {
+                            try { wixLocation.to("/ve-duridry"); } catch (e) {}
+                        } else if (msg.url.includes("contact")) {
+                            try { wixLocation.to("/lien-he"); } catch (e) {}
+                        }
+                    }
                 } else if (msg.action === "add_to_cart") {
                     console.log("🛒 Khách chọn mua sản phẩm:", msg.sku);
                 } else if (msg.action === "b2b_inquiry") {

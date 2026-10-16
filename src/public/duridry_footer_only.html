@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DuriDry — Footer Eco-Premium</title>
+  <title>DuriDry — Chân Trang Eco-Premium (Footer)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-accent: #F4C430;
+      --primary-accent-hover: #E5B31E;
       --cta-forest-green: #1E5631;
+      --cta-forest-green-hover: #153E23;
       --text-primary: #2B2118;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -24,19 +26,10 @@
       width: 100%;
       overflow-x: hidden;
     }
-    a { text-decoration: none; color: inherit; }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
     button { font-family: inherit; cursor: pointer; border: none; outline: none; }
     .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-    .btn-main {
-      background: var(--cta-forest-green);
-      color: #FFFFFF;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 13px;
-      transition: var(--transition);
-    }
-    .btn-main:hover { background: #153E23; }
+    
     footer.main-footer {
       background: #181411;
       color: #FAF8F5;
@@ -45,6 +38,8 @@
       border-top: 3px solid var(--primary-accent);
       width: 100%;
     }
+
+    /* TẦNG 1: TRUST BAR */
     .footer-trust-bar {
       background: #1E5631;
       padding: 24px 0;
@@ -74,7 +69,9 @@
       line-height: 1.35;
       margin: 0;
     }
-    .footer-main-body { padding: 50px 24px 35px; }
+
+    /* TẦNG 2: 4-COLUMN MEGA FOOTER */
+    .footer-main-body { padding: 48px 24px 36px; }
     .footer-grid {
       display: grid;
       grid-template-columns: 1.3fr 1fr 1.1fr 1.2fr;
@@ -87,6 +84,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       position: relative;
       padding-bottom: 8px;
+      letter-spacing: 0.3px;
     }
     .footer-col h4::after {
       content: '';
@@ -104,11 +102,17 @@
       line-height: 1.6;
       margin-bottom: 14px;
     }
+    .footer-tagline em {
+      color: var(--primary-accent);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
     .footer-meta-item {
       font-size: 12px;
       color: #CBC2B9;
-      margin-bottom: 6px;
-      line-height: 1.4;
+      margin-bottom: 8px;
+      line-height: 1.5;
     }
     .footer-cert-badges {
       display: flex;
@@ -117,24 +121,39 @@
       margin-top: 14px;
     }
     .cert-chip {
-      background: rgba(255,255,255,0.08);
+      background: rgba(244, 196, 48, 0.12);
       color: var(--primary-accent);
       padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 11px;
+      border-radius: 4px;
+      font-size: 10px;
       font-weight: 700;
       border: 1px solid rgba(244, 196, 48, 0.25);
     }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
     .footer-col ul li {
       margin-bottom: 10px;
       font-size: 13px;
       color: #CBC2B9;
       line-height: 1.45;
     }
-    .footer-col ul li a { color: #CBC2B9; transition: var(--transition); }
-    .footer-col ul li a:hover { color: var(--primary-accent); padding-left: 4px; }
-    .footer-newsletter { display: flex; gap: 8px; margin-bottom: 14px; }
+    .footer-col ul li a {
+      color: #CBC2B9;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    .footer-col ul li a:hover {
+      color: var(--primary-accent);
+      padding-left: 4px;
+    }
+    .footer-newsletter {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
     .footer-newsletter input {
       flex: 1;
       padding: 10px 12px;
@@ -145,14 +164,18 @@
       font-size: 13px;
       outline: none;
     }
-    .footer-newsletter input:focus { border-color: var(--primary-accent); }
+    .footer-newsletter input:focus {
+      border-color: var(--primary-accent);
+    }
     .footer-contact-info {
       font-size: 12px;
       color: #ABA299;
       line-height: 1.7;
       margin-bottom: 16px;
     }
-    .footer-contact-info strong { color: #FAF8F5; }
+    .footer-contact-info strong {
+      color: #FAF8F5;
+    }
     .footer-social-links {
       display: flex;
       gap: 8px;
@@ -167,8 +190,14 @@
       color: #CBC2B9;
       transition: var(--transition);
       border: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none;
     }
-    .footer-social-links a:hover { background: var(--primary-accent); color: var(--text-primary); }
+    .footer-social-links a:hover {
+      background: var(--primary-accent);
+      color: var(--text-primary);
+    }
+
+    /* TẦNG 3: BẢN QUYỀN VÀ THANH TOÁN */
     .footer-bottom-bar {
       background: #110D0B;
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -181,9 +210,20 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-    .footer-legal p { font-size: 12px; color: #857B72; margin: 0; }
-    .footer-legal strong { color: #ABA299; }
-    .footer-payment-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-legal p {
+      font-size: 12px;
+      color: #857B72;
+      margin: 0;
+    }
+    .footer-legal strong {
+      color: #ABA299;
+    }
+    .footer-payment-badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
     .pay-chip {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
@@ -202,73 +242,68 @@
       border-radius: 4px;
       letter-spacing: 0.3px;
     }
+
     @media (max-width: 992px) {
-      .footer-trust-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-trust-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     }
     @media (max-width: 600px) {
       .footer-trust-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
-<!-- ==========================================================================
-       FOOTER ECO-PREMIUM 3 TẦNG (DuriDry Co., Ltd) - KHÔNG KHOẢNG TRẮNG THỪA
-       ========================================================================== -->
+
   <footer class="main-footer">
-    <!-- TẦNG 1: THANH CAM KẾT VÀNG & BẢO CHỨNG CHẤT LƯỢNG (Trust Banner) -->
+    <!-- TẦNG 1: THANH CAM KẾT VÀNG & CHỨNG CHỈ (Trust Banner) -->
     <div class="footer-trust-bar">
-      <div class="container">
-        <div class="footer-trust-grid">
-          <div class="f-trust-card">
-            <span class="f-trust-icon">🌱</span>
-            <div>
-              <strong>100% Sầu Riêng Tiền Giang</strong>
-              <p>Thu hoạch chuẩn độ chín, không pha tạp, không phẩm màu hóa học</p>
-            </div>
+      <div class="container footer-trust-grid">
+        <div class="f-trust-card">
+          <div class="f-trust-icon">🌱</div>
+          <div>
+            <strong>100% Sầu Riêng Nguyên Chất</strong>
+            <p>Tuyển chọn từ Tiền Giang, không phụ gia, không phẩm màu.</p>
           </div>
-          <div class="f-trust-card">
-            <span class="f-trust-icon">❄️</span>
-            <div>
-              <strong>Sấy Thăng Hoa Âm Sâu -40°C</strong>
-              <p>Giữ trọn 98% dưỡng chất, vitamin và cấu trúc múi giòn tan tự nhiên</p>
-            </div>
+        </div>
+        <div class="f-trust-card">
+          <div class="f-trust-icon">❄️</div>
+          <div>
+            <strong>Sấy Thăng Hoa -40°C</strong>
+            <p>Rút ẩm chân không, giữ trọn 98% hương vị béo ngậy tự nhiên.</p>
           </div>
-          <div class="f-trust-card">
-            <span class="f-trust-icon">🛡️</span>
-            <div>
-              <strong>Túi Nhôm 3 Lớp Vinpack</strong>
-              <p>Bảo quản 3 năm nguyên độ giòn, không oxy hóa, tiện bay quốc tế</p>
-            </div>
+        </div>
+        <div class="f-trust-card">
+          <div class="f-trust-icon">🛡️</div>
+          <div>
+            <strong>Bao Bì Nhôm Vinpack 3 Lớp</strong>
+            <p>Bảo quản độ giòn tan lên đến 3 năm mà không cần chất bảo quản.</p>
           </div>
-          <div class="f-trust-card">
-            <span class="f-trust-icon">🔄</span>
-            <div>
-              <strong>Đổi Mới 100% Trong 48 Giờ</strong>
-              <p>Cam kết hoàn tiền hoặc đổi mới nếu sản phẩm bị ỉu khi nhận hàng</p>
-            </div>
+        </div>
+        <div class="f-trust-card">
+          <div class="f-trust-icon">✈️</div>
+          <div>
+            <strong>Cam Kết B2B & Xuất Khẩu</strong>
+            <p>Hỗ trợ Phytosanitary, C/O Form E, vận chuyển Door-to-Door.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TẦNG 2: LƯỚI THÔNG TIN 4 CỘT CHIẾN LƯỢC -->
+    <!-- TẦNG 2: MEGA FOOTER 4 CỘT THÔNG TIN -->
     <div class="container footer-main-body">
       <div class="footer-grid">
         <!-- Cột 1: Thương hiệu & Tiêu chuẩn xuất khẩu -->
         <div class="footer-col">
-          <a href="#" class="logo-brand" style="color:#FAF8F5; margin-bottom:14px; display:inline-flex;">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <a href="/" target="_top" onclick="goToPage(event, '/')" class="logo-brand" style="color:#FAF8F5; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px;">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
               <rect width="32" height="32" rx="8" fill="#F4C430"/>
               <path d="M16 6C12 10 9 15 9 20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20C23 15 20 10 16 6Z" fill="#1E5631"/>
               <path d="M16 6V27M12 14L20 22M20 14L12 22" stroke="#F4C430" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-            <span style="font-size:22px; font-weight:800; font-family:'Plus Jakarta Sans',sans-serif;">DuriDry Co., Ltd</span>
+            <span style="font-size:20px; font-weight:800; font-family:'Plus Jakarta Sans',sans-serif;">DuriDry Co., Ltd</span>
           </a>
           <p class="footer-tagline">
-            <em>"Crisp Durian Flavor, A Taste You Can't Hide"</em><br>
+            <em>"Crisp Durian Flavor, A Taste You Can't Hide"</em>
             Tiên phong chế biến sầu riêng sấy thăng hoa xuất khẩu chuẩn quốc tế từ vùng nguyên liệu Tiền Giang.
           </p>
           <div class="footer-meta-item">
@@ -290,13 +325,13 @@
         <div class="footer-col">
           <h4>Sản Phẩm & Khám Phá</h4>
           <ul>
-            <li><a href="#products-section" onclick="filterCatalog('ri6')">🍈 Sầu Riêng Ri6 Sấy Thăng Hoa (100g)</a></li>
-            <li><a href="#products-section" onclick="filterCatalog('ri6')">🎒 Combo 3 Gói Mini Bỏ Túi (3x35g)</a></li>
-            <li><a href="#products-section" onclick="filterCatalog('monthong')">✈️ Monthong Xuất Khẩu Tiêu Chuẩn (100g)</a></li>
-            <li><a href="#products-section" onclick="filterCatalog('monthong')">📦 Monthong Túi Khóa Zip Gia Đình (500g)</a></li>
-            <li><a href="#products-section" onclick="filterCatalog('gift')">🎁 Hộp Quà "Song Vị Hoàng Kim" VIP (200g)</a></li>
-            <li><a href="#widgets-section" onclick="switchWidget(1)">🤖 Quiz: Tìm Vị Sầu Riêng Chuẩn Gu</a></li>
-            <li><a href="#widgets-section" onclick="switchWidget(0)">🔍 Tra Cứu Nguồn Gốc Lô Hàng & Vùng Trồng</a></li>
+            <li><a href="/cua-hang?cat=ri6" target="_top" onclick="goToPage(event, '/cua-hang?cat=ri6')">🍈 Sầu Riêng Ri6 Sấy Thăng Hoa (100g)</a></li>
+            <li><a href="/cua-hang?cat=ri6" target="_top" onclick="goToPage(event, '/cua-hang?cat=ri6')">🎒 Combo 3 Gói Mini Bỏ Túi (3x35g)</a></li>
+            <li><a href="/cua-hang?cat=monthong" target="_top" onclick="goToPage(event, '/cua-hang?cat=monthong')">✈️ Monthong Xuất Khẩu Tiêu Chuẩn (100g)</a></li>
+            <li><a href="/cua-hang?cat=monthong" target="_top" onclick="goToPage(event, '/cua-hang?cat=monthong')">📦 Monthong Túi Khóa Zip Gia Đình (500g)</a></li>
+            <li><a href="/cua-hang?cat=gift" target="_top" onclick="goToPage(event, '/cua-hang?cat=gift')">🎁 Hộp Quà "Song Vị Hoàng Kim" VIP (200g)</a></li>
+            <li><a href="/about" target="_top" onclick="goToPage(event, '/about')">📖 Câu chuyện thương hiệu DuriDry</a></li>
+            <li><a href="/contact" target="_top" onclick="goToPage(event, '/contact')">📞 Liên hệ tư vấn mua sắm</a></li>
           </ul>
         </div>
 
@@ -310,7 +345,7 @@
             <li><strong>Vận chuyển liên vận:</strong> Super Fast Express (Việt - Trung)</li>
             <li><strong>Đối tác bán lẻ:</strong> WinMart, AEON Mall, Hema (盒马鲜生)</li>
             <li><strong>Mã HS Code:</strong> <span style="color:#F4C430; font-weight:700;">0813.40.20</span> (Ưu đãi ACFTA)</li>
-            <li><a href="#widgets-section" onclick="switchWidget(2); openB2BModalWithData();" style="color:#F4C430; font-weight:700;">📊 Báo Giá Sỉ & Hợp Đồng T/T 30/70 →</a></li>
+            <li><a href="/services" target="_top" onclick="goToPage(event, '/services')" style="color:#F4C430; font-weight:700;">📊 Báo Giá Sỉ & Hợp Đồng T/T 30/70 →</a></li>
           </ul>
         </div>
 
@@ -322,7 +357,7 @@
           </p>
           <div class="footer-newsletter">
             <input type="email" placeholder="Email của bạn..." id="footer-newsletter-email">
-            <button onclick="subscribeNewsletter()" class="btn-main" style="padding:10px 16px; border-radius:8px; font-size:13px;">Gửi</button>
+            <button onclick="subscribeNewsletter()" style="background:var(--cta-forest-green); color:#FFFFFF; padding:10px 16px; border-radius:8px; font-weight:700; font-size:13px;">Gửi</button>
           </div>
           <div class="footer-contact-info">
             <div>📞 <strong>Hotline Khách hàng:</strong> 1900 6868 (8:00 - 21:00)</div>
@@ -361,16 +396,34 @@
       </div>
     </div>
   </footer>
-<script>
-  function subscribeNewsletter() {
-    const email = document.getElementById("footer-newsletter-email").value.trim();
-    if (!email || !email.includes("@")) {
-      alert("Vui lòng nhập email hợp lệ!");
-      return;
+
+  <script>
+    function goToPage(e, url) {
+      console.log("🚀 Yêu cầu chuyển trang DuriDry từ Footer sang:", url);
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+        }
+      } catch (err) {}
+
+      try {
+        if (window.top && window.top !== window && window.top.location) {
+          window.top.location.href = url;
+          if (e) e.preventDefault();
+          return;
+        }
+      } catch (err) {}
     }
-    alert("🎉 Đã đăng ký thành công! Mã giảm giá DURI10 (-10%) đã được gửi đến: " + email);
-    document.getElementById("footer-newsletter-email").value = "";
-  }
-</script>
+
+    function subscribeNewsletter() {
+      const email = document.getElementById("footer-newsletter-email").value.trim();
+      if (!email || !email.includes("@")) {
+        alert("Vui lòng nhập email hợp lệ!");
+        return;
+      }
+      alert("🎉 Đã đăng ký thành công! Mã giảm giá DURI10 (-10%) đã được gửi đến: " + email);
+      document.getElementById("footer-newsletter-email").value = "";
+    }
+  </script>
 </body>
 </html>
