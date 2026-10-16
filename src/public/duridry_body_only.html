@@ -1363,13 +1363,20 @@
   <!-- Product Catalog Section (5 SKUs) -->
   <section class="section-padding" id="products-section" style="background:#FAF6F0;">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" style="margin-bottom:24px;">
         <div class="section-sub">DANH MỤC SẢN PHẨM</div>
         <h2 class="section-title">Bộ Sưu Tập Sầu Riêng DuriDry</h2>
         <p class="section-desc">Chọn quy cách đóng gói phù hợp cho bạn hoặc gia đình.</p>
       </div>
 
-      <div style="display:flex; justify-content:center; gap:12px; margin-bottom:32px;">
+      <!-- Ô Tìm Kiếm Sản Phẩm Thông Minh (Live Search) -->
+      <div style="max-width:580px; margin:0 auto 24px; position:relative;">
+        <input type="text" id="catalog-search-input" placeholder="🔍 Tìm sầu riêng (Ri6, Monthong, 500g, Quà biếu, HS Code...)" oninput="handleCatalogSearch(this.value)" style="width:100%; padding:14px 44px 14px 20px; border-radius:999px; border:2px solid var(--primary-accent); font-size:14px; font-weight:600; outline:none; box-shadow:0 4px 15px rgba(244,196,48,0.15); background:#FFFFFF;">
+        <span id="search-clear-btn" onclick="clearCatalogSearch()" style="display:none; position:absolute; right:18px; top:50%; transform:translateY(-50%); font-size:16px; color:#999; cursor:pointer;">✕</span>
+      </div>
+      <div id="search-feedback" style="text-align:center; font-size:13px; font-weight:700; color:var(--cta-forest-green); margin-bottom:20px; min-height:18px;"></div>
+
+      <div style="display:flex; justify-content:center; gap:12px; margin-bottom:32px; flex-wrap:wrap;">
         <button class="btn-main" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('all')">Tất Cả (5)</button>
         <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('ri6')">Dòng Ri6</button>
         <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('monthong')">Dòng Monthong</button>
@@ -1917,6 +1924,7 @@
 
     function changeCurrency(curr) {
       currentCurrency = curr;
+      loadSavedCart();
       renderCatalog();
       updateCartDrawerUI();
       // Update Hero Price
@@ -1968,6 +1976,113 @@
     }
 
     
+    
+    // --- Điều Hướng Liên Trang Wix Router Safe ---
+    function navigateWix(e, url) {
+      if (e) e.preventDefault();
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'WIX_NAVIGATE', url: url }, '*');
+        }
+        if (window.top) {
+          window.top.location.href = url;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = url;
+    }
+
+    // --- Bộ Tìm Kiếm Sản Phẩm Thời Gian Thực (Live Search) ---
+    let currentSearchTerm = "";
+    function handleCatalogSearch(term) {
+      currentSearchTerm = term.trim().toLowerCase();
+      const clearBtn = document.getElementById("search-clear-btn");
+      const feedback = document.getElementById("search-feedback");
+      if (clearBtn) clearBtn.style.display = currentSearchTerm ? "block" : "none";
+
+      if (!currentSearchTerm) {
+        if (feedback) feedback.innerText = "";
+        renderCatalog("all");
+        return;
+      }
+
+      const results = PRODUCTS.filter(p => 
+        p.name.toLowerCase().includes(currentSearchTerm) ||
+        p.sku.toLowerCase().includes(currentSearchTerm) ||
+        p.catName.toLowerCase().includes(currentSearchTerm) ||
+        p.desc.toLowerCase().includes(currentSearchTerm) ||
+        p.badge.toLowerCase().includes(currentSearchTerm)
+      );
+
+      renderCatalogWithList(results);
+      if (feedback) {
+        feedback.innerText = `Tìm thấy ${results.length} sản phẩm phù hợp với từ khóa "${term}"`;
+      }
+    }
+
+    function clearCatalogSearch() {
+      const input = document.getElementById("catalog-search-input");
+      if (input) input.value = "";
+      handleCatalogSearch("");
+    }
+
+    function renderCatalogWithList(list) {
+      const container = document.getElementById("products-container");
+      container.innerHTML = "";
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding:50px 20px; background:#FFFFFF; border-radius:14px; border:1px solid #E8DFD8;">
+            <div style="font-size:36px; margin-bottom:10px;">🔍</div>
+            <h4 style="font-size:18px; margin-bottom:8px;">Không tìm thấy sản phẩm phù hợp</h4>
+            <p style="font-size:14px; color:#8D7B6D; margin-bottom:16px;">Vui lòng thử tìm với từ khóa: <strong>Ri6</strong>, <strong>Monthong</strong>, <strong>500g</strong> hoặc <strong>Quà biếu</strong></p>
+            <button class="btn-main" onclick="clearCatalogSearch()">Xem Tất Cả 5 Sản Phẩm</button>
+          </div>
+        `;
+        return;
+      }
+      list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="${p.badgeClass}">${p.badge}</div>
+          <div class="p-thumb" onclick="openPDP('${p.sku}')">
+            <img src="${p.img}" alt="${p.name}">
+          </div>
+          <div class="p-body">
+            <div class="p-cat">${p.catName} • ${p.weight}</div>
+            <h4 class="p-name" onclick="openPDP('${p.sku}')">${p.name}</h4>
+            <div class="taste-bar-mini">
+              <span>Độ giòn: 5/5</span>
+              <span>•</span>
+              <span>Độ béo: ${p.rich}/5</span>
+            </div>
+            <div class="p-bottom">
+              <span class="p-price">${formatPrice(p.priceVnd, p.priceUsd, p.priceCny)}</span>
+              <button class="btn-add-cart" onclick="addToCart('${p.sku}')" title="Thêm vào giỏ">+</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- Giữ Giỏ Hàng Liên Tục Bằng LocalStorage ---
+    function loadSavedCart() {
+      try {
+        const saved = localStorage.getItem("duridry_cart_v1");
+        if (saved) {
+          cart = JSON.parse(saved);
+          updateCartDrawerUI();
+        }
+      } catch (e) {}
+    }
+
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem("duridry_cart_v1", JSON.stringify(cart));
+      } catch (e) {}
+    }
+
     function scrollToShop(e) {
       if (e) e.preventDefault();
       const shopEl = document.getElementById("products-section");
@@ -2041,6 +2156,7 @@
       } else {
         cart.push({ ...p, qty: 1 });
       }
+      saveCartToStorage();
       updateCartDrawerUI();
       toggleCartDrawer(true);
     }
@@ -2152,11 +2268,13 @@
       if (cart[idx].qty <= 0) {
         cart.splice(idx, 1);
       }
+      saveCartToStorage();
       updateCartDrawerUI();
     }
 
     function removeFromCart(idx) {
       cart.splice(idx, 1);
+      saveCartToStorage();
       updateCartDrawerUI();
     }
 
@@ -2213,6 +2331,7 @@ Mã đơn hàng: DDD-" + Math.floor(100000 + Math.random() * 900000) + "
 Đơn hàng đã được chuyển tới trung tâm xử lý kho SEC Warehouse Gò Vấp.
 Nhân viên DuriDry sẽ liên hệ xác nhận hỏa tốc!");
       cart = [];
+      saveCartToStorage();
       updateCartDrawerUI();
       closeCheckoutModal();
     }
@@ -2445,6 +2564,7 @@ Bộ phận Xuất nhập khẩu DuriDry Co., Ltd sẽ gửi bản báo giá ch�
     window.addEventListener('resize', reportHeightToWix);
 
     document.addEventListener("DOMContentLoaded", () => {
+      loadSavedCart();
       renderCatalog();
       updateCartDrawerUI();
       updateCostCalculator();

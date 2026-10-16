@@ -11,10 +11,10 @@ import { BRAND_INFO, PRODUCTS } from 'public/duridry_data';
 $w.onReady(function () {
     console.log("🌿 DuriDry Eco-Premium Home Page Loaded via GitHub Velo!");
 
-    // --- 1. TỰ ĐỘNG CUỘN ĐẾN CỬA HÀNG NẾU CÓ THAM SỐ ?tab=shop HOẶC #products ---
+    // 1. Tự động cuộn đến Cửa hàng nếu URL có ?tab=shop hoặc #products
     handleStoreNavigation();
 
-    // --- 2. KẾT NỐI KHUNG NHÚNG GIAO DIỆN (#html1) AN TOÀN ---
+    // 2. Lắng nghe và điều hướng liên trang từ Khung Nhúng HTML
     try {
         const htmlApp = $w('#html1');
         if (htmlApp && typeof htmlApp.onMessage === 'function') {
@@ -24,8 +24,11 @@ $w.onReady(function () {
                 const msg = event.data;
                 if (!msg) return;
 
-                // Điều hướng cuộn trang khi khách bấm tab Cửa Hàng
-                if (msg.type === "NAVIGATE_SHOP" || msg.action === "scroll_to_shop") {
+                // Điều hướng liên trang Wix Router
+                if (msg.type === "WIX_NAVIGATE" && msg.url) {
+                    console.log("🚀 Điều hướng sang trang:", msg.url);
+                    wixLocation.to(msg.url);
+                } else if (msg.type === "NAVIGATE_SHOP" || msg.action === "scroll_to_shop") {
                     console.log("🛒 Nhận lệnh cuộn trang tới phần Cửa Hàng");
                     if (typeof htmlApp.scrollTo === 'function') {
                         htmlApp.scrollTo();
@@ -38,20 +41,16 @@ $w.onReady(function () {
                     console.log("Kết quả lưu CMS B2B:", res);
                 }
             });
-        } else {
-            console.log("ℹ️ Khung nhúng #html1 đang chạy độc lập.");
         }
     } catch (err) {
         console.warn("Lưu ý về HtmlComponent:", err);
     }
 
-    // --- 3. HỖ TRỢ CÁC PHẦN TỬ NATIVE TRÊN TRANG (AN TOÀN CHỐNG LỖI) ---
     initNativeElementsSafe();
 });
 
 function handleStoreNavigation() {
     try {
-        // Nếu URL là #products hoặc query ?tab=shop hoặc ?section=shop
         const query = wixLocation.query;
         if (query && (query.tab === 'shop' || query.section === 'shop')) {
             const htmlApp = $w('#html1');
@@ -73,12 +72,9 @@ function initNativeElementsSafe() {
                 }
             });
         }
-
         const btnB2B = $w('#btnB2B');
         if (btnB2B && typeof btnB2B.onClick === 'function') {
             btnB2B.onClick(() => wixLocation.to("/services"));
         }
-    } catch (e) {
-        console.warn("Bỏ qua gán sự kiện native elements:", e);
-    }
+    } catch (e) {}
 }
