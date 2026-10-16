@@ -35,7 +35,13 @@ function setupGlobalNavigation() {
 
         let targetUrl = msg.url;
         if (msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP") {
-            targetUrl = "/cua-hang";
+            const cat = msg.category;
+            const sku = msg.sku;
+            let params = [];
+            if (cat && cat !== 'all') params.push(`cat=${cat}`);
+            if (sku) params.push(`sku=${sku}`);
+
+            targetUrl = '/cua-hang' + (params.length > 0 ? '?' + params.join('&') : '');
         }
 
         if (targetUrl) {
@@ -91,10 +97,12 @@ export function navigateSafely(url) {
         wixLocation.to(url);
     } catch (err) {
         console.warn("Direct wixLocation.to failed for:", url, err);
+        const queryIdx = url.indexOf('?');
+        const query = queryIdx !== -1 ? url.substring(queryIdx) : '';
         if (url.includes("cua-hang")) {
-            try { wixLocation.to("/shop"); } catch (e2) {
-                try { wixLocation.to("/store"); } catch (e3) {
-                    wixLocation.to("/trang-danh-muc");
+            try { wixLocation.to("/shop" + query); } catch (e2) {
+                try { wixLocation.to("/store" + query); } catch (e3) {
+                    wixLocation.to("/trang-danh-muc" + query);
                 }
             }
         } else if (url.includes("services")) {

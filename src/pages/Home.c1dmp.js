@@ -23,11 +23,17 @@ $w.onReady(function () {
 
                 // CHUYỂN TRANG SANG CÁC TRANG WIX
                 if (msg.type === "NAVIGATE_SHOP_PAGE" || (msg.type === "WIX_NAVIGATE" && msg.url && msg.url.includes("cua-hang"))) {
-                    console.log("🛒 Chuyển trang sang Cửa Hàng...");
+                    const cat = msg.category;
+                    const sku = msg.sku;
+                    let params = [];
+                    if (cat && cat !== 'all') params.push(`cat=${cat}`);
+                    if (sku) params.push(`sku=${sku}`);
+                    const targetUrl = '/cua-hang' + (params.length > 0 ? '?' + params.join('&') : '');
+                    console.log("🛒 Chuyển trang sang Cửa Hàng:", targetUrl);
                     try {
-                        wixLocation.to("/cua-hang");
+                        wixLocation.to(targetUrl);
                     } catch (e) {
-                        try { wixLocation.to("/shop"); } catch (err) { wixLocation.to("/store"); }
+                        try { wixLocation.to("/shop" + (params.length > 0 ? '?' + params.join('&') : '')); } catch (err) { wixLocation.to("/store"); }
                     }
                 } else if (msg.type === "WIX_NAVIGATE" && msg.url) {
                     console.log("🚀 Điều hướng sang trang:", msg.url);
