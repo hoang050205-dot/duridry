@@ -11,10 +11,7 @@ import { BRAND_INFO, PRODUCTS } from 'public/duridry_data';
 $w.onReady(function () {
     console.log("🌿 DuriDry Eco-Premium Home Page Loaded via GitHub Velo!");
 
-    // 1. Tự động cuộn đến Cửa hàng nếu URL có ?tab=shop hoặc #products
-    handleStoreNavigation();
-
-    // 2. Lắng nghe và điều hướng liên trang từ Khung Nhúng HTML
+    // Kết nối khung nhúng giao diện (#html1)
     try {
         const htmlApp = $w('#html1');
         if (htmlApp && typeof htmlApp.onMessage === 'function') {
@@ -24,15 +21,21 @@ $w.onReady(function () {
                 const msg = event.data;
                 if (!msg) return;
 
-                // Điều hướng liên trang Wix Router
-                if (msg.type === "WIX_NAVIGATE" && msg.url) {
+                // CHUYỂN TRANG SANG CỬA HÀNG (WIX STORE ROUTER)
+                if (msg.type === "NAVIGATE_SHOP_PAGE") {
+                    console.log("🛒 Chuyển trang sang Cửa Hàng...");
+                    try {
+                        wixLocation.to("/cua-hang");
+                    } catch (e) {
+                        try {
+                            wixLocation.to("/shop");
+                        } catch (err) {
+                            wixLocation.to("/store");
+                        }
+                    }
+                } else if (msg.type === "WIX_NAVIGATE" && msg.url) {
                     console.log("🚀 Điều hướng sang trang:", msg.url);
                     wixLocation.to(msg.url);
-                } else if (msg.type === "NAVIGATE_SHOP" || msg.action === "scroll_to_shop") {
-                    console.log("🛒 Nhận lệnh cuộn trang tới phần Cửa Hàng");
-                    if (typeof htmlApp.scrollTo === 'function') {
-                        htmlApp.scrollTo();
-                    }
                 } else if (msg.action === "add_to_cart") {
                     console.log("🛒 Khách chọn mua sản phẩm:", msg.sku);
                 } else if (msg.action === "b2b_inquiry") {
@@ -49,26 +52,15 @@ $w.onReady(function () {
     initNativeElementsSafe();
 });
 
-function handleStoreNavigation() {
-    try {
-        const query = wixLocation.query;
-        if (query && (query.tab === 'shop' || query.section === 'shop')) {
-            const htmlApp = $w('#html1');
-            if (htmlApp && typeof htmlApp.scrollTo === 'function') {
-                setTimeout(() => htmlApp.scrollTo(), 500);
-            }
-        }
-    } catch (e) {}
-}
-
 function initNativeElementsSafe() {
     try {
         const btnShop = $w('#btnShopNow');
         if (btnShop && typeof btnShop.onClick === 'function') {
             btnShop.onClick(() => {
-                const htmlApp = $w('#html1');
-                if (htmlApp && typeof htmlApp.scrollTo === 'function') {
-                    htmlApp.scrollTo();
+                try {
+                    wixLocation.to("/cua-hang");
+                } catch (e) {
+                    wixLocation.to("/shop");
                 }
             });
         }

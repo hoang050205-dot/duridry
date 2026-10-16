@@ -1143,7 +1143,7 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#products-section" class="btn-main" onclick="scrollToShop(event)">
+            <a href="/cua-hang" target="_top" class="btn-main" onclick="navigateToShopPage(event, 'all')">
               <span>Khám Phá Cửa Hàng Ngay</span>
               <span>→</span>
             </a>
@@ -2081,6 +2081,25 @@
       try {
         localStorage.setItem("duridry_cart_v1", JSON.stringify(cart));
       } catch (e) {}
+    }
+
+    
+    // --- Điều Hướng Trực Tiếp Sang Trang Cửa Hàng (Shop Page) ---
+    function navigateToShopPage(e, cat) {
+      if (e) e.preventDefault();
+      // 1. Gửi tín hiệu đến Wix Velo để điều hướng cấp cao nhất
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'NAVIGATE_SHOP_PAGE', category: cat || 'all' }, '*');
+      }
+      // 2. Thử chuyển window.top sang trang /cua-hang hoặc /shop
+      const targetUrl = cat && cat !== 'all' ? '/cua-hang?cat=' + cat : '/cua-hang';
+      try {
+        if (window.top) {
+          window.top.location.href = targetUrl;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = targetUrl;
     }
 
     function scrollToShop(e) {

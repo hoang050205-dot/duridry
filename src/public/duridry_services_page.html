@@ -173,7 +173,7 @@
       <!-- Menu -->
       <ul style="display:flex; align-items:center; gap:26px; list-style:none;">
         <li style="font-size:14px; font-weight:600;"><a href="/" target="_top" style="color:#5C4D41;">Trang chủ</a></li>
-        <li style="font-size:14px; font-weight:600;"><a href="/?tab=shop" target="_top" style="color:#5C4D41;">Cửa hàng</a></li>
+        <li style="font-size:14px; font-weight:600;"><a href="/cua-hang" target="_top" onclick="navigateToShopPage(event, 'all')" style="color:#5C4D41;">Cửa hàng</a></li>
         <li style="font-size:14px; font-weight:600;"><a href="/services" target="_top" style="color:#1E5631;">Dịch vụ B2B</a></li>
         <li style="font-size:14px; font-weight:600;"><a href="/about" target="_top" style="color:#5C4D41;">Về DuriDry</a></li>
         <li style="font-size:14px; font-weight:600;"><a href="/contact" target="_top" style="color:#5C4D41;">Liên hệ</a></li>
@@ -181,7 +181,7 @@
 
       <!-- Right Actions -->
       <div style="display:flex; align-items:center; gap:14px;">
-        <a href="/?tab=shop" target="_top" class="btn-main" style="padding:8px 18px; font-size:13px;">🛒 Mua Hàng Ngay</a>
+        <a href="/cua-hang" target="_top" onclick="navigateToShopPage(event, 'all')" class="btn-main" style="padding:8px 18px; font-size:13px;">🛒 Mua Hàng Ngay</a>
       </div>
     </div>
   </header>
@@ -306,7 +306,26 @@
       alert("✅ YÊU CẦU DỊCH VỤ ĐÃ ĐƯỢC TIẾP NHẬN!\n\nCông ty: " + comp + "\nDịch vụ: " + srv + "\n\nChuyên viên B2B DuriDry sẽ liên hệ qua điện thoại & gửi báo giá PDF vào email của quý khách trong 2 giờ!");
       e.target.reset();
     }
-  </script>
+  
+    // --- Điều Hướng Trực Tiếp Sang Trang Cửa Hàng (Shop Page) ---
+    function navigateToShopPage(e, cat) {
+      if (e) e.preventDefault();
+      // 1. Gửi tín hiệu đến Wix Velo để điều hướng cấp cao nhất
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'NAVIGATE_SHOP_PAGE', category: cat || 'all' }, '*');
+      }
+      // 2. Thử chuyển window.top sang trang /cua-hang hoặc /shop
+      const targetUrl = cat && cat !== 'all' ? '/cua-hang?cat=' + cat : '/cua-hang';
+      try {
+        if (window.top) {
+          window.top.location.href = targetUrl;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = targetUrl;
+    }
+
+</script>
   <!-- Footer Eco-Premium 3 Tầng -->
   <footer style="background:#181411; color:#FAF8F5; margin-top:60px; border-top:3px solid #F4C430; padding:50px 0 20px;">
     <div class="container" style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1.2fr; gap:36px; margin-bottom:40px;">
@@ -328,7 +347,7 @@
         <h4 style="color:#FAF8F5; font-size:15px; margin-bottom:14px;">Liên Kết Nhanh</h4>
         <ul style="list-style:none; line-height:2; font-size:13px; color:#CBC2B9;">
           <li><a href="/" target="_top">Trang chủ DuriDry</a></li>
-          <li><a href="/?tab=shop" target="_top">Cửa hàng sản phẩm (5 SKUs)</a></li>
+          <li><a href="/cua-hang" target="_top" onclick="navigateToShopPage(event, 'all')">Cửa hàng sản phẩm (5 SKUs)</a></li>
           <li><a href="/services" target="_top">Dịch vụ gia công sấy thăng hoa</a></li>
           <li><a href="/about" target="_top">Câu chuyện thương hiệu</a></li>
           <li><a href="/contact" target="_top">Liên hệ hợp tác & Hỗ trợ</a></li>

@@ -1,10 +1,21 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+// =========================================================================
+// DuriDry Shop Page Controller (Trang Cửa Hàng / Danh Mục)
+// File: src/pages/Trang danh mục.ivo1p.js
+// =========================================================================
+import wixLocation from 'wix-location';
 
 $w.onReady(function () {
-    // Write your JavaScript here
+    console.log("🛒 DuriDry Shop Page Active!");
 
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    try {
+        const htmlShop = $w('#html1') || $w('#htmlShop');
+        if (htmlShop && typeof htmlShop.onMessage === 'function') {
+            htmlShop.onMessage((event) => {
+                const msg = event.data;
+                if (msg && msg.type === "WIX_NAVIGATE" && msg.url) {
+                    wixLocation.to(msg.url);
+                }
+            });
+        }
+    } catch (e) {}
 });
