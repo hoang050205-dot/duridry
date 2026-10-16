@@ -21,6 +21,18 @@ function setupGlobalNavigation() {
         const msg = event.data;
         if (!msg) return;
 
+        if (msg.type === "OPEN_CART_DRAWER" || msg.type === "OPEN_CART") {
+            console.log("🛒 Master Router phát tín hiệu mở Giỏ Hàng tới các component...");
+            broadcastToHtmlComponents({ type: 'OPEN_CART_DRAWER' });
+            return;
+        }
+
+        if (msg.type === "FILTER_CATEGORY" && msg.category) {
+            console.log("🎯 Master Router phát tín hiệu lọc danh mục:", msg.category);
+            broadcastToHtmlComponents({ type: 'FILTER_CATEGORY', category: msg.category });
+            return;
+        }
+
         let targetUrl = msg.url;
         if (msg.type === "NAVIGATE_SHOP_PAGE" || msg.type === "OPEN_SHOP") {
             targetUrl = "/cua-hang";
@@ -48,6 +60,26 @@ function setupGlobalNavigation() {
             const comp = $w(id);
             if (comp && comp.length > 0 && typeof comp.onMessage === 'function') {
                 comp.onMessage(handleMessage);
+            }
+        } catch (e) {}
+    });
+}
+
+export function broadcastToHtmlComponents(data) {
+    try {
+        $w('HtmlComponent').postMessage(data);
+    } catch (e) {}
+
+    const componentIds = [
+        '#html1', '#html2', '#html3', '#html4', '#html5',
+        '#htmlHeader', '#headerHtml', '#htmlFooter', '#footerHtml',
+        '#htmlShop', '#htmlServices', '#htmlAbout', '#htmlContact'
+    ];
+    componentIds.forEach(id => {
+        try {
+            const comp = $w(id);
+            if (comp && comp.length > 0 && typeof comp.postMessage === 'function') {
+                comp.postMessage(data);
             }
         } catch (e) {}
     });
