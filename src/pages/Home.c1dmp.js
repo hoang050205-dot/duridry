@@ -11,7 +11,10 @@ import { BRAND_INFO, PRODUCTS } from 'public/duridry_data';
 $w.onReady(function () {
     console.log("🌿 DuriDry Eco-Premium Home Page Loaded via GitHub Velo!");
 
-    // --- 1. KẾT NỐI KHUNG NHÚNG GIAO DIỆN (#html1) AN TOÀN ---
+    // --- 1. TỰ ĐỘNG CUỘN ĐẾN CỬA HÀNG NẾU CÓ THAM SỐ ?tab=shop HOẶC #products ---
+    handleStoreNavigation();
+
+    // --- 2. KẾT NỐI KHUNG NHÚNG GIAO DIỆN (#html1) AN TOÀN ---
     try {
         const htmlApp = $w('#html1');
         if (htmlApp && typeof htmlApp.onMessage === 'function') {
@@ -21,7 +24,13 @@ $w.onReady(function () {
                 const msg = event.data;
                 if (!msg) return;
 
-                if (msg.action === "add_to_cart") {
+                // Điều hướng cuộn trang khi khách bấm tab Cửa Hàng
+                if (msg.type === "NAVIGATE_SHOP" || msg.action === "scroll_to_shop") {
+                    console.log("🛒 Nhận lệnh cuộn trang tới phần Cửa Hàng");
+                    if (typeof htmlApp.scrollTo === 'function') {
+                        htmlApp.scrollTo();
+                    }
+                } else if (msg.action === "add_to_cart") {
                     console.log("🛒 Khách chọn mua sản phẩm:", msg.sku);
                 } else if (msg.action === "b2b_inquiry") {
                     console.log("📦 Tiếp nhận yêu cầu báo giá B2B:", msg);
@@ -36,51 +45,38 @@ $w.onReady(function () {
         console.warn("Lưu ý về HtmlComponent:", err);
     }
 
-    // --- 2. HỖ TRỢ CÁC PHẦN TỬ NATIVE TRÊN TRANG (AN TOÀN CHỐNG LỖI) ---
+    // --- 3. HỖ TRỢ CÁC PHẦN TỬ NATIVE TRÊN TRANG (AN TOÀN CHỐNG LỖI) ---
     initNativeElementsSafe();
 });
+
+function handleStoreNavigation() {
+    try {
+        // Nếu URL là #products hoặc query ?tab=shop hoặc ?section=shop
+        const query = wixLocation.query;
+        if (query && (query.tab === 'shop' || query.section === 'shop')) {
+            const htmlApp = $w('#html1');
+            if (htmlApp && typeof htmlApp.scrollTo === 'function') {
+                setTimeout(() => htmlApp.scrollTo(), 500);
+            }
+        }
+    } catch (e) {}
+}
 
 function initNativeElementsSafe() {
     try {
         const btnShop = $w('#btnShopNow');
         if (btnShop && typeof btnShop.onClick === 'function') {
-            btnShop.onClick(() => wixLocation.to("/cua-hang"));
+            btnShop.onClick(() => {
+                const htmlApp = $w('#html1');
+                if (htmlApp && typeof htmlApp.scrollTo === 'function') {
+                    htmlApp.scrollTo();
+                }
+            });
         }
 
         const btnB2B = $w('#btnB2B');
         if (btnB2B && typeof btnB2B.onClick === 'function') {
-            btnB2B.onClick(() => wixLocation.to("/cong-xuat-khau-b2b"));
-        }
-
-        const btnTrack = $w('#btnTrackBatch');
-        const inputBatch = $w('#inputBatchCode');
-        if (btnTrack && typeof btnTrack.onClick === 'function' && inputBatch) {
-            btnTrack.onClick(async () => {
-                const code = inputBatch.value;
-                const res = await getBatchInfo(code);
-                const boxResult = $w('#boxBatchResult');
-                if (boxResult && typeof boxResult.expand === 'function') {
-                    const txtFarm = $w('#txtFarmName');
-                    if (txtFarm && res.success) {
-                        txtFarm.text = "Vùng trồng: " + res.data.farm;
-                    } else if (txtFarm) {
-                        txtFarm.text = res.message;
-                    }
-                    boxResult.expand();
-                }
-            });
-        }
-
-        const sliderQty = $w('#sliderB2BQty');
-        if (sliderQty && typeof sliderQty.onChange === 'function') {
-            sliderQty.onChange(async () => {
-                const qty = sliderQty.value;
-                const quote = await calculateB2BQuote(qty);
-                const txtTotal = $w('#txtB2BTotalVal');
-                if (txtTotal) {
-                    txtTotal.text = `Tổng: $${quote.totalFobCifUsd.toLocaleString()} USD (Cọc 30% T/T: $${quote.advanceDepositUsd.toLocaleString()} USD)`;
-                }
-            });
+            btnB2B.onClick(() => wixLocation.to("/services"));
         }
     } catch (e) {
         console.warn("Bỏ qua gán sự kiện native elements:", e);

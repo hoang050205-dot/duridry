@@ -1,10 +1,23 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+// =========================================================================
+// DuriDry About Page Controller (Velo Code)
+// File: src/pages/About.ki6xe.js
+// Nền tảng: Wix Studio & Velo | Tác giả: DuriDry Co., Ltd
+// =========================================================================
+import wixLocation from 'wix-location';
 
 $w.onReady(function () {
-    // Write your JavaScript here
+    console.log("🌿 DuriDry About Page Active!");
 
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    // Kết nối an toàn với khung nhúng giới thiệu (#htmlAbout hoặc #html1)
+    try {
+        const htmlAbout = $w('#htmlAbout') || $w('#html1');
+        if (htmlAbout && typeof htmlAbout.onMessage === 'function') {
+            htmlAbout.onMessage((event) => {
+                const msg = event.data;
+                console.log("📩 Tin nhắn từ trang Giới Thiệu:", msg);
+            });
+        }
+    } catch (e) {
+        console.warn("Khung nhúng chạy độc lập:", e);
+    }
 });

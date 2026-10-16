@@ -1,10 +1,23 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+// =========================================================================
+// DuriDry Services Page Controller (Velo Code)
+// File: src/pages/Services.xs5s7.js
+// Nền tảng: Wix Studio & Velo | Tác giả: DuriDry Co., Ltd
+// =========================================================================
+import wixLocation from 'wix-location';
 
 $w.onReady(function () {
-    // Write your JavaScript here
+    console.log("🌿 DuriDry Services Page Active!");
 
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    // Kết nối an toàn với khung nhúng dịch vụ (#htmlServices hoặc #html1)
+    try {
+        const htmlServices = $w('#htmlServices') || $w('#html1');
+        if (htmlServices && typeof htmlServices.onMessage === 'function') {
+            htmlServices.onMessage((event) => {
+                const msg = event.data;
+                console.log("📩 Tin nhắn từ trang Dịch Vụ:", msg);
+            });
+        }
+    } catch (e) {
+        console.warn("Khung nhúng chạy độc lập:", e);
+    }
 });

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #F5EFEB;
+      --primary-accent: #F4C430;
+      --primary-accent-hover: #E5B31E;
+      --primary-accent-light: #FDF4D7;
+      --cta-forest-green: #1E5631;
+      --cta-forest-green-hover: #153E23;
+      --cta-forest-green-light: #E8F0EA;
+      --text-primary: #2B2118;
+      --text-secondary: #5C4D41;
+      --text-muted: #8D7B6D;
+      --badge-highlight: #E05A47;
+      --border-subtle: #E8DFD8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(43, 33, 24, 0.05);
+      --shadow-md: 0 10px 30px rgba(43, 33, 24, 0.08);
+      --shadow-lg: 0 20px 50px rgba(43, 33, 24, 0.12);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .btn-main {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+      padding: 12px 26px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-main:hover {
+      background: var(--cta-forest-green-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--primary-accent);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      background: var(--primary-accent);
+      transform: translateY(-2px);
+    }
+    .hero-banner {
+      padding: 60px 0 50px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(244, 196, 48, 0.2) 0%, rgba(250, 248, 245, 0) 70%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--cta-forest-green-light);
+      color: var(--cta-forest-green);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: 38px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section-py { padding: 60px 0; }
+    .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-accent);
+    }
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    @media (max-width: 850px) {
+      .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+    }
+  </style>
+
+  <title>DuriDry — Liên Hệ & Trung Tâm Hỗ Trợ 24/7</title>
+</head>
+<body>
+  <div class="hero-banner">
+    <div class="container">
+      <span class="hero-tag">TRUNG TÂM KẾT NỐI</span>
+      <h1 class="hero-title">Đồng Hành Cùng Khách Hàng & Đối Tác Thương Mại Quốc Tế</h1>
+      <p class="hero-desc">DuriDry luôn sẵn sàng lắng nghe ý kiến phản hồi từ người tiêu dùng và hỗ trợ đàm phán hợp đồng cung ứng xuất khẩu B2B.</p>
+    </div>
+  </div>
+
+  <section class="section-py">
+    <div class="container">
+      <div class="card-grid-2" style="gap:40px;">
+        <!-- Left: Contact Info -->
+        <div>
+          <span style="color:var(--cta-forest-green); font-weight:800; font-size:13px; text-transform:uppercase;">THÔNG TIN TRỰC TIẾP</span>
+          <h2 style="font-size:28px; margin:10px 0 20px;">Văn Phòng & Trung Tâm Kho Vận</h2>
+
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div style="background:#FFFFFF; padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <strong style="color:var(--cta-forest-green); font-size:16px; display:block; margin-bottom:4px;">🏢 Trụ Sở Điều Hành & Nghiên Cứu</strong>
+              <p style="font-size:14px; color:var(--text-secondary);">Tòa nhà Đổi mới Sáng tạo, Trường Đại học Kinh tế Quốc dân (NEU), 207 Giải Phóng, Đồng Tâm, Hai Bà Trưng, Hà Nội.</p>
+            </div>
+
+            <div style="background:#FFFFFF; padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <strong style="color:var(--cta-forest-green); font-size:16px; display:block; margin-bottom:4px;">❄️ Kho Lạnh & Trung Tâm Đóng Gói</strong>
+              <p style="font-size:14px; color:var(--text-secondary);">SEC Warehouse, Đường số 13, Phường 13, Quận Gò Vấp, TP. Hồ Chí Minh.</p>
+            </div>
+
+            <div style="background:#FFFFFF; padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <strong style="color:var(--cta-forest-green); font-size:16px; display:block; margin-bottom:4px;">📞 Đường Dây Nóng & Hỗ Trợ 24/7</strong>
+              <p style="font-size:14px; color:var(--text-secondary); margin-bottom:4px;"><strong>Hotline B2C:</strong> 1900 6868 (8:00 - 21:00 hàng ngày)</p>
+              <p style="font-size:14px; color:var(--text-secondary); margin-bottom:4px;"><strong>Hotline B2B/Xuất Khẩu:</strong> (+84) 912 345 678</p>
+              <p style="font-size:14px; color:var(--text-secondary);"><strong>Email:</strong> contact@duridry.vn | export@duridry.vn</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div style="background:#FFFFFF; padding:32px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm);">
+          <h3 style="font-size:22px; margin-bottom:8px;">Gửi Tin Nhắn Cho DuriDry</h3>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">Điền thông tin bên dưới để được nhân viên hỗ trợ nhanh chóng nhất.</p>
+
+          <form onsubmit="handleContactSubmit(event)">
+            <div style="margin-bottom:14px;">
+              <label style="display:block; font-size:13px; font-weight:700; margin-bottom:4px;">Họ và tên của bạn:</label>
+              <input type="text" id="ct-name" required placeholder="Nguyễn Văn A" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+              <div>
+                <label style="display:block; font-size:13px; font-weight:700; margin-bottom:4px;">Số điện thoại:</label>
+                <input type="tel" id="ct-phone" required placeholder="0912 xxx xxx" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+              </div>
+              <div>
+                <label style="display:block; font-size:13px; font-weight:700; margin-bottom:4px;">Email:</label>
+                <input type="email" id="ct-email" required placeholder="email@domain.com" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+              </div>
+            </div>
+            <div style="margin-bottom:14px;">
+              <label style="display:block; font-size:13px; font-weight:700; margin-bottom:4px;">Mục đích liên hệ:</label>
+              <select id="ct-topic" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+                <option>Mua hàng tiêu dùng B2C</option>
+                <option>Hợp tác xuất khẩu B2B / Đặt sỉ</option>
+                <option>Đề nghị gia công OEM sấy thăng hoa</option>
+                <option>Hỗ trợ bảo hành & đổi trả sản phẩm</option>
+                <option>Hợp tác truyền thông & đại lý</option>
+              </select>
+            </div>
+            <div style="margin-bottom:20px;">
+              <label style="display:block; font-size:13px; font-weight:700; margin-bottom:4px;">Nội dung tin nhắn:</label>
+              <textarea id="ct-msg" rows="4" required placeholder="Nhập câu hỏi hoặc nội dung bạn cần hỗ trợ..." style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;"></textarea>
+            </div>
+            <button type="submit" class="btn-main" style="width:100%; justify-content:center; padding:14px;">Gửi Tin Nhắn Ngay →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("ct-name").value;
+      alert("🎉 CẢM ƠN BẠN, " + name.toUpperCase() + "!\n\nTin nhắn của bạn đã được chuyển tới ban quản trị DuriDry. Nhân viên hỗ trợ sẽ gọi lại hoặc phản hồi qua email trong vòng 30 phút.");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

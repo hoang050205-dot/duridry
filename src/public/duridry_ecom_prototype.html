@@ -1155,7 +1155,7 @@
         <ul class="nav-menu">
           <li class="nav-item active"><a href="#">Trang chủ</a></li>
           <li class="nav-item">
-            <a href="#products-section">Cửa hàng ▾</a>
+            <a href="#products-section" onclick="scrollToShop(event)">Cửa hàng ▾</a>
             <div class="dropdown-menu">
               <a href="#products-section" class="dropdown-item" onclick="filterCatalog('all')">Tất cả sản phẩm (5 SKUs)</a>
               <a href="#products-section" class="dropdown-item" onclick="filterCatalog('ri6')">Dòng Ri6 Nội Địa</a>
@@ -1208,7 +1208,7 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#products-section" class="btn-main">
+            <a href="#products-section" class="btn-main" onclick="scrollToShop(event)">
               <span>Khám Phá Cửa Hàng Ngay</span>
               <span>→</span>
             </a>
@@ -2178,6 +2178,18 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    
+    function scrollToShop(e) {
+      if (e) e.preventDefault();
+      const shopEl = document.getElementById("products-section");
+      if (shopEl) {
+        shopEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (window.parent) {
+        window.parent.postMessage({ type: "NAVIGATE_SHOP", action: "scroll_to_shop" }, "*");
+      }
     }
 
     function filterCatalog(cat) {

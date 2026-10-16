@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #F5EFEB;
+      --primary-accent: #F4C430;
+      --primary-accent-hover: #E5B31E;
+      --primary-accent-light: #FDF4D7;
+      --cta-forest-green: #1E5631;
+      --cta-forest-green-hover: #153E23;
+      --cta-forest-green-light: #E8F0EA;
+      --text-primary: #2B2118;
+      --text-secondary: #5C4D41;
+      --text-muted: #8D7B6D;
+      --badge-highlight: #E05A47;
+      --border-subtle: #E8DFD8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(43, 33, 24, 0.05);
+      --shadow-md: 0 10px 30px rgba(43, 33, 24, 0.08);
+      --shadow-lg: 0 20px 50px rgba(43, 33, 24, 0.12);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .btn-main {
+      background: var(--cta-forest-green);
+      color: #FFFFFF;
+      padding: 12px 26px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-main:hover {
+      background: var(--cta-forest-green-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--primary-accent);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      background: var(--primary-accent);
+      transform: translateY(-2px);
+    }
+    .hero-banner {
+      padding: 60px 0 50px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(244, 196, 48, 0.2) 0%, rgba(250, 248, 245, 0) 70%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--cta-forest-green-light);
+      color: var(--cta-forest-green);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: 38px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section-py { padding: 60px 0; }
+    .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .feature-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-accent);
+    }
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    @media (max-width: 850px) {
+      .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+    }
+  </style>
+
+  <title>DuriDry — Dịch Vụ Gia Công Sấy Thăng Hoa OEM & Xuất Khẩu B2B</title>
+</head>
+<body>
+  <div class="hero-banner">
+    <div class="container">
+      <span class="hero-tag">DỊCH VỤ DOANH NGHIỆP & B2B</span>
+      <h1 class="hero-title">Giải Pháp Gia Công Sấy Thăng Hoa & Xuất Khẩu Sầu Riêng Toàn Diện</h1>
+      <p class="hero-desc">Từ vùng nguyên liệu Tiền Giang chuẩn GACC đến phòng sạch sấy âm sâu -40°C tại SEC Warehouse. Đồng hành cùng các thương hiệu FMCG và đối tác thương mại quốc tế.</p>
+    </div>
+  </div>
+
+  <section class="section-py">
+    <div class="container">
+      <div style="text-align:center; max-width:600px; margin:0 auto 40px;">
+        <span style="color:var(--cta-forest-green); font-weight:800; font-size:13px; text-transform:uppercase;">4 TRỤ CỘT DỊCH VỤ</span>
+        <h2 style="font-size:28px; margin-top:6px;">Năng Lực Cung Ứng & Chế Biến Sâu</h2>
+      </div>
+
+      <div class="card-grid-2">
+        <div class="feature-card">
+          <span class="card-icon">❄️</span>
+          <h3 style="font-size:20px; margin-bottom:10px;">1. Gia Công Sấy Thăng Hoa OEM / ODM</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:14px;">
+            Nhận gia công sấy thăng hoa chân không (-40°C) cho cơm sầu riêng tươi, trái cây nhiệt đới theo yêu cầu. Rút ẩm thể khí giữ trọn kết cấu xốp giòn và 98% dưỡng chất.
+          </p>
+          <ul style="font-size:13px; color:var(--text-secondary); margin-left:18px; line-height:1.7;">
+            <li>Quy cách: Gói nhỏ 35g, 50g, 100g hoặc túi gia đình 500g, 1kg.</li>
+            <li>Đóng gói phòng sạch: Túi nhôm Vinpack 3 lớp hoặc hũ thiếc cản quang.</li>
+            <li>In ấn nhãn mác thương hiệu riêng (Private Label) theo đơn đặt hàng.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <span class="card-icon">🌳</span>
+          <h3 style="font-size:20px; margin-bottom:10px;">2. Cung Ứng Nguyên Liệu Sầu Riêng Đạt Chuẩn GACC</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:14px;">
+            Liên kết trực tiếp với HTX LCD Fruit tại Cái Bè & Cai Lậy (Tiền Giang). Cung cấp sầu riêng Ri6 và Monthong loại B đạt tiêu chuẩn xuất khẩu chính ngạch sang Trung Quốc.
+          </p>
+          <ul style="font-size:13px; color:var(--text-secondary); margin-left:18px; line-height:1.7;">
+            <li>Mã số vùng trồng GACC: <strong>VN-TG-0813</strong> (Được Hải quan TQ cấp phép).</li>
+            <li>Kiểm soát dư lượng thuốc BVTV & kim loại nặng 100% đạt chuẩn VietGAP.</li>
+            <li>Sản lượng cung ứng ổn định: 10 - 50 tấn quả tươi/tháng.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <span class="card-icon">🚚</span>
+          <h3 style="font-size:20px; margin-bottom:10px;">3. Dịch Vụ Kho Lạnh & Vận Chuyển Liên Vận Việt - Trung</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:14px;">
+            Hệ thống kho vận chuyên biệt kết nối từ trung tâm lưu trữ TP.HCM đến các kho phân phối của chuỗi siêu thị bán lẻ quốc tế.
+          </p>
+          <ul style="font-size:13px; color:var(--text-secondary); margin-left:18px; line-height:1.7;">
+            <li>Kho lạnh & phân loại: SEC Warehouse, P.13, Q.Gò Vấp, TP.HCM.</li>
+            <li>Tuyến xe lạnh hỏa tốc: TP.HCM ➔ Hà Khẩu ➔ Kho Hema Xiansheng (3.5 ngày).</li>
+            <li>Container đường biển: Xuất cảng Cát Lái đi Singapore, Malaysia, EU.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <span class="card-icon">📋</span>
+          <h3 style="font-size:20px; margin-bottom:10px;">4. Thủ Tục Hải Quan & Bộ Chứng Từ Xuất Khẩu Trọn Gói</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:14px;">
+            Đội ngũ chuyên viên Ngoại thương hỗ trợ toàn diện bộ chứng từ xuất nhập khẩu chính ngạch theo chuẩn quốc tế.
+          </p>
+          <ul style="font-size:13px; color:var(--text-secondary); margin-left:18px; line-height:1.7;">
+            <li>Phân loại mã Hải quan: <strong>HS Code 0813.40.20</strong> (Thuế ưu đãi ACFTA 0%).</li>
+            <li>Cấp Giấy chứng nhận xuất xứ: <strong>C/O Form E</strong>, Form D, EUR.1.</li>
+            <li>Chứng thư kiểm dịch thực vật (Phytosanitary Certificate) cấp bởi Cục BVTV.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Inquiry Form -->
+  <section style="background:var(--bg-surface-elevated); padding:60px 0; border-top:1px solid var(--border-subtle);">
+    <div class="container" style="max-width:700px;">
+      <div style="text-align:center; margin-bottom:30px;">
+        <h2 style="font-size:26px;">Nhận Báo Giá Dịch Vụ Gia Công & B2B</h2>
+        <p style="font-size:14px; color:var(--text-secondary);">Phòng Xúc tiến Thương mại DuriDry Co., Ltd sẽ phản hồi bảng giá chi tiết trong vòng 2 giờ.</p>
+      </div>
+
+      <form onsubmit="handleServiceSubmit(event)" style="background:#FFFFFF; padding:32px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm);">
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Tên Quý Công ty / Tổ chức:</label>
+          <input type="text" id="srv-company" required placeholder="VD: Tập đoàn FMCG ABC / Công ty XNK..." style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Số điện thoại / Zalo:</label>
+            <input type="tel" id="srv-phone" required placeholder="0912 xxx xxx" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+          </div>
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Email nhận báo giá:</label>
+            <input type="email" id="srv-email" required placeholder="contact@company.com" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+          </div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Dịch vụ bạn quan tâm:</label>
+          <select id="srv-service" style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;">
+            <option>Gia công sấy thăng hoa OEM / Private Label</option>
+            <option>Mua sỉ sầu riêng Monthong / Ri6 đóng gói sẵn</option>
+            <option>Xuất khẩu nguyên container đường biển / đường bộ Hà Khẩu</option>
+            <option>Gia công đóng gói quà tặng doanh nghiệp Lễ Tết</option>
+          </select>
+        </div>
+        <div style="margin-bottom:20px;">
+          <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Sản lượng dự kiến & Yêu cầu chi tiết:</label>
+          <textarea id="srv-notes" rows="3" placeholder="Sản lượng ước tính (kg), thời gian cần giao hàng, thị trường đích..." style="width:100%; padding:10px 14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); font-size:14px;"></textarea>
+        </div>
+        <button type="submit" class="btn-main" style="width:100%; justify-content:center; padding:14px;">Gửi Yêu Cầu Báo Giá Chính Thức →</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function handleServiceSubmit(e) {
+      e.preventDefault();
+      const comp = document.getElementById("srv-company").value;
+      const srv = document.getElementById("srv-service").value;
+      alert("✅ YÊU CẦU DỊCH VỤ ĐÃ ĐƯỢC TIẾP NHẬN!\n\nCông ty: " + comp + "\nDịch vụ: " + srv + "\n\nChuyên viên B2B DuriDry sẽ liên hệ qua điện thoại & gửi báo giá PDF vào email của quý khách trong 2 giờ!");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

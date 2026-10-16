@@ -1143,7 +1143,7 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#products-section" class="btn-main">
+            <a href="#products-section" class="btn-main" onclick="scrollToShop(event)">
               <span>Khám Phá Cửa Hàng Ngay</span>
               <span>→</span>
             </a>
@@ -1965,6 +1965,18 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    
+    function scrollToShop(e) {
+      if (e) e.preventDefault();
+      const shopEl = document.getElementById("products-section");
+      if (shopEl) {
+        shopEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (window.parent) {
+        window.parent.postMessage({ type: "NAVIGATE_SHOP", action: "scroll_to_shop" }, "*");
+      }
     }
 
     function filterCatalog(cat) {
