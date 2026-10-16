@@ -1123,6 +1123,44 @@
       .hero-title { font-size: 32px; }
       .modal-box { padding: 20px; }
     }
+  
+    /* Interactive Filter Pills Style */
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid var(--primary-accent);
+      background: #FFFFFF;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(43, 33, 24, 0.04);
+    }
+    .filter-btn:hover {
+      background: #FFF9E6;
+      border-color: var(--cta-forest-green);
+      transform: translateY(-2px);
+    }
+    .filter-btn.active {
+      background: var(--cta-forest-green) !important;
+      color: #FFFFFF !important;
+      border-color: var(--cta-forest-green) !important;
+      box-shadow: 0 4px 14px rgba(30, 86, 49, 0.28) !important;
+    }
+    .category-card {
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-accent);
+    }
+
   </style>
 </head>
 <body>
@@ -1232,7 +1270,7 @@
             <span class="cat-badge">Đậm Đà Miền Tây</span>
             <h3 style="font-size:20px; margin-bottom:8px;">Dòng Ri6 Nội Địa</h3>
             <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Vị béo đậm, thơm nồng quyến rũ đặc trưng. Phù hợp người sành ăn sầu riêng và giới trẻ.</p>
-            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
+            <a href="javascript:void(0)" onclick="event.stopPropagation(); filterCatalog('ri6');" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
           </div>
         </div>
 
@@ -1244,7 +1282,7 @@
             <span class="cat-badge">Thanh Tao Quốc Tế</span>
             <h3 style="font-size:20px; margin-bottom:8px;">Dòng Monthong Xuất Khẩu</h3>
             <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Cơm dày, kết cấu giòn chắc, vị ngọt thanh tao. Đóng gói tiêu chuẩn xuất khẩu song ngữ.</p>
-            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
+            <a href="javascript:void(0)" onclick="event.stopPropagation(); filterCatalog('monthong');" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem 2 sản phẩm →</a>
           </div>
         </div>
 
@@ -1256,7 +1294,7 @@
             <span class="cat-badge">Quà Biếu VIP</span>
             <h3 style="font-size:20px; margin-bottom:8px;">Hộp Quà "Song Vị Hoàng Kim"</h3>
             <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Hộp cứng ép kim kèm túi giấy và thiệp viết tay. Món quà thượng hạng cho đối tác & kiều bào.</p>
-            <a href="#products-section" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem chi tiết quà tặng →</a>
+            <a href="javascript:void(0)" onclick="event.stopPropagation(); filterCatalog('gift');" style="font-weight:700; color:var(--cta-forest-green); font-size:14px;">Xem chi tiết quà tặng →</a>
           </div>
         </div>
       </div>
@@ -1376,11 +1414,11 @@
       </div>
       <div id="search-feedback" style="text-align:center; font-size:13px; font-weight:700; color:var(--cta-forest-green); margin-bottom:20px; min-height:18px;"></div>
 
-      <div style="display:flex; justify-content:center; gap:12px; margin-bottom:32px; flex-wrap:wrap;">
-        <button class="btn-main" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('all')">Tất Cả (5)</button>
-        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('ri6')">Dòng Ri6</button>
-        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('monthong')">Dòng Monthong</button>
-        <button class="btn-outline-gold" style="padding:8px 20px; font-size:13px;" onclick="filterCatalog('gift')">Hộp Quà</button>
+      <div class="catalog-filters" id="catalog-filter-group" style="display:flex; justify-content:center; gap:12px; margin-bottom:32px; flex-wrap:wrap;">
+        <button class="filter-btn active" data-cat="all" onclick="filterCatalog('all', this)">Tất Cả (5)</button>
+        <button class="filter-btn" data-cat="ri6" onclick="filterCatalog('ri6', this)">Dòng Ri6</button>
+        <button class="filter-btn" data-cat="monthong" onclick="filterCatalog('monthong', this)">Dòng Monthong</button>
+        <button class="filter-btn" data-cat="gift" onclick="filterCatalog('gift', this)">Hộp Quà</button>
       </div>
 
       <div class="products-grid" id="products-container">
@@ -2122,10 +2160,51 @@
       }
     }
 
-    function filterCatalog(cat) {
-      renderCatalog(cat);
-      const target = document.getElementById("products-section");
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    // --- BỘ LỌC DANH MỤC TƯƠNG TÁC THỜI GIAN THỰC (ẢNH 1 & ẢNH 2 ĐỒNG BỘ) ---
+    let currentFilter = 'all';
+
+    function filterCatalog(cat, clickedBtn) {
+      currentFilter = cat || 'all';
+      console.log("🎯 Lọc danh mục:", currentFilter);
+
+      // 1. Cập nhật trạng thái nút bấm (Active Tab Pill)
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-cat') === currentFilter) {
+          btn.classList.add('active');
+        }
+      });
+
+      // 2. Xóa ô tìm kiếm nếu đang lọc theo nhóm
+      const searchInput = document.getElementById('catalog-search-input');
+      if (searchInput && currentSearchTerm) {
+        searchInput.value = '';
+        currentSearchTerm = '';
+      }
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.style.display = 'none';
+
+      // 3. Hiển thị thông báo trạng thái lọc rõ ràng
+      const feedback = document.getElementById('search-feedback');
+      if (feedback) {
+        const catLabels = {
+          all: '✨ Đang hiển thị toàn bộ 5 sản phẩm sầu riêng DuriDry tuyển chọn',
+          ri6: '🌟 Đang lọc: Dòng Ri6 Nội Địa (2 sản phẩm cơm vàng béo đậm)',
+          monthong: '✈️ Đang lọc: Dòng Monthong Xuất Khẩu (2 sản phẩm ngọt thanh)',
+          gift: '🎁 Đang lọc: Hộp Quà "Song Vị Hoàng Kim" VIP (Quà tặng cao cấp)'
+        };
+        feedback.innerText = catLabels[currentFilter] || '';
+      }
+
+      // 4. Render danh sách sản phẩm tương ứng
+      renderCatalog(currentFilter);
+
+      // 5. Cuộn trang mượt mà đến khu vực danh mục sản phẩm (Ảnh 2)
+      const target = document.getElementById('products-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     // --- PDP Modal Handling ---
@@ -2592,6 +2671,16 @@ Bộ phận Xuất nhập khẩu DuriDry Co., Ltd sẽ gửi bản báo giá ch�
     // window.addEventListener('resize', reportHeightToWix);
 
     document.addEventListener("DOMContentLoaded", () => {
+
+      // Tự động kích hoạt danh mục nếu có tham số trên URL (Ví dụ: ?cat=ri6)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const catParam = urlParams.get('cat');
+        if (catParam && ['ri6', 'monthong', 'gift'].includes(catParam)) {
+          filterCatalog(catParam);
+        }
+      } catch (e) {}
+    
       loadSavedCart();
       renderCatalog();
       updateCartDrawerUI();
