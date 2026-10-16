@@ -1,0 +1,94 @@
+/**
+ * DuriDry Backend Web Module (Server-side Velo)
+ * File: src/backend/duridry_backend.jsw
+ */
+import wixData from 'wix-data';
+
+// Dữ liệu lô hàng nội bộ
+const BATCH_DB = {
+    "DDD-2026-TG01": {
+        batchCode: "DDD-2026-TG01",
+        variety: "Sầu Riêng Monthong Xuất Khẩu (LCD Fruit Tiền Giang)",
+        areaCode: "VN-TG-0813 (Mã GACC)",
+        dryDate: "12/09/2026 (Sấy thăng hoa -40°C)",
+        moisture: "2.8% (<3%)",
+        warehouse: "Phòng sạch SEC Warehouse Gò Vấp, TP.HCM",
+        cert: "Cục Bảo vệ Thực vật (#VN-PHYTO-2026-0813)",
+        packaging: "Túi nhôm Vinpack chống oxy hóa 3 năm"
+    },
+    "DDD-2026-TG02": {
+        batchCode: "DDD-2026-TG02",
+        variety: "Sầu Riêng Ri6 Béo Đậm (Cái Bè, Tiền Giang)",
+        areaCode: "VN-TG-0609 (VietGAP)",
+        dryDate: "15/09/2026",
+        moisture: "2.6%",
+        warehouse: "SEC Warehouse Gò Vấp, TP.HCM",
+        cert: "HACCP & ISO 22000 Certified",
+        packaging: "Túi nhôm Vinpack"
+    }
+};
+
+/**
+ * Tra cứu thông tin truy xuất nguồn gốc lô hàng
+ */
+export async function getBatchInfo(code) {
+    const cleanCode = (code || "").trim().toUpperCase();
+    if (BATCH_DB[cleanCode]) {
+        return { success: true, data: BATCH_DB[cleanCode] };
+    }
+    return { success: false, message: `Không tìm thấy mã lô ${cleanCode}. Thử mã mẫu: DDD-2026-TG01` };
+}
+
+/**
+ * Tính toán chi phí đơn hàng sỉ B2B theo mô hình tài chính Group 1 PDF
+ */
+export async function calculateB2BQuote(qtyPacks, route = "hekou") {
+    const qty = parseInt(qtyPacks) || 2000;
+    
+    // Khung giá bậc thang theo sản lượng
+    let unitPrice = 11.50;
+    if (qty >= 5000) unitPrice = 8.50;
+    else if (qty >= 3000) unitPrice = 8.90;
+    else if (qty >= 1500) unitPrice = 9.20;
+    else unitPrice = 9.80;
+
+    // Chi phí vận chuyển xe lạnh / đường biển
+    let freightPerPack = 0.35; // Tuyến Hà Khẩu qua Super Fast Express
+    if (route === "sea_asia") freightPerPack = 0.45;
+    if (route === "fob_hcm") freightPerPack = 0.05;
+
+    const totalFobCif = Math.round(qty * (unitPrice + freightPerPack));
+    const advanceDeposit = Math.round(totalFobCif * 0.3); // Đặt cọc T/T 30%
+    const balanceRemaining = totalFobCif - advanceDeposit; // Thanh toán 70%
+
+    return {
+        quantityPacks: qty,
+        totalWeightKg: qty * 0.5,
+        unitPriceUsd: unitPrice,
+        freightPerPackUsd: freightPerPack,
+        totalFobCifUsd: totalFobCif,
+        advanceDepositUsd: advanceDeposit,
+        balanceRemainingUsd: balanceRemaining,
+        documents: ["Commercial Invoice", "Packing List", "Bill of Lading", "Phytosanitary Certificate", "C/O Form E via DHL ($50)"]
+    };
+}
+
+/**
+ * Lưu yêu cầu báo giá B2B vào bộ sưu tập Wix Data
+ */
+export async function submitB2BInquiry(inquiry) {
+    try {
+        const itemToInsert = {
+            companyName: inquiry.company || "Ẩn danh",
+            targetMarket: inquiry.market || "Trung Quốc",
+            quantity: inquiry.quantity || "3.500 kg",
+            incoterms: inquiry.incoterms || "CIF Hekou",
+            contact: inquiry.contact || "",
+            createdAt: new Date()
+        };
+        const res = await wixData.insert("B2B_Inquiries", itemToInsert);
+        return { success: true, id: res._id };
+    } catch (err) {
+        return { success: false, error: err.message };
+    }
+}

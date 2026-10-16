@@ -1,0 +1,206 @@
+{
+  "brand": {
+    "name": "DuriDry Co., Ltd",
+    "slogan": "Crisp Durian Flavor, A Taste You Can't Hide",
+    "hs_code": "0813.40.20",
+    "growing_partner": "LCD Fruit Vietnam (Tiền Giang)",
+    "packaging_partner": "Vinpack (Túi nhôm màng ghép)",
+    "warehouse_partner": "SEC Warehouse (Phòng sạch Gò Vấp, TP.HCM)",
+    "logistics_partner": "Super Fast Express & Logistics",
+    "export_channels": ["Hema Xiansheng (Alibaba China)", "AEON Mall", "WinMart Vietnam"]
+  },
+  "categories": [
+    {
+      "id": "ri6",
+      "name": "Dòng Ri6 Nội Địa (Domestic Signature)",
+      "description": "Vị béo đậm, thơm nồng đặc trưng miền Tây Nam Bộ",
+      "badge": "Vị Truyền Thống"
+    },
+    {
+      "id": "monthong",
+      "name": "Dòng Monthong Xuất Khẩu (Export Selection)",
+      "description": "Cơm dày giòn chắc, vị ngọt thanh tao chuẩn khẩu vị quốc tế",
+      "badge": "Chuẩn Xuất Khẩu"
+    },
+    {
+      "id": "gift",
+      "name": "Bộ Quà Tặng Hoàng Kim (Gift Collection)",
+      "description": "Hộp quà ép kim cao cấp kèm thiệp viết tay biếu đối tác & Lễ Tết",
+      "badge": "Quà Biếu VIP"
+    }
+  ],
+  "products": [
+    {
+      "sku": "DDD-RI6-100",
+      "name": "Sầu Riêng Ri6 Sấy Thăng Hoa DuriDry – Vị Truyền Thống",
+      "category_id": "ri6",
+      "category_name": "Dòng Nội Địa (Ri6)",
+      "weight_variant": "100g",
+      "weight_gram": 100,
+      "price_vnd": 115000,
+      "price_usd": 4.50,
+      "price_cny": 32.50,
+      "cost_vnd": 65000,
+      "inventory": 1500,
+      "badge": "Best Seller",
+      "badge_type": "highlight",
+      "tagline": "Vị béo đậm, thơm nồng đặc trưng miền Tây. Phù hợp ăn vặt văn phòng, giới trẻ.",
+      "taste_meter": {
+        "crispiness": 5,
+        "richness": 5,
+        "aroma": 5
+      },
+      "image_main": "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "hs_code": "0813.40.20",
+        "ingredients": "100% Thịt sầu riêng Ri6 tươi nguyên chất",
+        "moisture": "< 3%",
+        "shelf_life": "3 năm (Túi nhôm Vinpack chống oxy hóa)",
+        "preservation": "Nhiệt độ phòng (25°C), tránh ánh nắng trực tiếp",
+        "origin": "Vùng trồng LCD Fruit Tiền Giang (Mã vùng: VN-TG-0813)",
+        "packing_facility": "Phòng sạch SEC Warehouse Gò Vấp (Mã đóng gói: VN-PH-SEC01)"
+      }
+    },
+    {
+      "sku": "DDD-RI6-3X35",
+      "name": "Combo 3 Gói Mini Sầu Riêng Ri6 DuriDry – Bỏ Túi Tiện Lợi",
+      "category_id": "ri6",
+      "category_name": "Dòng Nội Địa (Ri6)",
+      "weight_variant": "3 Gói x 35g (105g)",
+      "weight_gram": 105,
+      "price_vnd": 125000,
+      "price_usd": 4.80,
+      "price_cny": 35.00,
+      "cost_vnd": 72000,
+      "inventory": 800,
+      "badge": "Tiện Lợi",
+      "badge_type": "accent",
+      "tagline": "Chia nhỏ khẩu phần, không lo ỉu sau khi mở. Cạnh tranh trực tiếp dòng gói nhỏ Thái Lan.",
+      "taste_meter": {
+        "crispiness": 5,
+        "richness": 5,
+        "aroma": 5
+      },
+      "image_main": "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "hs_code": "0813.40.20",
+        "ingredients": "100% Thịt sầu riêng Ri6 tươi nguyên chất",
+        "moisture": "< 3%",
+        "shelf_life": "3 năm",
+        "preservation": "Nhiệt độ phòng",
+        "origin": "LCD Fruit Tiền Giang"
+      }
+    },
+    {
+      "sku": "DDD-MT-100",
+      "name": "Sầu Riêng Monthong Sấy Thăng Hoa DuriDry – Vị Thanh Tao",
+      "category_id": "monthong",
+      "category_name": "Dòng Xuất Khẩu (Monthong)",
+      "weight_variant": "100g",
+      "weight_gram": 100,
+      "price_vnd": 135000,
+      "price_usd": 5.20,
+      "price_cny": 38.00,
+      "cost_vnd": 75000,
+      "inventory": 1200,
+      "badge": "Chuẩn Xuất Khẩu",
+      "badge_type": "accent",
+      "tagline": "Cơm dày, cấu trúc giòn chắc, ngọt thanh. Đóng gói tiêu chuẩn quốc tế song ngữ Anh - Trung.",
+      "taste_meter": {
+        "crispiness": 5,
+        "richness": 4,
+        "aroma": 4
+      },
+      "image_main": "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "hs_code": "0813.40.20",
+        "ingredients": "100% Thịt sầu riêng Monthong loại B tươi",
+        "moisture": "< 3%",
+        "shelf_life": "3 năm",
+        "preservation": "Nhiệt độ phòng",
+        "origin": "LCD Fruit Tiền Giang",
+        "certifications": ["HACCP", "ISO 22000", "VietGAP", "Phytosanitary Cert"]
+      }
+    },
+    {
+      "sku": "DDD-MT-500",
+      "name": "Sầu Riêng Monthong Sấy Thăng Hoa – Túi Gia Đình & Xuất Khẩu",
+      "category_id": "monthong",
+      "category_name": "Dòng Xuất Khẩu (Monthong)",
+      "weight_variant": "Túi Zip 500g",
+      "weight_gram": 500,
+      "price_vnd": 295000,
+      "price_usd": 11.50,
+      "price_cny": 83.00,
+      "cost_vnd": 160000,
+      "inventory": 3000,
+      "badge": "Tiết Kiệm 35%",
+      "badge_type": "highlight",
+      "tagline": "Sản phẩm chủ lực theo kế hoạch tài chính ($11.5/gói 0.5kg). Có nhãn phụ tiếng Trung/Anh cho chuỗi Hema Xiansheng.",
+      "taste_meter": {
+        "crispiness": 5,
+        "richness": 4,
+        "aroma": 4
+      },
+      "image_main": "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "hs_code": "0813.40.20",
+        "ingredients": "100% Thịt sầu riêng Monthong tươi",
+        "moisture": "< 3%",
+        "shelf_life": "3 năm",
+        "preservation": "Khóa zip kín sau khi mở, nhiệt độ phòng",
+        "origin": "LCD Fruit Tiền Giang"
+      }
+    },
+    {
+      "sku": "DDD-GIFT-200",
+      "name": "Hộp Quà Song Vị Hoàng Kim DuriDry (1 Ri6 + 1 Monthong)",
+      "category_id": "gift",
+      "category_name": "Bộ Quà Tặng (Gift Sets)",
+      "weight_variant": "Hộp 200g (2 x 100g)",
+      "weight_gram": 200,
+      "price_vnd": 260000,
+      "price_usd": 10.00,
+      "price_cny": 72.00,
+      "cost_vnd": 145000,
+      "inventory": 500,
+      "badge": "Quà Biếu VIP",
+      "badge_type": "gold",
+      "tagline": "Hộp cứng ép kim kèm túi giấy và thiệp viết tay. Lựa chọn biếu tặng Lễ Tết và du khách quốc tế.",
+      "taste_meter": {
+        "crispiness": 5,
+        "richness": 5,
+        "aroma": 5
+      },
+      "image_main": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "hs_code": "0813.40.20",
+        "box_contents": "01 gói Ri6 100g + 01 gói Monthong 100g + Thiệp chúc thư pháp + Túi xách quai dù",
+        "shelf_life": "3 năm",
+        "origin": "LCD Fruit Tiền Giang"
+      }
+    }
+  ]
+}
